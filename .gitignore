@@ -1,0 +1,34 @@
+/venv/
+# python
+*.pyc
+venv*/
+.venv*/
+.mypy_cache/
+
+*.sqlite3
+
+# profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
+
+# IDEs and editors
+../fonarik_shtamp/.idea/
+# .project
+# .classpath
+# .c9/
+# *.launch
+# .settings/
+# *.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+
+# System Files
+.DS_Store
+Thumbs.db

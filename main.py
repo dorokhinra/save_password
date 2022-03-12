@@ -6,7 +6,10 @@ import time
 #IMPORT QTQORE
 from qt_core import *
 # UI
-from gui.windows.ui_main_window import UI_MainWindow
+from gui.windows.ui_main_ui import Ui_MainWindow
+
+#SETTING_UI
+from gui.widgets.setup_ui import SettingsUi
 
 #MAIN_WINDOW
 class MainWindow(QMainWindow):
@@ -18,7 +21,9 @@ class MainWindow(QMainWindow):
         # Окно по центру
         desc = QApplication.desktop()
         self.move(desc.availableGeometry().center() - self.rect().center())
-        self.ui = UI_MainWindow(self)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        SettingsUi(self.ui)
         self.show()
 
 

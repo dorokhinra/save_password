@@ -13,6 +13,35 @@ class SettingsUi():
         icon_path_table = os.path.normpath(os.path.join(path, "table.png"))
         icon_path_roll_up_btn = os.path.normpath(os.path.join(path, "line.png"))
         icon_path_exit = os.path.normpath(os.path.join(path, "exit.png"))
+        icon_path_git = os.path.normpath(os.path.join(path, "icons8-github-48.png"))
+        icon_path_key = os.path.normpath(os.path.join(path, "key.png"))
+        icon_path_db = os.path.normpath(os.path.join(path, "database.png"))
+        icon_path_menu = os.path.normpath(os.path.join(path, "menu.png"))
+
+        icon = QIcon()
+        icon.addFile(icon_path_menu, QSize(), QIcon.Normal, QIcon.Off)
+        parent.main_menu_btn_set.setIcon(icon)
+        parent.main_menu_btn_set.setIconSize(QSize(20, 20))
+
+        icon = QIcon()
+        icon.addFile(icon_path_key, QSize(), QIcon.Normal, QIcon.Off)
+        parent.key_btn.setIcon(icon)
+        parent.key_btn.setIconSize(QSize(20, 20))
+
+        icon = QIcon()
+        icon.addFile(icon_path_db, QSize(), QIcon.Normal, QIcon.Off)
+        parent.db_btn.setIcon(icon)
+        parent.db_btn.setIconSize(QSize(20, 20))
+
+        icon = QIcon()
+        icon.addFile(icon_path_git, QSize(), QIcon.Normal, QIcon.Off)
+        parent.git_btn.setIcon(icon)
+        parent.git_btn.setIconSize(QSize(20, 20))
+
+        icon = QIcon()
+        icon.addFile(icon_path_git, QSize(), QIcon.Normal, QIcon.Off)
+        parent.git_btn.setIcon(icon)
+        parent.git_btn.setIconSize(QSize(20, 20))
 
         parent.label_7.setPixmap(QPixmap(icon_path_icon))
         parent.label_5.setPixmap(QPixmap(icon_path_label))
@@ -34,3 +63,5 @@ class SettingsUi():
         icon = QIcon()
         icon.addFile(icon_path_exit, QSize(), QIcon.Normal, QIcon.Off)
         parent.exit_btn.setIcon(icon)
+
+

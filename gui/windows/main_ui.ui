@@ -26,12 +26,11 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget {
-border: rgba(37, 48, 38, 1) solid 4px;
+   <string notr="true">QWidget{
+border:none;
 }
-
 QMainWindow {
-border: rgba(37, 48, 38, 1) solid 4px;
+border: 3px   solid rgba(37, 48, 38, 1);
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -248,7 +247,7 @@ color: rgba(255, 255, 255, 1);</string>
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="page_1">
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -846,7 +845,11 @@ QPushButton:pressed {
                  </size>
                 </property>
                 <property name="text">
-                 <string>главное меню</string>
+                 <string>   главное меню</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>../images/menu.png</normaloff>../images/menu.png</iconset>
                 </property>
                </widget>
               </item>
@@ -865,10 +868,53 @@ QPushButton:pressed {
               <item>
                <widget class="QStackedWidget" name="stackedWidget_2">
                 <property name="styleSheet">
-                 <string notr="true">background-color: rgba(195, 195, 195, 0.4);</string>
+                 <string notr="true">background-color: rgba(195, 195, 195, 0.3);</string>
                 </property>
-                <widget class="QWidget" name="page"/>
-                <widget class="QWidget" name="page_4"/>
+                <property name="currentIndex">
+                 <number>2</number>
+                </property>
+                <widget class="QWidget" name="page_4">
+                 <layout class="QVBoxLayout" name="verticalLayout_9">
+                  <item>
+                   <widget class="QLabel" name="label_10">
+                    <property name="text">
+                     <string>Синхронгизация</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="page_5">
+                 <layout class="QVBoxLayout" name="verticalLayout_10">
+                  <item>
+                   <widget class="QLabel" name="label_11">
+                    <property name="text">
+                     <string>Ключи</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="page_6">
+                 <layout class="QVBoxLayout" name="verticalLayout_11">
+                  <item>
+                   <widget class="QLabel" name="label_8">
+                    <property name="text">
+                     <string>База данных</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
                </widget>
               </item>
              </layout>
@@ -877,19 +923,137 @@ QPushButton:pressed {
           </layout>
          </widget>
          <widget class="QWidget" name="page_3">
-          <layout class="QVBoxLayout" name="verticalLayout">
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
            <item>
-            <widget class="QLabel" name="label_9">
-             <property name="text">
-              <string>Страница 2</string>
+            <widget class="QFrame" name="frame_5">
+             <property name="minimumSize">
+              <size>
+               <width>250</width>
+               <height>0</height>
+              </size>
              </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
+             <property name="maximumSize">
+              <size>
+               <width>250</width>
+               <height>16777215</height>
+              </size>
              </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+	font: 12pt &quot;Sans Serif&quot;;
+	background-color: rgba(195, 195, 195, 0.7);
+border-radius: 15px;
+}
+
+QPushButton:hover {
+	background-color: rgba(197, 197, 197, 0.4);
+border: 3px   solid rgba(37, 48, 38, 1);
+	 
+}
+
+QPushButton:pressed {
+	background-color: rgba(216, 216, 216, 0.2);
+}</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout">
+              <item>
+               <widget class="QLabel" name="label_9">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font: 12pt &quot;Sans Serif&quot;;
+border-bottom: 2px   solid rgb(184, 184, 184);
+background-color: rgba(37, 48, 38, 1);
+border-radius: 5px;</string>
+                </property>
+                <property name="text">
+                 <string>Дерево элементов</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="reestr_tree_frame">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_12">
+                 <item>
+                  <widget class="QTreeView" name="treeView"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="go_back_menu_reestr">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>50</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>   главное меню</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>../images/menu.png</normaloff>../images/menu.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_3">
+             <property name="styleSheet">
+              <string notr="true">#frame_3{
+	background-color: rgba(195, 195, 195, 0.3);
+}</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_13">
+              <item>
+               <widget class="QTableView" name="tableView"/>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>
          </widget>
+         <widget class="QWidget" name="page_edit"/>
         </widget>
        </item>
       </layout>
@@ -910,7 +1074,8 @@ QPushButton:pressed {
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgba(37, 48, 38, 1)</string>
+       <string notr="true">background-color: rgba(37, 48, 38, 1);
+color: rgb(255, 255, 255);</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -918,6 +1083,48 @@ QPushButton:pressed {
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <property name="spacing">
+        <number>50</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_12">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>версия 1.0</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_13">
+         <property name="text">
+          <string>Dorokhinra</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_14">
+         <property name="text">
+          <string>2022 год</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>

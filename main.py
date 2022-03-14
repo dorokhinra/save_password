@@ -28,13 +28,36 @@ class MainWindow(QMainWindow):
         self.ui.btn_settings.clicked.connect(self.show_settings)
         self.ui.btn_pass_reestr.clicked.connect(self.show_reestr)
 
+        #установка первой страницей синхронизации с базой данных
+        self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_4)
+
+        #Кнопки переключения для страници с настройками
+        self.ui.main_menu_btn_set.clicked.connect(self.go_to_back)
+        self.ui.git_btn.clicked.connect(self.show_git_settings)
+        self.ui.key_btn.clicked.connect(self.show_key_settings)
+        self.ui.db_btn.clicked.connect(self.show_db_settings)
+
+        #Кнопка переключения главного меню для реестра
+        self.ui.go_back_menu_reestr.clicked.connect(self.go_to_back)
         self.show()
+
+    def show_db_settings(self):
+        self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_6)
+
+    def show_git_settings(self):
+        self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_4)
+
+    def show_key_settings(self):
+        self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_5)
 
     def show_settings(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_2)
 
     def show_reestr(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_3)
+
+    def go_to_back(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_1)
 
 # вызывается при нажатии кнопки мыши по форме
     def mousePressEvent(self, event):

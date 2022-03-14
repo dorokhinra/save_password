@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_uilybXvx.ui'
+## Form generated from reading UI file 'main_uihMoMWU.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -10,7 +10,6 @@
 
 from qt_core import *
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
@@ -18,12 +17,11 @@ class Ui_MainWindow(object):
         MainWindow.resize(1000, 738)
         MainWindow.setMinimumSize(QSize(1000, 738))
         MainWindow.setMaximumSize(QSize(1000, 738))
-        MainWindow.setStyleSheet(u"QWidget {\n"
-"border: rgba(37, 48, 38, 1) solid 4px;\n"
+        MainWindow.setStyleSheet(u"QWidget{\n"
+"border:none;\n"
 "}\n"
-"\n"
 "QMainWindow {\n"
-"border: rgba(37, 48, 38, 1) solid 4px;\n"
+"border: 3px   solid rgba(37, 48, 38, 1);\n"
 "}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -394,6 +392,9 @@ class Ui_MainWindow(object):
         self.main_menu_btn_set = QPushButton(self.set_panel)
         self.main_menu_btn_set.setObjectName(u"main_menu_btn_set")
         self.main_menu_btn_set.setMinimumSize(QSize(0, 50))
+        icon8 = QIcon()
+        icon8.addFile(u"../images/menu.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.main_menu_btn_set.setIcon(icon8)
 
         self.verticalLayout_7.addWidget(self.main_menu_btn_set)
 
@@ -408,13 +409,40 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.stackedWidget_2 = QStackedWidget(self.frame_4)
         self.stackedWidget_2.setObjectName(u"stackedWidget_2")
-        self.stackedWidget_2.setStyleSheet(u"background-color: rgba(195, 195, 195, 0.4);")
-        self.page = QWidget()
-        self.page.setObjectName(u"page")
-        self.stackedWidget_2.addWidget(self.page)
+        self.stackedWidget_2.setStyleSheet(u"background-color: rgba(195, 195, 195, 0.3);")
         self.page_4 = QWidget()
         self.page_4.setObjectName(u"page_4")
+        self.verticalLayout_9 = QVBoxLayout(self.page_4)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.label_10 = QLabel(self.page_4)
+        self.label_10.setObjectName(u"label_10")
+        self.label_10.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_9.addWidget(self.label_10)
+
         self.stackedWidget_2.addWidget(self.page_4)
+        self.page_5 = QWidget()
+        self.page_5.setObjectName(u"page_5")
+        self.verticalLayout_10 = QVBoxLayout(self.page_5)
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.label_11 = QLabel(self.page_5)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_10.addWidget(self.label_11)
+
+        self.stackedWidget_2.addWidget(self.page_5)
+        self.page_6 = QWidget()
+        self.page_6.setObjectName(u"page_6")
+        self.verticalLayout_11 = QVBoxLayout(self.page_6)
+        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
+        self.label_8 = QLabel(self.page_6)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_11.addWidget(self.label_8)
+
+        self.stackedWidget_2.addWidget(self.page_6)
 
         self.verticalLayout_8.addWidget(self.stackedWidget_2)
 
@@ -424,15 +452,89 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.page_2)
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
-        self.verticalLayout = QVBoxLayout(self.page_3)
+        self.horizontalLayout_7 = QHBoxLayout(self.page_3)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.frame_5 = QFrame(self.page_3)
+        self.frame_5.setObjectName(u"frame_5")
+        self.frame_5.setMinimumSize(QSize(250, 0))
+        self.frame_5.setMaximumSize(QSize(250, 16777215))
+        self.frame_5.setStyleSheet(u"QPushButton{\n"
+"	font: 12pt \"Sans Serif\";\n"
+"	background-color: rgba(195, 195, 195, 0.7);\n"
+"border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgba(197, 197, 197, 0.4);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);\n"
+"	 \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgba(216, 216, 216, 0.2);\n"
+"}")
+        self.frame_5.setFrameShape(QFrame.StyledPanel)
+        self.frame_5.setFrameShadow(QFrame.Raised)
+        self.verticalLayout = QVBoxLayout(self.frame_5)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.label_9 = QLabel(self.page_3)
+        self.label_9 = QLabel(self.frame_5)
         self.label_9.setObjectName(u"label_9")
+        self.label_9.setMinimumSize(QSize(0, 40))
+        self.label_9.setMaximumSize(QSize(16777215, 30))
+        self.label_9.setStyleSheet(u"font: 12pt \"Sans Serif\";\n"
+"border-bottom: 2px   solid rgb(184, 184, 184);\n"
+"background-color: rgba(37, 48, 38, 1);\n"
+"border-radius: 5px;")
         self.label_9.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout.addWidget(self.label_9)
 
+        self.reestr_tree_frame = QFrame(self.frame_5)
+        self.reestr_tree_frame.setObjectName(u"reestr_tree_frame")
+        self.reestr_tree_frame.setFrameShape(QFrame.StyledPanel)
+        self.reestr_tree_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_12 = QVBoxLayout(self.reestr_tree_frame)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.treeView = QTreeView(self.reestr_tree_frame)
+        self.treeView.setObjectName(u"treeView")
+
+        self.verticalLayout_12.addWidget(self.treeView)
+
+
+        self.verticalLayout.addWidget(self.reestr_tree_frame)
+
+        self.go_back_menu_reestr = QPushButton(self.frame_5)
+        self.go_back_menu_reestr.setObjectName(u"go_back_menu_reestr")
+        self.go_back_menu_reestr.setMinimumSize(QSize(0, 50))
+        self.go_back_menu_reestr.setIcon(icon8)
+        self.go_back_menu_reestr.setIconSize(QSize(20, 20))
+
+        self.verticalLayout.addWidget(self.go_back_menu_reestr)
+
+
+        self.horizontalLayout_7.addWidget(self.frame_5)
+
+        self.frame_3 = QFrame(self.page_3)
+        self.frame_3.setObjectName(u"frame_3")
+        self.frame_3.setStyleSheet(u"#frame_3{\n"
+"	background-color: rgba(195, 195, 195, 0.3);\n"
+"}")
+        self.frame_3.setFrameShape(QFrame.StyledPanel)
+        self.frame_3.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_13 = QVBoxLayout(self.frame_3)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.tableView = QTableView(self.frame_3)
+        self.tableView.setObjectName(u"tableView")
+
+        self.verticalLayout_13.addWidget(self.tableView)
+
+
+        self.horizontalLayout_7.addWidget(self.frame_3)
+
         self.stackedWidget.addWidget(self.page_3)
+        self.page_edit = QWidget()
+        self.page_edit.setObjectName(u"page_edit")
+        self.stackedWidget.addWidget(self.page_edit)
 
         self.horizontalLayout.addWidget(self.stackedWidget)
 
@@ -443,9 +545,33 @@ class Ui_MainWindow(object):
         self.frame_footer.setObjectName(u"frame_footer")
         self.frame_footer.setMinimumSize(QSize(0, 40))
         self.frame_footer.setMaximumSize(QSize(16777215, 40))
-        self.frame_footer.setStyleSheet(u"background-color: rgba(37, 48, 38, 1)")
+        self.frame_footer.setStyleSheet(u"background-color: rgba(37, 48, 38, 1);\n"
+"color: rgb(255, 255, 255);")
         self.frame_footer.setFrameShape(QFrame.StyledPanel)
         self.frame_footer.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_6 = QHBoxLayout(self.frame_footer)
+        self.horizontalLayout_6.setSpacing(50)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.label_12 = QLabel(self.frame_footer)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setStyleSheet(u"color: rgb(255, 255, 255);")
+
+        self.horizontalLayout_6.addWidget(self.label_12)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_2)
+
+        self.label_13 = QLabel(self.frame_footer)
+        self.label_13.setObjectName(u"label_13")
+
+        self.horizontalLayout_6.addWidget(self.label_13)
+
+        self.label_14 = QLabel(self.frame_footer)
+        self.label_14.setObjectName(u"label_14")
+
+        self.horizontalLayout_6.addWidget(self.label_14)
+
 
         self.verticalLayout_3.addWidget(self.frame_footer)
 
@@ -453,7 +579,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget_2.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -479,7 +606,14 @@ class Ui_MainWindow(object):
         self.git_btn.setText(QCoreApplication.translate("MainWindow", u"   \u0421\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0430\u0446\u0438\u044f", None))
         self.key_btn.setText(QCoreApplication.translate("MainWindow", u"   \u041a\u043b\u044e\u0447\u0438               ", None))
         self.db_btn.setText(QCoreApplication.translate("MainWindow", u"   \u0411\u0430\u0437\u0430 \u0434\u0430\u043d\u043d\u044b\u0445    ", None))
-        self.main_menu_btn_set.setText(QCoreApplication.translate("MainWindow", u"\u0433\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0430 2", None))
+        self.main_menu_btn_set.setText(QCoreApplication.translate("MainWindow", u"   \u0433\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0438\u043d\u0445\u0440\u043e\u043d\u0433\u0438\u0437\u0430\u0446\u0438\u044f", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043b\u044e\u0447\u0438", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u0411\u0430\u0437\u0430 \u0434\u0430\u043d\u043d\u044b\u0445", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0435\u0440\u0435\u0432\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432", None))
+        self.go_back_menu_reestr.setText(QCoreApplication.translate("MainWindow", u"   \u0433\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
+        self.label_12.setText(QCoreApplication.translate("MainWindow", u"\u0432\u0435\u0440\u0441\u0438\u044f 1.0", None))
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"Dorokhinra", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"2022 \u0433\u043e\u0434", None))
     # retranslateUi
 

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_uiGIisuI.ui'
+## Form generated from reading UI file 'main_uilybXvx.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.14.1
+## Created by: Qt User Interface Compiler version 5.15.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -13,11 +13,18 @@ from qt_core import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        if MainWindow.objectName():
+        if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1000, 738)
         MainWindow.setMinimumSize(QSize(1000, 738))
         MainWindow.setMaximumSize(QSize(1000, 738))
+        MainWindow.setStyleSheet(u"QWidget {\n"
+"border: rgba(37, 48, 38, 1) solid 4px;\n"
+"}\n"
+"\n"
+"QMainWindow {\n"
+"border: rgba(37, 48, 38, 1) solid 4px;\n"
+"}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setMinimumSize(QSize(1000, 738))
@@ -125,7 +132,8 @@ class Ui_MainWindow(object):
         self.frame.setObjectName(u"frame")
         self.frame.setMinimumSize(QSize(0, 227))
         self.frame.setMaximumSize(QSize(16777215, 227))
-        self.frame.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(117, 231, 163, 1), stop:1 rgba(117, 231, 163, 0));")
+        self.frame.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(117, 231, 163, 1), stop:1 rgba(117, 231, 163, 0));\n"
+"border:none;")
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.frame)
@@ -154,7 +162,8 @@ class Ui_MainWindow(object):
 
         self.frame_2 = QFrame(self.page_1)
         self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setStyleSheet(u"font: 14pt \"MS Shell Dlg 2\";")
+        self.frame_2.setStyleSheet(u"font: 14pt \"MS Shell Dlg 2\";\n"
+"border:none;")
         self.frame_2.setFrameShape(QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.frame_2)
@@ -320,9 +329,109 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.page_1)
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
+        self.horizontalLayout_5 = QHBoxLayout(self.page_2)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.set_panel = QFrame(self.page_2)
+        self.set_panel.setObjectName(u"set_panel")
+        self.set_panel.setMinimumSize(QSize(250, 0))
+        self.set_panel.setMaximumSize(QSize(250, 16777215))
+        self.set_panel.setStyleSheet(u"QPushButton{\n"
+"	font: 12pt \"Sans Serif\";\n"
+"	background-color: rgba(195, 195, 195, 0.7);\n"
+"border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgba(197, 197, 197, 0.4);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);\n"
+"	 \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgba(216, 216, 216, 0.2);\n"
+"}")
+        self.set_panel.setFrameShape(QFrame.StyledPanel)
+        self.set_panel.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_7 = QVBoxLayout(self.set_panel)
+        self.verticalLayout_7.setSpacing(9)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.verticalLayout_7.setContentsMargins(15, -1, 15, -1)
+        self.git_btn = QPushButton(self.set_panel)
+        self.git_btn.setObjectName(u"git_btn")
+        self.git_btn.setMinimumSize(QSize(0, 50))
+        icon5 = QIcon()
+        icon5.addFile(u"../images/icons8-github-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.git_btn.setIcon(icon5)
+        self.git_btn.setIconSize(QSize(25, 25))
+
+        self.verticalLayout_7.addWidget(self.git_btn)
+
+        self.key_btn = QPushButton(self.set_panel)
+        self.key_btn.setObjectName(u"key_btn")
+        self.key_btn.setMinimumSize(QSize(0, 50))
+        self.key_btn.setLayoutDirection(Qt.LeftToRight)
+        icon6 = QIcon()
+        icon6.addFile(u"../images/key.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.key_btn.setIcon(icon6)
+        self.key_btn.setIconSize(QSize(20, 20))
+
+        self.verticalLayout_7.addWidget(self.key_btn)
+
+        self.db_btn = QPushButton(self.set_panel)
+        self.db_btn.setObjectName(u"db_btn")
+        self.db_btn.setMinimumSize(QSize(0, 50))
+        icon7 = QIcon()
+        icon7.addFile(u"../images/database.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.db_btn.setIcon(icon7)
+        self.db_btn.setIconSize(QSize(20, 20))
+
+        self.verticalLayout_7.addWidget(self.db_btn)
+
+        self.verticalSpacer_7 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_7.addItem(self.verticalSpacer_7)
+
+        self.main_menu_btn_set = QPushButton(self.set_panel)
+        self.main_menu_btn_set.setObjectName(u"main_menu_btn_set")
+        self.main_menu_btn_set.setMinimumSize(QSize(0, 50))
+
+        self.verticalLayout_7.addWidget(self.main_menu_btn_set)
+
+
+        self.horizontalLayout_5.addWidget(self.set_panel)
+
+        self.frame_4 = QFrame(self.page_2)
+        self.frame_4.setObjectName(u"frame_4")
+        self.frame_4.setFrameShape(QFrame.StyledPanel)
+        self.frame_4.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_8 = QVBoxLayout(self.frame_4)
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.stackedWidget_2 = QStackedWidget(self.frame_4)
+        self.stackedWidget_2.setObjectName(u"stackedWidget_2")
+        self.stackedWidget_2.setStyleSheet(u"background-color: rgba(195, 195, 195, 0.4);")
+        self.page = QWidget()
+        self.page.setObjectName(u"page")
+        self.stackedWidget_2.addWidget(self.page)
+        self.page_4 = QWidget()
+        self.page_4.setObjectName(u"page_4")
+        self.stackedWidget_2.addWidget(self.page_4)
+
+        self.verticalLayout_8.addWidget(self.stackedWidget_2)
+
+
+        self.horizontalLayout_5.addWidget(self.frame_4)
+
         self.stackedWidget.addWidget(self.page_2)
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
+        self.verticalLayout = QVBoxLayout(self.page_3)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.label_9 = QLabel(self.page_3)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout.addWidget(self.label_9)
+
         self.stackedWidget.addWidget(self.page_3)
 
         self.horizontalLayout.addWidget(self.stackedWidget)
@@ -344,6 +453,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
+        self.stackedWidget.setCurrentIndex(0)
+
+
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
@@ -364,5 +476,10 @@ class Ui_MainWindow(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u0440\u0435\u0435\u0441\u0442\u0440 \u043f\u0430\u0440\u043e\u043b\u0435\u0439", None))
         self.btn_edit_pass_reestr.setText("")
         self.label_3.setText(QCoreApplication.translate("MainWindow", u" \u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435", None))
+        self.git_btn.setText(QCoreApplication.translate("MainWindow", u"   \u0421\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0430\u0446\u0438\u044f", None))
+        self.key_btn.setText(QCoreApplication.translate("MainWindow", u"   \u041a\u043b\u044e\u0447\u0438               ", None))
+        self.db_btn.setText(QCoreApplication.translate("MainWindow", u"   \u0411\u0430\u0437\u0430 \u0434\u0430\u043d\u043d\u044b\u0445    ", None))
+        self.main_menu_btn_set.setText(QCoreApplication.translate("MainWindow", u"\u0433\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0430 2", None))
     # retranslateUi
 

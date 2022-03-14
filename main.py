@@ -24,7 +24,17 @@ class MainWindow(QMainWindow):
 
         self.ui.roll_up_btn.clicked.connect(self.on_min)
         self.ui.exit_btn.clicked.connect(self.closeEvent)
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_1)
+        self.ui.btn_settings.clicked.connect(self.show_settings)
+        self.ui.btn_pass_reestr.clicked.connect(self.show_reestr)
+
         self.show()
+
+    def show_settings(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_2)
+
+    def show_reestr(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_3)
 
 # вызывается при нажатии кнопки мыши по форме
     def mousePressEvent(self, event):

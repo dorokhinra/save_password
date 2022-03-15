@@ -24,6 +24,11 @@ class SettingsUi():
         parent.main_menu_btn_set.setIconSize(QSize(20, 20))
 
         icon = QIcon()
+        icon.addFile(icon_path_menu, QSize(), QIcon.Normal, QIcon.Off)
+        parent.go_back_menu_reestr.setIcon(icon)
+        parent.go_back_menu_reestr.setIconSize(QSize(20, 20))
+
+        icon = QIcon()
         icon.addFile(icon_path_key, QSize(), QIcon.Normal, QIcon.Off)
         parent.key_btn.setIcon(icon)
         parent.key_btn.setIconSize(QSize(20, 20))

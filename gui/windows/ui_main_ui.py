@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_uiljqBDU.ui'
+## Form generated from reading UI file 'main_uiVFdyVi.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -414,23 +414,218 @@ class Ui_MainWindow(object):
         self.page_4 = QWidget()
         self.page_4.setObjectName(u"page_4")
         self.verticalLayout_9 = QVBoxLayout(self.page_4)
+        self.verticalLayout_9.setSpacing(1)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.label_10 = QLabel(self.page_4)
         self.label_10.setObjectName(u"label_10")
+        self.label_10.setMinimumSize(QSize(0, 40))
+        self.label_10.setMaximumSize(QSize(16777215, 40))
+        self.label_10.setStyleSheet(u"font: 14pt \"Sans Serif\";\n"
+"background-color: rgba(37, 48, 38, 1);")
         self.label_10.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_9.addWidget(self.label_10)
+
+        self.frame_7 = QFrame(self.page_4)
+        self.frame_7.setObjectName(u"frame_7")
+        self.frame_7.setStyleSheet(u"background-color: rgba(36, 36, 36, 1);\n"
+"")
+        self.frame_7.setFrameShape(QFrame.StyledPanel)
+        self.frame_7.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_14 = QVBoxLayout(self.frame_7)
+        self.verticalLayout_14.setSpacing(1)
+        self.verticalLayout_14.setObjectName(u"verticalLayout_14")
+        self.verticalLayout_14.setContentsMargins(20, -1, 20, -1)
+        self.verticalSpacer_11 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Minimum)
+
+        self.verticalLayout_14.addItem(self.verticalSpacer_11)
+
+        self.token_edit = QLineEdit(self.frame_7)
+        self.token_edit.setObjectName(u"token_edit")
+        self.token_edit.setMinimumSize(QSize(0, 40))
+        self.token_edit.setStyleSheet(u"QLineEdit {\n"
+"background-color: rgba(197, 197, 197, 0.4);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);	 \n"
+"padding: 5px;\n"
+"}")
+        self.token_edit.setEchoMode(QLineEdit.Password)
+
+        self.verticalLayout_14.addWidget(self.token_edit)
+
+        self.label_15 = QLabel(self.frame_7)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setStyleSheet(u"color: rgb(234, 78, 117);")
+
+        self.verticalLayout_14.addWidget(self.label_15)
+
+        self.frame_8 = QFrame(self.frame_7)
+        self.frame_8.setObjectName(u"frame_8")
+        self.frame_8.setStyleSheet(u"QFrame {\n"
+"border: none;\n"
+"}")
+        self.frame_8.setFrameShape(QFrame.StyledPanel)
+        self.frame_8.setFrameShadow(QFrame.Raised)
+        self.gridLayout_2 = QGridLayout(self.frame_8)
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.gridLayout_2.setVerticalSpacing(15)
+        self.gridLayout_2.setContentsMargins(-1, 15, -1, -1)
+        self.btn_sinc = QPushButton(self.frame_8)
+        self.btn_sinc.setObjectName(u"btn_sinc")
+        self.btn_sinc.setMinimumSize(QSize(100, 40))
+        self.btn_sinc.setMaximumSize(QSize(200, 16777215))
+        self.btn_sinc.setStyleSheet(u"QPushButton{\n"
+"	font: 12pt \"Sans Serif\";\n"
+"	background-color: rgba(37, 48, 38, 0.7);\n"
+"\n"
+"border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgba(37, 48, 38, 1);\n"
+"border: 3px   solid rgba(195, 195, 195, 0.7);;\n"
+"	 \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgba(216, 216, 216, 0.2);\n"
+"}")
+
+        self.gridLayout_2.addWidget(self.btn_sinc, 0, 0, 1, 1)
+
+        self.verticalSpacer_10 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_10, 1, 0, 1, 1)
+
+
+        self.verticalLayout_14.addWidget(self.frame_8)
+
+
+        self.verticalLayout_9.addWidget(self.frame_7)
 
         self.stackedWidget_2.addWidget(self.page_4)
         self.page_5 = QWidget()
         self.page_5.setObjectName(u"page_5")
         self.verticalLayout_10 = QVBoxLayout(self.page_5)
+        self.verticalLayout_10.setSpacing(1)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.label_11 = QLabel(self.page_5)
         self.label_11.setObjectName(u"label_11")
+        self.label_11.setMinimumSize(QSize(0, 40))
+        self.label_11.setMaximumSize(QSize(16777215, 40))
+        self.label_11.setStyleSheet(u"font: 14pt \"Sans Serif\";\n"
+"background-color: rgba(37, 48, 38, 1);")
         self.label_11.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_10.addWidget(self.label_11)
+
+        self.frame_9 = QFrame(self.page_5)
+        self.frame_9.setObjectName(u"frame_9")
+        self.frame_9.setStyleSheet(u"background-color: rgba(36, 36, 36, 1);\n"
+"")
+        self.frame_9.setFrameShape(QFrame.StyledPanel)
+        self.frame_9.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_15 = QVBoxLayout(self.frame_9)
+        self.verticalLayout_15.setSpacing(1)
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.verticalLayout_15.setContentsMargins(20, -1, 20, -1)
+        self.verticalSpacer_13 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Minimum)
+
+        self.verticalLayout_15.addItem(self.verticalSpacer_13)
+
+        self.textEdit = QTextEdit(self.frame_9)
+        self.textEdit.setObjectName(u"textEdit")
+        self.textEdit.setMinimumSize(QSize(0, 110))
+        self.textEdit.setMaximumSize(QSize(16777215, 110))
+        self.textEdit.setStyleSheet(u"background-color: rgba(206, 152, 17, 0.9);\n"
+"border: 4px solid rgb(197, 197, 197, 0.9);\n"
+"border-radius: 25px;\n"
+"padding: 5px;\n"
+"")
+
+        self.verticalLayout_15.addWidget(self.textEdit)
+
+        self.verticalSpacer_14 = QSpacerItem(20, 25, QSizePolicy.Minimum, QSizePolicy.Minimum)
+
+        self.verticalLayout_15.addItem(self.verticalSpacer_14)
+
+        self.frame_11 = QFrame(self.frame_9)
+        self.frame_11.setObjectName(u"frame_11")
+        self.frame_11.setMinimumSize(QSize(0, 50))
+        self.frame_11.setStyleSheet(u"border: none;")
+        self.frame_11.setFrameShape(QFrame.StyledPanel)
+        self.frame_11.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_16 = QVBoxLayout(self.frame_11)
+        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
+        self.edit_pass_key = QLineEdit(self.frame_11)
+        self.edit_pass_key.setObjectName(u"edit_pass_key")
+        self.edit_pass_key.setMinimumSize(QSize(0, 40))
+        self.edit_pass_key.setStyleSheet(u"QLineEdit {\n"
+"background-color: rgba(197, 197, 197, 0.4);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);	 \n"
+"padding: 5px;\n"
+"}")
+        self.edit_pass_key.setEchoMode(QLineEdit.Password)
+
+        self.verticalLayout_16.addWidget(self.edit_pass_key)
+
+        self.info_key = QLabel(self.frame_11)
+        self.info_key.setObjectName(u"info_key")
+        self.info_key.setContextMenuPolicy(Qt.NoContextMenu)
+        self.info_key.setStyleSheet(u"color: rgb(234, 78, 117);")
+
+        self.verticalLayout_16.addWidget(self.info_key)
+
+
+        self.verticalLayout_15.addWidget(self.frame_11)
+
+        self.frame_10 = QFrame(self.frame_9)
+        self.frame_10.setObjectName(u"frame_10")
+        self.frame_10.setFrameShape(QFrame.StyledPanel)
+        self.frame_10.setFrameShadow(QFrame.Raised)
+        self.gridLayout_3 = QGridLayout(self.frame_10)
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.gridLayout_3.setVerticalSpacing(0)
+        self.gridLayout_3.setContentsMargins(-1, 0, -1, -1)
+        self.verticalSpacer_12 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_3.addItem(self.verticalSpacer_12, 2, 1, 1, 1)
+
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_3.addItem(self.horizontalSpacer_6, 0, 2, 1, 1)
+
+        self.btn_add_key = QPushButton(self.frame_10)
+        self.btn_add_key.setObjectName(u"btn_add_key")
+        self.btn_add_key.setMinimumSize(QSize(200, 40))
+        self.btn_add_key.setMaximumSize(QSize(16777215, 40))
+        self.btn_add_key.setStyleSheet(u"QPushButton{\n"
+"	font: 12pt \"Sans Serif\";\n"
+"	background-color: rgba(37, 48, 38, 0.7);\n"
+"\n"
+"border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgba(37, 48, 38, 1);\n"
+"border: 3px   solid rgba(195, 195, 195, 0.7);;\n"
+"	 \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgba(216, 216, 216, 0.2);\n"
+"}")
+
+        self.gridLayout_3.addWidget(self.btn_add_key, 0, 1, 1, 1)
+
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_3.addItem(self.horizontalSpacer_5, 0, 0, 1, 1)
+
+
+        self.verticalLayout_15.addWidget(self.frame_10)
+
+
+        self.verticalLayout_10.addWidget(self.frame_9)
 
         self.stackedWidget_2.addWidget(self.page_5)
         self.page_6 = QWidget()
@@ -457,18 +652,27 @@ class Ui_MainWindow(object):
         self.frame_6.setFrameShadow(QFrame.Raised)
         self.gridLayout = QGridLayout(self.frame_6)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setVerticalSpacing(20)
+        self.gridLayout.setVerticalSpacing(1)
         self.gridLayout.setContentsMargins(20, -1, 20, -1)
-        self.db_login_edit = QLineEdit(self.frame_6)
-        self.db_login_edit.setObjectName(u"db_login_edit")
-        self.db_login_edit.setMinimumSize(QSize(0, 40))
-        self.db_login_edit.setStyleSheet(u"QLineEdit {\n"
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_3, 7, 0, 1, 1)
+
+        self.db_pass_edit = QLineEdit(self.frame_6)
+        self.db_pass_edit.setObjectName(u"db_pass_edit")
+        self.db_pass_edit.setMinimumSize(QSize(0, 40))
+        self.db_pass_edit.setStyleSheet(u"QLineEdit {\n"
 "background-color: rgba(197, 197, 197, 0.4);\n"
 "border: 3px   solid rgba(37, 48, 38, 1);	 \n"
 "padding: 5px;\n"
 "}")
+        self.db_pass_edit.setEchoMode(QLineEdit.Password)
 
-        self.gridLayout.addWidget(self.db_login_edit, 2, 0, 1, 3)
+        self.gridLayout.addWidget(self.db_pass_edit, 5, 0, 1, 3)
+
+        self.verticalSpacer_15 = QSpacerItem(0, 20, QSizePolicy.Minimum, QSizePolicy.Minimum)
+
+        self.gridLayout.addItem(self.verticalSpacer_15, 4, 0, 1, 3)
 
         self.radioButton_2 = QRadioButton(self.frame_6)
         self.radioButton_2.setObjectName(u"radioButton_2")
@@ -505,25 +709,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.radioButton_2, 1, 1, 1, 1)
 
-        self.db_pass_edit = QLineEdit(self.frame_6)
-        self.db_pass_edit.setObjectName(u"db_pass_edit")
-        self.db_pass_edit.setMinimumSize(QSize(0, 40))
-        self.db_pass_edit.setStyleSheet(u"QLineEdit {\n"
-"background-color: rgba(197, 197, 197, 0.4);\n"
-"border: 3px   solid rgba(37, 48, 38, 1);	 \n"
-"padding: 5px;\n"
-"}")
-
-        self.gridLayout.addWidget(self.db_pass_edit, 3, 0, 1, 3)
-
-        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout.addItem(self.verticalSpacer_8, 5, 1, 1, 1)
-
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout.addItem(self.horizontalSpacer_4, 4, 2, 1, 1)
-
         self.pushButton = QPushButton(self.frame_6)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setMinimumSize(QSize(200, 40))
@@ -544,11 +729,26 @@ class Ui_MainWindow(object):
 "	background-color: rgba(216, 216, 216, 0.2);\n"
 "}")
 
-        self.gridLayout.addWidget(self.pushButton, 4, 1, 1, 1)
+        self.gridLayout.addWidget(self.pushButton, 7, 1, 1, 1)
 
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Minimum)
 
-        self.gridLayout.addItem(self.horizontalSpacer_3, 4, 0, 1, 1)
+        self.gridLayout.addItem(self.verticalSpacer_9, 0, 0, 1, 3)
+
+        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout.addItem(self.verticalSpacer_8, 8, 1, 1, 1)
+
+        self.db_login_edit = QLineEdit(self.frame_6)
+        self.db_login_edit.setObjectName(u"db_login_edit")
+        self.db_login_edit.setMinimumSize(QSize(0, 40))
+        self.db_login_edit.setStyleSheet(u"QLineEdit {\n"
+"background-color: rgba(197, 197, 197, 0.4);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);	 \n"
+"padding: 5px;\n"
+"}")
+
+        self.gridLayout.addWidget(self.db_login_edit, 3, 0, 1, 3)
 
         self.radioButton = QRadioButton(self.frame_6)
         self.radioButton.setObjectName(u"radioButton")
@@ -585,9 +785,19 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.radioButton, 1, 0, 1, 1)
 
-        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Minimum)
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout.addItem(self.verticalSpacer_9, 0, 0, 1, 3)
+        self.gridLayout.addItem(self.horizontalSpacer_4, 7, 2, 1, 1)
+
+        self.label_16 = QLabel(self.frame_6)
+        self.label_16.setObjectName(u"label_16")
+        self.label_16.setStyleSheet(u"color: rgb(234, 78, 117);")
+
+        self.gridLayout.addWidget(self.label_16, 6, 0, 1, 1)
+
+        self.verticalSpacer_16 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Minimum)
+
+        self.gridLayout.addItem(self.verticalSpacer_16, 2, 0, 1, 3)
 
 
         self.verticalLayout_11.addWidget(self.frame_6)
@@ -684,6 +894,91 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.page_3)
         self.page_edit = QWidget()
         self.page_edit.setObjectName(u"page_edit")
+        self.horizontalLayout_8 = QHBoxLayout(self.page_edit)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.frame_12 = QFrame(self.page_edit)
+        self.frame_12.setObjectName(u"frame_12")
+        self.frame_12.setMinimumSize(QSize(250, 0))
+        self.frame_12.setMaximumSize(QSize(250, 16777215))
+        self.frame_12.setFrameShape(QFrame.StyledPanel)
+        self.frame_12.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_18 = QVBoxLayout(self.frame_12)
+        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
+        self.label_17 = QLabel(self.frame_12)
+        self.label_17.setObjectName(u"label_17")
+        self.label_17.setMinimumSize(QSize(0, 40))
+        self.label_17.setStyleSheet(u"font: 12pt \"Sans Serif\";\n"
+"border-bottom: 2px   solid rgb(184, 184, 184);\n"
+"background-color: rgba(37, 48, 38, 1);\n"
+"border-radius: 5px;")
+        self.label_17.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_18.addWidget(self.label_17)
+
+        self.treeView_2 = QTreeView(self.frame_12)
+        self.treeView_2.setObjectName(u"treeView_2")
+
+        self.verticalLayout_18.addWidget(self.treeView_2)
+
+        self.main_menu_page_edit_btn = QPushButton(self.frame_12)
+        self.main_menu_page_edit_btn.setObjectName(u"main_menu_page_edit_btn")
+        self.main_menu_page_edit_btn.setMinimumSize(QSize(0, 50))
+        self.main_menu_page_edit_btn.setStyleSheet(u"QPushButton{\n"
+"	font: 12pt \"Sans Serif\";\n"
+"	background-color: rgba(195, 195, 195, 0.7);\n"
+"border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgba(197, 197, 197, 0.4);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);\n"
+"	 \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgba(216, 216, 216, 0.2);\n"
+"}")
+        self.main_menu_page_edit_btn.setIcon(icon8)
+
+        self.verticalLayout_18.addWidget(self.main_menu_page_edit_btn)
+
+        self.main_menu_page_edit_btn.raise_()
+        self.treeView_2.raise_()
+        self.label_17.raise_()
+
+        self.horizontalLayout_8.addWidget(self.frame_12)
+
+        self.frame_13 = QFrame(self.page_edit)
+        self.frame_13.setObjectName(u"frame_13")
+        self.frame_13.setStyleSheet(u"#frame_13{\n"
+"	background-color: rgba(195, 195, 195, 0.3);\n"
+"}")
+        self.frame_13.setFrameShape(QFrame.StyledPanel)
+        self.frame_13.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_17 = QVBoxLayout(self.frame_13)
+        self.verticalLayout_17.setSpacing(1)
+        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.label_18 = QLabel(self.frame_13)
+        self.label_18.setObjectName(u"label_18")
+        self.label_18.setMinimumSize(QSize(0, 40))
+        self.label_18.setMaximumSize(QSize(16777215, 40))
+        self.label_18.setStyleSheet(u"font: 12pt \"Sans Serif\";\n"
+"background-color: rgba(37, 48, 38, 1);\n"
+"")
+        self.label_18.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_17.addWidget(self.label_18)
+
+        self.frame_14 = QFrame(self.frame_13)
+        self.frame_14.setObjectName(u"frame_14")
+        self.frame_14.setFrameShape(QFrame.StyledPanel)
+        self.frame_14.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_17.addWidget(self.frame_14)
+
+
+        self.horizontalLayout_8.addWidget(self.frame_13)
+
         self.stackedWidget.addWidget(self.page_edit)
 
         self.horizontalLayout.addWidget(self.stackedWidget)
@@ -729,7 +1024,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(3)
         self.stackedWidget_2.setCurrentIndex(2)
 
 
@@ -757,18 +1052,35 @@ class Ui_MainWindow(object):
         self.key_btn.setText(QCoreApplication.translate("MainWindow", u"   \u041a\u043b\u044e\u0447\u0438               ", None))
         self.db_btn.setText(QCoreApplication.translate("MainWindow", u"   \u0411\u0430\u0437\u0430 \u0434\u0430\u043d\u043d\u044b\u0445    ", None))
         self.main_menu_btn_set.setText(QCoreApplication.translate("MainWindow", u"   \u0433\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0438\u043d\u0445\u0440\u043e\u043d\u0433\u0438\u0437\u0430\u0446\u0438\u044f", None))
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0438\u043d\u0445\u0440\u043e\u043d\u0433\u0438\u0437\u0430\u0446\u0438\u044f ", None))
+        self.token_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0442\u043e\u043a\u0435\u043d \u0434\u043b\u044f \u0441\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0430\u0446\u0438\u0438", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0435 \u0432\u0435\u0440\u043d\u044b\u0439 \u043f\u0430\u0440\u043e\u043b\u044c", None))
+        self.btn_sinc.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0438\u0440\u043e\u0432\u0430\u0442\u044c", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043b\u044e\u0447\u0438", None))
+        self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt;\">\u0414\u043b\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u043a\u043b\u044e\u0447\u0435\u0439 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e \u043f\u0440\u0435\u0434\u0432\u0430\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u043e \u043f\u043e\u043b\u043e\u0436\u0438\u0442\u044c \u0438\u0445  \u0432 \u043a\u0430\u0442\u0430\u043b\u043e\u0433 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b (keys). \u041f\u043e\u0441\u043b\u0435 \u0447\u0435\u0433\u043e \u0432\u0435\u0441\u0442\u0438 \u043f"
+                        "\u0430\u0440\u043e\u043b\u044c \u0438 \u043d\u0430\u0436\u0430\u0442\u044c \u043a\u043d\u043e\u043f\u0443 \u0441\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0430\u0446\u0438\u0438!</span></p></body></html>", None))
+        self.edit_pass_key.setText("")
+        self.edit_pass_key.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043f\u0430\u0440\u043e\u043b\u044c", None))
+        self.info_key.setText(QCoreApplication.translate("MainWindow", u"\u043d\u0435 \u0432\u0435\u0440\u043d\u044b\u0439 \u043f\u0430\u0440\u043e\u043b\u044c!", None))
+        self.btn_add_key.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u0438\u043c\u0435\u043d\u0438\u0442\u044c", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u0431\u0430\u0437\u044b \u0434\u0430\u043d\u043d\u044b\u0445", None))
-        self.db_login_edit.setText("")
-        self.db_login_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f \u0431\u0430\u0437\u044b \u0434\u0430\u043d\u043d\u044b\u0445", None))
-        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f \u043a \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0435\u0439", None))
         self.db_pass_edit.setText("")
         self.db_pass_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
+        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f \u043a \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0435\u0439", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u0438\u043d\u044f\u0442\u044c", None))
+        self.db_login_edit.setText("")
+        self.db_login_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f \u0431\u0430\u0437\u044b \u0434\u0430\u043d\u043d\u044b\u0445", None))
         self.radioButton.setText(QCoreApplication.translate("MainWindow", u"\u0441\u043e\u0437\u0434\u0430\u0442\u044c \u0435\u0441\u043b\u0438 \u043d\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442", None))
+        self.label_16.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0435 \u0432\u0435\u0440\u043d\u044b\u0439 \u043f\u0430\u0440\u043e\u043b\u044c!", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0435\u0440\u0435\u0432\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432", None))
         self.go_back_menu_reestr.setText(QCoreApplication.translate("MainWindow", u"   \u0433\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
+        self.label_17.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0435\u0440\u0435\u0432\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432", None))
+        self.main_menu_page_edit_btn.setText(QCoreApplication.translate("MainWindow", u"  \u0413\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
+        self.label_18.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u043e\u0440 \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"\u0432\u0435\u0440\u0441\u0438\u044f 1.0", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"Dorokhinra", None))
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"2022 \u0433\u043e\u0434", None))

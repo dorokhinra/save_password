@@ -27,6 +27,7 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_1)
         self.ui.btn_settings.clicked.connect(self.show_settings)
         self.ui.btn_pass_reestr.clicked.connect(self.show_reestr)
+        self.ui.btn_edit_pass_reestr.clicked.connect(self.show_edit_reestr)
 
         #установка первой страницей синхронизации с базой данных
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_4)
@@ -37,8 +38,12 @@ class MainWindow(QMainWindow):
         self.ui.key_btn.clicked.connect(self.show_key_settings)
         self.ui.db_btn.clicked.connect(self.show_db_settings)
 
+        #Кнопки на странице изменения реестра
+        self.ui.main_menu_page_edit_btn.clicked.connect(self.go_to_back)
+
         #Кнопка переключения главного меню для реестра
         self.ui.go_back_menu_reestr.clicked.connect(self.go_to_back)
+        self.check_os_type()
         self.show()
 
     def show_db_settings(self):
@@ -58,6 +63,17 @@ class MainWindow(QMainWindow):
 
     def go_to_back(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_1)
+
+    def show_edit_reestr(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_edit)
+
+# Определение ОС
+    def check_os_type(self):
+        if os.name == 'posix':
+            desc = QApplication.desktop()
+            self.move(desc.availableGeometry().center() - self.rect().center())
+        else:
+            pass
 
 # вызывается при нажатии кнопки мыши по форме
     def mousePressEvent(self, event):

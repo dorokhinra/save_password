@@ -20,6 +20,11 @@ class SettingsUi():
 
         icon = QIcon()
         icon.addFile(icon_path_menu, QSize(), QIcon.Normal, QIcon.Off)
+        parent.main_menu_page_edit_btn.setIcon(icon)
+        parent.main_menu_page_edit_btn.setIconSize(QSize(20, 20))
+
+        icon = QIcon()
+        icon.addFile(icon_path_menu, QSize(), QIcon.Normal, QIcon.Off)
         parent.main_menu_btn_set.setIcon(icon)
         parent.main_menu_btn_set.setIconSize(QSize(20, 20))
 

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_uiVFdyVi.ui'
+## Form generated from reading UI file 'main_uivXwHSJ.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.15.2
+## Created by: Qt User Interface Compiler version 5.14.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -12,7 +12,7 @@ from qt_core import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        if not MainWindow.objectName():
+        if MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1000, 738)
         MainWindow.setMinimumSize(QSize(1000, 738))
@@ -401,35 +401,44 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_5.addWidget(self.set_panel)
 
-        self.frame_4 = QFrame(self.page_2)
-        self.frame_4.setObjectName(u"frame_4")
-        self.frame_4.setFrameShape(QFrame.StyledPanel)
-        self.frame_4.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_8 = QVBoxLayout(self.frame_4)
-        self.verticalLayout_8.setSpacing(0)
-        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
-        self.stackedWidget_2 = QStackedWidget(self.frame_4)
+        self.stackedWidget_2 = QStackedWidget(self.page_2)
         self.stackedWidget_2.setObjectName(u"stackedWidget_2")
-        self.stackedWidget_2.setStyleSheet(u"background-color: rgba(195, 195, 195, 0.3);")
+        self.stackedWidget_2.setStyleSheet(u"")
         self.page_4 = QWidget()
         self.page_4.setObjectName(u"page_4")
         self.verticalLayout_9 = QVBoxLayout(self.page_4)
         self.verticalLayout_9.setSpacing(1)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
-        self.label_10 = QLabel(self.page_4)
+        self.frame_16 = QFrame(self.page_4)
+        self.frame_16.setObjectName(u"frame_16")
+        self.frame_16.setMinimumSize(QSize(0, 50))
+        self.frame_16.setFrameShape(QFrame.StyledPanel)
+        self.frame_16.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_20 = QVBoxLayout(self.frame_16)
+        self.verticalLayout_20.setSpacing(1)
+        self.verticalLayout_20.setObjectName(u"verticalLayout_20")
+        self.verticalLayout_20.setContentsMargins(0, 0, 0, 0)
+        self.label_10 = QLabel(self.frame_16)
         self.label_10.setObjectName(u"label_10")
         self.label_10.setMinimumSize(QSize(0, 40))
         self.label_10.setMaximumSize(QSize(16777215, 40))
-        self.label_10.setStyleSheet(u"font: 14pt \"Sans Serif\";\n"
-"background-color: rgba(37, 48, 38, 1);")
+        self.label_10.setStyleSheet(u"border-top-left-radius: 20px;\n"
+"border-top-right-radius: 20px;\n"
+"font: 14pt \"Sans Serif\";\n"
+"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(117, 231, 163, 1), stop:1 rgba(117, 231, 163, 0));")
         self.label_10.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_9.addWidget(self.label_10)
+        self.verticalLayout_20.addWidget(self.label_10)
 
-        self.frame_7 = QFrame(self.page_4)
+        self.frame_7 = QFrame(self.frame_16)
         self.frame_7.setObjectName(u"frame_7")
-        self.frame_7.setStyleSheet(u"background-color: rgba(36, 36, 36, 1);\n"
-"")
+        self.frame_7.setStyleSheet(u"\n"
+"#frame_7{\n"
+"font: 14pt \"Sans Serif\";\n"
+"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(117, 231, 163, 1), stop:1 rgba(117, 231, 163, 0));\n"
+"border-bottom-left-radius: 20px;\n"
+"border-bottom-right-radius: 20px;\n"
+"}")
         self.frame_7.setFrameShape(QFrame.StyledPanel)
         self.frame_7.setFrameShadow(QFrame.Raised)
         self.verticalLayout_14 = QVBoxLayout(self.frame_7)
@@ -444,7 +453,8 @@ class Ui_MainWindow(object):
         self.token_edit.setObjectName(u"token_edit")
         self.token_edit.setMinimumSize(QSize(0, 40))
         self.token_edit.setStyleSheet(u"QLineEdit {\n"
-"background-color: rgba(197, 197, 197, 0.4);\n"
+"border-radius: 10px;\n"
+"background-color: rgba(36, 36, 36, 0.9);\n"
 "border: 3px   solid rgba(37, 48, 38, 1);	 \n"
 "padding: 5px;\n"
 "}")
@@ -452,15 +462,17 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_14.addWidget(self.token_edit)
 
-        self.label_15 = QLabel(self.frame_7)
-        self.label_15.setObjectName(u"label_15")
-        self.label_15.setStyleSheet(u"color: rgb(234, 78, 117);")
+        self.label_info_sinc = QLabel(self.frame_7)
+        self.label_info_sinc.setObjectName(u"label_info_sinc")
+        self.label_info_sinc.setStyleSheet(u"color: rgb(234, 78, 117);\n"
+"background-color: rgba(255, 255, 255, 0.0);")
 
-        self.verticalLayout_14.addWidget(self.label_15)
+        self.verticalLayout_14.addWidget(self.label_info_sinc)
 
         self.frame_8 = QFrame(self.frame_7)
         self.frame_8.setObjectName(u"frame_8")
         self.frame_8.setStyleSheet(u"QFrame {\n"
+"	background-color: rgba(255, 255, 255, 0.0);\n"
 "border: none;\n"
 "}")
         self.frame_8.setFrameShape(QFrame.StyledPanel)
@@ -500,7 +512,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_14.addWidget(self.frame_8)
 
 
-        self.verticalLayout_9.addWidget(self.frame_7)
+        self.verticalLayout_20.addWidget(self.frame_7)
+
+
+        self.verticalLayout_9.addWidget(self.frame_16)
 
         self.stackedWidget_2.addWidget(self.page_4)
         self.page_5 = QWidget()
@@ -633,20 +648,38 @@ class Ui_MainWindow(object):
         self.verticalLayout_11 = QVBoxLayout(self.page_6)
         self.verticalLayout_11.setSpacing(1)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
-        self.label_8 = QLabel(self.page_6)
+        self.frame_15 = QFrame(self.page_6)
+        self.frame_15.setObjectName(u"frame_15")
+        self.frame_15.setMinimumSize(QSize(0, 40))
+        self.frame_15.setStyleSheet(u"#frame_15 { \n"
+"background-image: url(:/images/fon.png);\n"
+"border-radius: 20px;\n"
+"}\n"
+"")
+        self.frame_15.setFrameShape(QFrame.StyledPanel)
+        self.frame_15.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_19 = QVBoxLayout(self.frame_15)
+        self.verticalLayout_19.setSpacing(1)
+        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+        self.verticalLayout_19.setContentsMargins(0, 0, 0, 0)
+        self.label_8 = QLabel(self.frame_15)
         self.label_8.setObjectName(u"label_8")
         self.label_8.setMinimumSize(QSize(0, 40))
         self.label_8.setMaximumSize(QSize(16777215, 40))
-        self.label_8.setStyleSheet(u"font: 14pt \"Sans Serif\";\n"
-"background-color: rgba(37, 48, 38, 1);")
+        self.label_8.setStyleSheet(u"border-top-left-radius: 20px;\n"
+"border-top-right-radius: 20px;\n"
+"font: 14pt \"Sans Serif\";\n"
+"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(117, 231, 163, 1), stop:1 rgba(117, 231, 163, 0));")
         self.label_8.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_11.addWidget(self.label_8)
+        self.verticalLayout_19.addWidget(self.label_8)
 
-        self.frame_6 = QFrame(self.page_6)
+        self.frame_6 = QFrame(self.frame_15)
         self.frame_6.setObjectName(u"frame_6")
-        self.frame_6.setStyleSheet(u"background-color: rgba(36, 36, 36, 1);\n"
-"\n"
+        self.frame_6.setStyleSheet(u"border:none;\n"
+"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(117, 231, 163, 1), stop:1 rgba(117, 231, 163, 0.2));\n"
+"border-bottom-left-radius: 20px;\n"
+"border-bottom-right-radius: 20px;\n"
 "")
         self.frame_6.setFrameShape(QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QFrame.Raised)
@@ -662,7 +695,8 @@ class Ui_MainWindow(object):
         self.db_pass_edit.setObjectName(u"db_pass_edit")
         self.db_pass_edit.setMinimumSize(QSize(0, 40))
         self.db_pass_edit.setStyleSheet(u"QLineEdit {\n"
-"background-color: rgba(197, 197, 197, 0.4);\n"
+"border-radius: 10px;\n"
+"background-color: rgba(36, 36, 36, 0.9);\n"
 "border: 3px   solid rgba(37, 48, 38, 1);	 \n"
 "padding: 5px;\n"
 "}")
@@ -677,7 +711,7 @@ class Ui_MainWindow(object):
         self.radioButton_2 = QRadioButton(self.frame_6)
         self.radioButton_2.setObjectName(u"radioButton_2")
         self.radioButton_2.setStyleSheet(u"QRadioButton {\n"
-"\n"
+"background-color: rgba(85, 255, 0, 0.0);\n"
 "}\n"
 "\n"
 "QRadioButton::indicator {\n"
@@ -714,14 +748,14 @@ class Ui_MainWindow(object):
         self.pushButton.setMinimumSize(QSize(200, 40))
         self.pushButton.setStyleSheet(u"QPushButton{\n"
 "	font: 12pt \"Sans Serif\";\n"
-"	background-color: rgba(37, 48, 38, 0.7);\n"
-"\n"
+"	background-color: rgba(195, 195, 195, 0.9);\n"
 "border-radius: 15px;\n"
+"border: 3px   solid rgba(37, 48, 38, 1);\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"	background-color: rgba(37, 48, 38, 1);\n"
-"border: 3px   solid rgba(195, 195, 195, 0.7);;\n"
+"	background-color: rgba(197, 197, 197, 0.4);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);\n"
 "	 \n"
 "}\n"
 "\n"
@@ -743,7 +777,8 @@ class Ui_MainWindow(object):
         self.db_login_edit.setObjectName(u"db_login_edit")
         self.db_login_edit.setMinimumSize(QSize(0, 40))
         self.db_login_edit.setStyleSheet(u"QLineEdit {\n"
-"background-color: rgba(197, 197, 197, 0.4);\n"
+"border-radius: 10px;\n"
+"background-color: rgba(36, 36, 36, 0.9);\n"
 "border: 3px   solid rgba(37, 48, 38, 1);	 \n"
 "padding: 5px;\n"
 "}")
@@ -753,7 +788,7 @@ class Ui_MainWindow(object):
         self.radioButton = QRadioButton(self.frame_6)
         self.radioButton.setObjectName(u"radioButton")
         self.radioButton.setStyleSheet(u"QRadioButton {\n"
-"\n"
+"	background-color: rgba(85, 255, 0, 0.0);\n"
 "}\n"
 "\n"
 "QRadioButton::indicator {\n"
@@ -789,23 +824,33 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addItem(self.horizontalSpacer_4, 7, 2, 1, 1)
 
-        self.label_16 = QLabel(self.frame_6)
-        self.label_16.setObjectName(u"label_16")
-        self.label_16.setStyleSheet(u"color: rgb(234, 78, 117);")
+        self.label_info_db = QLabel(self.frame_6)
+        self.label_info_db.setObjectName(u"label_info_db")
+        self.label_info_db.setStyleSheet(u"color: rgb(234, 78, 117);")
 
-        self.gridLayout.addWidget(self.label_16, 6, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_info_db, 6, 0, 1, 1)
 
         self.verticalSpacer_16 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Minimum)
 
         self.gridLayout.addItem(self.verticalSpacer_16, 2, 0, 1, 3)
 
 
-        self.verticalLayout_11.addWidget(self.frame_6)
+        self.verticalLayout_19.addWidget(self.frame_6)
+
+
+        self.verticalLayout_11.addWidget(self.frame_15)
 
         self.stackedWidget_2.addWidget(self.page_6)
 
-        self.verticalLayout_8.addWidget(self.stackedWidget_2)
+        self.horizontalLayout_5.addWidget(self.stackedWidget_2)
 
+        self.frame_4 = QFrame(self.page_2)
+        self.frame_4.setObjectName(u"frame_4")
+        self.frame_4.setFrameShape(QFrame.StyledPanel)
+        self.frame_4.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_8 = QVBoxLayout(self.frame_4)
+        self.verticalLayout_8.setSpacing(0)
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
 
         self.horizontalLayout_5.addWidget(self.frame_4)
 
@@ -1024,8 +1069,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(3)
-        self.stackedWidget_2.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget_2.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1054,15 +1099,15 @@ class Ui_MainWindow(object):
         self.main_menu_btn_set.setText(QCoreApplication.translate("MainWindow", u"   \u0433\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0438\u043d\u0445\u0440\u043e\u043d\u0433\u0438\u0437\u0430\u0446\u0438\u044f ", None))
         self.token_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0442\u043e\u043a\u0435\u043d \u0434\u043b\u044f \u0441\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0430\u0446\u0438\u0438", None))
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0435 \u0432\u0435\u0440\u043d\u044b\u0439 \u043f\u0430\u0440\u043e\u043b\u044c", None))
+        self.label_info_sinc.setText("")
         self.btn_sinc.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0438\u0440\u043e\u0432\u0430\u0442\u044c", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043b\u044e\u0447\u0438", None))
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt;\">\u0414\u043b\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u043a\u043b\u044e\u0447\u0435\u0439 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e \u043f\u0440\u0435\u0434\u0432\u0430\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u043e \u043f\u043e\u043b\u043e\u0436\u0438\u0442\u044c \u0438\u0445  \u0432 \u043a\u0430\u0442\u0430\u043b\u043e\u0433 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b (keys). \u041f\u043e\u0441\u043b\u0435 \u0447\u0435\u0433\u043e \u0432\u0435\u0441\u0442\u0438 \u043f"
-                        "\u0430\u0440\u043e\u043b\u044c \u0438 \u043d\u0430\u0436\u0430\u0442\u044c \u043a\u043d\u043e\u043f\u0443 \u0441\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0430\u0446\u0438\u0438!</span></p></body></html>", None))
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif'; font-size:14pt;\">\u0414\u043b\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u043a\u043b\u044e\u0447\u0435\u0439 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e \u043f\u0440\u0435\u0434\u0432\u0430\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u043e \u043f\u043e\u043b\u043e\u0436\u0438\u0442\u044c \u0438\u0445  \u0432 \u043a\u0430\u0442\u0430\u043b\u043e\u0433 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b (keys). \u041f\u043e\u0441\u043b\u0435 \u0447\u0435\u0433\u043e \u0432"
+                        "\u0435\u0441\u0442\u0438 \u043f\u0430\u0440\u043e\u043b\u044c \u0438 \u043d\u0430\u0436\u0430\u0442\u044c \u043a\u043d\u043e\u043f\u0443 \u0441\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0430\u0446\u0438\u0438!</span></p></body></html>", None))
         self.edit_pass_key.setText("")
         self.edit_pass_key.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043f\u0430\u0440\u043e\u043b\u044c", None))
         self.info_key.setText(QCoreApplication.translate("MainWindow", u"\u043d\u0435 \u0432\u0435\u0440\u043d\u044b\u0439 \u043f\u0430\u0440\u043e\u043b\u044c!", None))
@@ -1075,7 +1120,7 @@ class Ui_MainWindow(object):
         self.db_login_edit.setText("")
         self.db_login_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f \u0431\u0430\u0437\u044b \u0434\u0430\u043d\u043d\u044b\u0445", None))
         self.radioButton.setText(QCoreApplication.translate("MainWindow", u"\u0441\u043e\u0437\u0434\u0430\u0442\u044c \u0435\u0441\u043b\u0438 \u043d\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442", None))
-        self.label_16.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0435 \u0432\u0435\u0440\u043d\u044b\u0439 \u043f\u0430\u0440\u043e\u043b\u044c!", None))
+        self.label_info_db.setText("")
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0435\u0440\u0435\u0432\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432", None))
         self.go_back_menu_reestr.setText(QCoreApplication.translate("MainWindow", u"   \u0433\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0435\u0440\u0435\u0432\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432", None))

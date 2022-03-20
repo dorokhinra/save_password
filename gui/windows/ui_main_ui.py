@@ -652,7 +652,7 @@ class Ui_MainWindow(object):
         self.frame_15.setObjectName(u"frame_15")
         self.frame_15.setMinimumSize(QSize(0, 40))
         self.frame_15.setStyleSheet(u"#frame_15 { \n"
-"background-image: url(:/images/fon.png);\n"
+"background-image: url(gui/resources/fon.png);\n"
 "border-radius: 20px;\n"
 "}\n"
 "")

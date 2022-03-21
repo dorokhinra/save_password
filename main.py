@@ -11,6 +11,9 @@ from gui.windows.ui_main_ui import Ui_MainWindow
 #SETTING_UI
 from gui.widgets.setup_ui import SettingsUi
 
+#БаЗа Данных
+from database.session import DbSession
+
 #MAIN_WINDOW
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -43,8 +46,36 @@ class MainWindow(QMainWindow):
 
         #Кнопка переключения главного меню для реестра
         self.ui.go_back_menu_reestr.clicked.connect(self.go_to_back)
+
+        #БАЗА дАННЫХ
+        self.check_db()
+
+        self.ui.pushButton.clicked.connect(self.create_db)
+
+
         self.check_os_type()
         self.show()
+
+    def check_db(self):
+        app_path = os.path.abspath(os.getcwd())
+        folder = "database/db_file"
+        path = os.path.join(app_path, folder)
+        path_db = os.path.normpath(os.path.join(path, "password_store.sqlite"))
+        if os.path.exists(path_db):
+            self.db = DbSession()
+            self.db.create_table(self.db.session)
+        else:
+            self.ui.label_info_db.setText("Базы данных не существует!")
+
+    def create_db(self):
+        if self.ui.db_login_edit.text() is not '' and self.ui.db_pass_edit.text() is not '':
+            if self.ui.radioButton.isChecked():
+                self.db = DbSession()
+                self.db.create_table(self.db.session)
+                self.ui.label_info_db.setText("")
+                self.ui.pushButton.setEnabled(False)
+        else:
+            self.ui.label_info_db.setText("Заполнены не все поля!")
 
     def show_db_settings(self):
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_6)

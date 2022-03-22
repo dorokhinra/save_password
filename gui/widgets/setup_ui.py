@@ -75,3 +75,4 @@ class SettingsUi():
         parent.exit_btn.setIcon(icon)
 
 
+

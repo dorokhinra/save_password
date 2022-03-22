@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_uirFrCPt.ui'
+## Form generated from reading UI file 'main_uioWJUOR.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -9,7 +9,6 @@
 ################################################################################
 
 from qt_core import *
-
 import gui.resources.res_rc
 
 class Ui_MainWindow(object):
@@ -508,11 +507,15 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setVerticalSpacing(15)
         self.gridLayout_2.setContentsMargins(-1, 15, -1, -1)
-        self.btn_sinc = QPushButton(self.frame_8)
-        self.btn_sinc.setObjectName(u"btn_sinc")
-        self.btn_sinc.setMinimumSize(QSize(100, 40))
-        self.btn_sinc.setMaximumSize(QSize(200, 16777215))
-        self.btn_sinc.setStyleSheet(u"QPushButton{\n"
+        self.verticalSpacer_10 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_10, 4, 0, 1, 2)
+
+        self.btn_push = QPushButton(self.frame_8)
+        self.btn_push.setObjectName(u"btn_push")
+        self.btn_push.setMinimumSize(QSize(0, 40))
+        self.btn_push.setMaximumSize(QSize(200, 16777215))
+        self.btn_push.setStyleSheet(u"QPushButton{\n"
 "	font: 12pt \"Sans Serif\";\n"
 "	background-color: rgba(37, 48, 38, 0.7);\n"
 "\n"
@@ -529,11 +532,55 @@ class Ui_MainWindow(object):
 "	background-color: rgba(216, 216, 216, 0.2);\n"
 "}")
 
-        self.gridLayout_2.addWidget(self.btn_sinc, 0, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.btn_push, 1, 0, 1, 1)
 
-        self.verticalSpacer_10 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.btn_update = QPushButton(self.frame_8)
+        self.btn_update.setObjectName(u"btn_update")
+        self.btn_update.setMinimumSize(QSize(100, 40))
+        self.btn_update.setMaximumSize(QSize(200, 16777215))
+        self.btn_update.setStyleSheet(u"QPushButton{\n"
+"	font: 12pt \"Sans Serif\";\n"
+"	background-color: rgba(37, 48, 38, 0.7);\n"
+"\n"
+"border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgba(37, 48, 38, 1);\n"
+"border: 3px   solid rgba(195, 195, 195, 0.7);;\n"
+"	 \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgba(216, 216, 216, 0.2);\n"
+"}")
 
-        self.gridLayout_2.addItem(self.verticalSpacer_10, 1, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.btn_update, 1, 1, 1, 1)
+
+        self.frame_22 = QFrame(self.frame_8)
+        self.frame_22.setObjectName(u"frame_22")
+        self.frame_22.setMinimumSize(QSize(0, 40))
+        self.frame_22.setMaximumSize(QSize(16777215, 150))
+        self.frame_22.setStyleSheet(u"#frame_22 {\n"
+"border:none;\n"
+"	background-color: rgba(255, 255, 255, 0.0);\n"
+"}")
+        self.frame_22.setFrameShape(QFrame.StyledPanel)
+        self.frame_22.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_25 = QVBoxLayout(self.frame_22)
+        self.verticalLayout_25.setObjectName(u"verticalLayout_25")
+        self.info_ya_api = QTextBrowser(self.frame_22)
+        self.info_ya_api.setObjectName(u"info_ya_api")
+        self.info_ya_api.setMaximumSize(QSize(16777215, 400))
+        self.info_ya_api.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(203, 206, 65, 1), stop:1 rgba(203, 206, 65, 0));\n"
+"border: none;\n"
+"border-radius: 25px;\n"
+"padding: 15 5 5 5px;")
+
+        self.verticalLayout_25.addWidget(self.info_ya_api)
+
+
+        self.gridLayout_2.addWidget(self.frame_22, 3, 0, 1, 2)
 
 
         self.verticalLayout_14.addWidget(self.frame_8)
@@ -614,7 +661,7 @@ class Ui_MainWindow(object):
         self.textEdit.setObjectName(u"textEdit")
         self.textEdit.setMinimumSize(QSize(0, 110))
         self.textEdit.setMaximumSize(QSize(16777215, 110))
-        self.textEdit.setStyleSheet(u"background-color: rgba(206, 152, 17, 0.6);\n"
+        self.textEdit.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(203, 206, 65, 1), stop:1 rgba(203, 206, 65, 0));\n"
 "border: none;\n"
 "border-radius: 25px;\n"
 "padding: 5px;\n"
@@ -772,23 +819,6 @@ class Ui_MainWindow(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setVerticalSpacing(1)
         self.gridLayout.setContentsMargins(20, -1, 20, 10)
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout.addItem(self.horizontalSpacer_3, 7, 0, 1, 1)
-
-        self.db_pass_edit = QLineEdit(self.frame_6)
-        self.db_pass_edit.setObjectName(u"db_pass_edit")
-        self.db_pass_edit.setMinimumSize(QSize(0, 40))
-        self.db_pass_edit.setStyleSheet(u"QLineEdit {\n"
-"border-radius: 10px;\n"
-"background-color: rgba(36, 36, 36, 0.9);\n"
-"border: 3px   solid rgba(37, 48, 38, 1);	 \n"
-"padding: 5px;\n"
-"}")
-        self.db_pass_edit.setEchoMode(QLineEdit.Password)
-
-        self.gridLayout.addWidget(self.db_pass_edit, 5, 0, 1, 3)
-
         self.verticalSpacer_15 = QSpacerItem(0, 20, QSizePolicy.Minimum, QSizePolicy.Minimum)
 
         self.gridLayout.addItem(self.verticalSpacer_15, 4, 0, 1, 3)
@@ -828,47 +858,53 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.radioButton_2, 1, 1, 1, 1)
 
-        self.pushButton = QPushButton(self.frame_6)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMinimumSize(QSize(200, 40))
-        self.pushButton.setStyleSheet(u"QPushButton{\n"
-"	font: 12pt \"Sans Serif\";\n"
-"	background-color: rgba(37, 48, 38, 0.7);\n"
-"\n"
-"border-radius: 15px;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"	background-color: rgba(37, 48, 38, 1);\n"
-"border: 3px   solid rgba(195, 195, 195, 0.7);;\n"
-"	 \n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"	background-color: rgba(216, 216, 216, 0.2);\n"
-"}")
+        self.frame_db_pass_info = QFrame(self.frame_6)
+        self.frame_db_pass_info.setObjectName(u"frame_db_pass_info")
+        self.frame_db_pass_info.setMinimumSize(QSize(0, 40))
+        self.frame_db_pass_info.setMaximumSize(QSize(16777215, 100))
+        self.frame_db_pass_info.setStyleSheet(u"border:none;\n"
+"background-color: rgba(255, 255, 255, 0.0);")
+        self.frame_db_pass_info.setFrameShape(QFrame.StyledPanel)
+        self.frame_db_pass_info.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_10 = QHBoxLayout(self.frame_db_pass_info)
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.db_pass_info = QTextBrowser(self.frame_db_pass_info)
+        self.db_pass_info.setObjectName(u"db_pass_info")
+        self.db_pass_info.setMaximumSize(QSize(400, 16777215))
+        self.db_pass_info.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(203, 206, 65, 1), stop:1 rgba(203, 206, 65, 0));\n"
+"border: none;\n"
+"border-radius: 25px;\n"
+"padding: 15 5 5 5px;")
 
-        self.gridLayout.addWidget(self.pushButton, 7, 1, 1, 1)
+        self.horizontalLayout_10.addWidget(self.db_pass_info)
 
-        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Minimum)
 
-        self.gridLayout.addItem(self.verticalSpacer_9, 0, 0, 1, 3)
+        self.gridLayout.addWidget(self.frame_db_pass_info, 9, 0, 1, 3)
 
-        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout.addItem(self.verticalSpacer_8, 8, 1, 1, 1)
-
-        self.db_login_edit = QLineEdit(self.frame_6)
-        self.db_login_edit.setObjectName(u"db_login_edit")
-        self.db_login_edit.setMinimumSize(QSize(0, 40))
-        self.db_login_edit.setStyleSheet(u"QLineEdit {\n"
+        self.db_pass_edit = QLineEdit(self.frame_6)
+        self.db_pass_edit.setObjectName(u"db_pass_edit")
+        self.db_pass_edit.setMinimumSize(QSize(0, 40))
+        self.db_pass_edit.setStyleSheet(u"QLineEdit {\n"
 "border-radius: 10px;\n"
 "background-color: rgba(36, 36, 36, 0.9);\n"
 "border: 3px   solid rgba(37, 48, 38, 1);	 \n"
 "padding: 5px;\n"
 "}")
+        self.db_pass_edit.setEchoMode(QLineEdit.Password)
 
-        self.gridLayout.addWidget(self.db_login_edit, 3, 0, 1, 3)
+        self.gridLayout.addWidget(self.db_pass_edit, 5, 0, 1, 3)
+
+        self.label_info_db = QLabel(self.frame_6)
+        self.label_info_db.setObjectName(u"label_info_db")
+        self.label_info_db.setMaximumSize(QSize(16777215, 25))
+        self.label_info_db.setStyleSheet(u"color: rgb(234, 78, 117);\n"
+"background-color: rgba(255, 255, 255, 0.0);")
+
+        self.gridLayout.addWidget(self.label_info_db, 6, 0, 1, 1)
+
+        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout.addItem(self.verticalSpacer_8, 10, 0, 1, 3)
 
         self.radioButton = QRadioButton(self.frame_6)
         self.radioButton.setObjectName(u"radioButton")
@@ -905,17 +941,64 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.radioButton, 1, 0, 1, 1)
 
+        self.frame_21 = QFrame(self.frame_6)
+        self.frame_21.setObjectName(u"frame_21")
+        self.frame_21.setStyleSheet(u"#frame_21 {\n"
+"border: none;\n"
+"	background-color: rgba(255, 255, 255, 0.0);\n"
+"}")
+        self.frame_21.setFrameShape(QFrame.StyledPanel)
+        self.frame_21.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_9 = QHBoxLayout(self.frame_21)
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_9.addItem(self.horizontalSpacer_3)
+
+        self.pushButton = QPushButton(self.frame_21)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setMinimumSize(QSize(200, 40))
+        self.pushButton.setStyleSheet(u"QPushButton{\n"
+"	font: 12pt \"Sans Serif\";\n"
+"	background-color: rgba(37, 48, 38, 0.7);\n"
+"\n"
+"border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgba(37, 48, 38, 1);\n"
+"border: 3px   solid rgba(195, 195, 195, 0.7);;\n"
+"	 \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgba(216, 216, 216, 0.2);\n"
+"}")
+
+        self.horizontalLayout_9.addWidget(self.pushButton)
+
         self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout.addItem(self.horizontalSpacer_4, 7, 2, 1, 1)
+        self.horizontalLayout_9.addItem(self.horizontalSpacer_4)
 
-        self.label_info_db = QLabel(self.frame_6)
-        self.label_info_db.setObjectName(u"label_info_db")
-        self.label_info_db.setMaximumSize(QSize(16777215, 25))
-        self.label_info_db.setStyleSheet(u"color: rgb(234, 78, 117);\n"
-"background-color: rgba(255, 255, 255, 0.0);")
 
-        self.gridLayout.addWidget(self.label_info_db, 6, 0, 1, 1)
+        self.gridLayout.addWidget(self.frame_21, 7, 0, 1, 3)
+
+        self.db_login_edit = QLineEdit(self.frame_6)
+        self.db_login_edit.setObjectName(u"db_login_edit")
+        self.db_login_edit.setMinimumSize(QSize(0, 40))
+        self.db_login_edit.setStyleSheet(u"QLineEdit {\n"
+"border-radius: 10px;\n"
+"background-color: rgba(36, 36, 36, 0.9);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);	 \n"
+"padding: 5px;\n"
+"}")
+
+        self.gridLayout.addWidget(self.db_login_edit, 3, 0, 1, 3)
+
+        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Minimum)
+
+        self.gridLayout.addItem(self.verticalSpacer_9, 0, 0, 1, 3)
 
         self.verticalSpacer_16 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Minimum)
 
@@ -923,7 +1006,7 @@ class Ui_MainWindow(object):
 
         self.verticalSpacer_17 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Minimum)
 
-        self.gridLayout.addItem(self.verticalSpacer_17, 6, 1, 1, 1)
+        self.gridLayout.addItem(self.verticalSpacer_17, 8, 0, 1, 3)
 
 
         self.verticalLayout_21.addWidget(self.frame_6)
@@ -1157,7 +1240,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.stackedWidget.setCurrentIndex(1)
-        self.stackedWidget_2.setCurrentIndex(1)
+        self.stackedWidget_2.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1187,7 +1270,8 @@ class Ui_MainWindow(object):
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0438\u043d\u0445\u0440\u043e\u043d\u0433\u0438\u0437\u0430\u0446\u0438\u044f ", None))
         self.token_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0442\u043e\u043a\u0435\u043d \u0434\u043b\u044f \u0441\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0430\u0446\u0438\u0438", None))
         self.label_info_sinc.setText("")
-        self.btn_sinc.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0438\u0440\u043e\u0432\u0430\u0442\u044c", None))
+        self.btn_push.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u043d\u0430 \u042f.\u0414\u0438\u0441\u043a", None))
+        self.btn_update.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0431\u043d\u043e\u0432\u0438\u0442\u044c", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043b\u044e\u0447\u0438", None))
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -1200,14 +1284,19 @@ class Ui_MainWindow(object):
         self.info_key.setText("")
         self.btn_add_key.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u0438\u043c\u0435\u043d\u0438\u0442\u044c", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u0431\u0430\u0437\u044b \u0434\u0430\u043d\u043d\u044b\u0445", None))
+        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f \u043a \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0435\u0439", None))
+        self.db_pass_info.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
         self.db_pass_edit.setText("")
         self.db_pass_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
-        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f \u043a \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0435\u0439", None))
+        self.label_info_db.setText("")
+        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"\u0441\u043e\u0437\u0434\u0430\u0442\u044c \u0435\u0441\u043b\u0438 \u043d\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u0438\u043d\u044f\u0442\u044c", None))
         self.db_login_edit.setText("")
         self.db_login_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f \u0431\u0430\u0437\u044b \u0434\u0430\u043d\u043d\u044b\u0445", None))
-        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"\u0441\u043e\u0437\u0434\u0430\u0442\u044c \u0435\u0441\u043b\u0438 \u043d\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442", None))
-        self.label_info_db.setText("")
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0435\u0440\u0435\u0432\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432", None))
         self.go_back_menu_reestr.setText(QCoreApplication.translate("MainWindow", u"   \u0433\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0435\u0440\u0435\u0432\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432", None))

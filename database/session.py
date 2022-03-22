@@ -18,8 +18,8 @@ class DbSession(object):
         session.setDatabaseName(self.db_path)
         return QSqlDatabase.database(open=False)
 
-    def create_table(self, session):
-        session.open('test', 'Win2018!')
+    def create_table(self, session, login, password):
+        session.open(login, password)
         self.query = QSqlQuery(session)
         query_string = create_tables()['categories']
         self.query.prepare(query_string)

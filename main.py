@@ -14,26 +14,39 @@ from gui.widgets.setup_ui import SettingsUi
 #БаЗа Данных
 from database.session import DbSession
 
+from system_modules.synchronization import CheckSync
+
 #MAIN_WINDOW
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-#########
+#########Настройки приложения
+        path = os.path.abspath(os.getcwd())
+        path_ini = os.path.normpath(os.path.join(path, "settings.ini"))
+        self.settings = QSettings(path_ini, QSettings.IniFormat)
+        self.path_html = os.path.normpath(os.path.join(path, "html"))
+        self.template1 = os.path.normpath(os.path.join(self.path_html, "info1.html"))
+        self.template2 = os.path.normpath(os.path.join(self.path_html, "info2.html"))
+        self.template3 = os.path.normpath(os.path.join(self.path_html, "info3.html"))
+        self.template4 = os.path.normpath(os.path.join(self.path_html, "info4.html"))
+        self.template_ya1 = os.path.normpath(os.path.join(self.path_html, "infoYa1.html"))
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         SettingsUi(self.ui)
         self.setWindowFlags(Qt.FramelessWindowHint)
-
         self.ui.roll_up_btn.clicked.connect(self.on_min)
         self.ui.exit_btn.clicked.connect(self.closeEvent)
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_1)
         self.ui.btn_settings.clicked.connect(self.show_settings)
         self.ui.btn_pass_reestr.clicked.connect(self.show_reestr)
         self.ui.btn_edit_pass_reestr.clicked.connect(self.show_edit_reestr)
-
+        self.ui.db_pass_info.verticalScrollBar().setVisible(False)
         #установка первой страницей синхронизации с базой данных
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_4)
+
+        # Проверка токена
+        CheckSync().check_sync(self.settings, self.ui.info_ya_api, self.style_sheet_info())
 
         #Кнопки переключения для страници с настройками
         self.ui.main_menu_btn_set.clicked.connect(self.go_to_back)
@@ -49,10 +62,7 @@ class MainWindow(QMainWindow):
 
         #БАЗА дАННЫХ
         self.check_db()
-
         self.ui.pushButton.clicked.connect(self.create_db)
-
-
         self.check_os_type()
         self.show()
 
@@ -62,29 +72,48 @@ class MainWindow(QMainWindow):
         path = os.path.join(app_path, folder)
         path_db = os.path.normpath(os.path.join(path, "password_store.sqlite"))
         if os.path.exists(path_db):
-            self.db = DbSession()
-            self.db.create_table(self.db.session)
+            if self.ui.db_login_edit.text() is not '' and self.ui.db_pass_edit.text() is not '':
+                self.db = DbSession()
+                self.db.create_table(self.db.session, self.ui.db_login_edit.text(), self.ui.db_pass_edit.text())
+                self.ui.pushButton.setEnabled(False)
+                self.ui.db_pass_info.setStyleSheet(self.style_sheet_info()['success'])
+                self.ui.db_pass_info.setSource(QtCore.QUrl.fromLocalFile(self.template3))
+                self.animation_info(self.ui.db_pass_info)
+            else:
+                self.ui.db_pass_info.setStyleSheet(self.style_sheet_info()['danger'])
+                self.ui.db_pass_info.setSource(QtCore.QUrl.fromLocalFile(self.template1))
         else:
-            self.ui.label_info_db.setText("Базы данных не существует!")
+            self.ui.db_pass_info.setStyleSheet(self.style_sheet_info()['danger'])
+            self.ui.db_pass_info.setSource(QtCore.QUrl.fromLocalFile(self.template2))
+            # self.animation_info(self.ui.db_pass_info)
 
     def create_db(self):
         if self.ui.db_login_edit.text() is not '' and self.ui.db_pass_edit.text() is not '':
             if self.ui.radioButton.isChecked():
                 self.db = DbSession()
-                self.db.create_table(self.db.session)
+                self.db.create_table(self.db.session, self.ui.db_login_edit.text(), self.ui.db_pass_edit.text())
                 self.ui.label_info_db.setText("")
                 self.ui.pushButton.setEnabled(False)
+                self.ui.db_pass_info.setStyleSheet(self.style_sheet_info()['success'])
+                self.ui.db_pass_info.setSource(QtCore.QUrl.fromLocalFile(self.template3))
+                self.animation_info(self.ui.db_pass_info)
+            elif self.ui.radioButton_2.isChecked():
+                self.check_db()
         else:
-            self.ui.label_info_db.setText("Заполнены не все поля!")
+            self.ui.db_pass_info.setStyleSheet(self.style_sheet_info()['danger'])
+            self.ui.db_pass_info.setSource(QtCore.QUrl.fromLocalFile(self.template4))
+            self.animation_info(self.ui.db_pass_info)
 
     def show_db_settings(self):
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_6)
+        self.animation_info(self.ui.db_pass_info)
 
     def show_git_settings(self):
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_4)
 
     def show_key_settings(self):
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_5)
+        self.animation_info(self.ui.textEdit)
 
     def show_settings(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_2)
@@ -97,6 +126,45 @@ class MainWindow(QMainWindow):
 
     def show_edit_reestr(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_edit)
+
+    @staticmethod
+    def style_sheet_info():
+
+        info_success = """
+        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(91, 193, 200, 1), stop:1 rgba(91, 193, 200, 0));
+        border: none;
+        border-radius: 25px;
+        padding: 5px;
+        padding-top: 20px;
+        """
+        info_danger = """
+        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(203, 206, 65, 1), stop:1 rgba(203, 206, 65, 0));
+        border: none;
+        border-radius: 25px;
+        padding: 5px;
+        padding-top: 20px;
+        """
+        return {'success': info_success, 'danger': info_danger}
+
+    def animation_info(self, info_panel):
+        info_panel_height = info_panel.height()
+        width = 0
+        if info_panel_height == 0:
+            width = 400
+          # Start animation
+        self.animation = QPropertyAnimation(info_panel,  b"maximumHeight")
+        self.animation.setStartValue(info_panel_height)
+        self.animation.setKeyValueAt(0.25, width)
+        self.animation.setEndValue(info_panel_height)
+        self.animation.setDuration(700)
+        self.animation.setEasingCurve(QEasingCurve.InBack)
+        self.animation.start()
+        # self.animation = QPropertyAnimation(info_panel, b"minimumHeight")
+        # self.animation.setStartValue(width)
+        # self.animation.setEndValue(info_panel_height)
+        # self.animation.setDuration(500)
+        # self.animation.setEasingCurve(QEasingCurve.InBack)
+        # self.animation.start()
 
 # Определение ОС
     def check_os_type(self):

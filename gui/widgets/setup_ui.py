@@ -2,7 +2,7 @@ from qt_core import *
 import os
 
 class SettingsUi():
-    def __init__(self, parent):
+    def __init__(self, parent, app):
         app_path = os.path.abspath(os.getcwd())
         folder_img = "gui/images"
         path = os.path.join(app_path, folder_img)
@@ -17,7 +17,7 @@ class SettingsUi():
         icon_path_key = os.path.normpath(os.path.join(path, "key.png"))
         icon_path_db = os.path.normpath(os.path.join(path, "database.png"))
         icon_path_menu = os.path.normpath(os.path.join(path, "menu.png"))
-
+        app.setWindowIcon(QtGui.QIcon(icon_path_label))
         icon = QIcon()
         icon.addFile(icon_path_menu, QSize(), QIcon.Normal, QIcon.Off)
         parent.main_menu_page_edit_btn.setIcon(icon)
@@ -74,5 +74,7 @@ class SettingsUi():
         icon.addFile(icon_path_exit, QSize(), QIcon.Normal, QIcon.Off)
         parent.exit_btn.setIcon(icon)
 
+        parent.db_pass_info.verticalScrollBar().setVisible(False)
+        parent.info_ya_api.verticalScrollBar().setVisible(False)
 
 

@@ -18,9 +18,8 @@ from system_modules.synchronization import CheckSync
 
 #MAIN_WINDOW
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, app):
         super().__init__()
-
 #########Настройки приложения
         path = os.path.abspath(os.getcwd())
         path_ini = os.path.normpath(os.path.join(path, "settings.ini"))
@@ -33,7 +32,7 @@ class MainWindow(QMainWindow):
         self.template_ya1 = os.path.normpath(os.path.join(self.path_html, "infoYa1.html"))
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        SettingsUi(self.ui)
+        SettingsUi(self.ui, app)
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.ui.roll_up_btn.clicked.connect(self.on_min)
         self.ui.exit_btn.clicked.connect(self.closeEvent)
@@ -41,12 +40,17 @@ class MainWindow(QMainWindow):
         self.ui.btn_settings.clicked.connect(self.show_settings)
         self.ui.btn_pass_reestr.clicked.connect(self.show_reestr)
         self.ui.btn_edit_pass_reestr.clicked.connect(self.show_edit_reestr)
-        self.ui.db_pass_info.verticalScrollBar().setVisible(False)
         #установка первой страницей синхронизации с базой данных
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_4)
-
         # Проверка токена
-        CheckSync().check_sync(self.settings, self.ui.info_ya_api, self.style_sheet_info())
+        self.sync_disk = CheckSync(self.settings, self.ui, self.style_sheet_info())
+        self.sync_disk.check_sync()
+        self.ui.input_code_btn.clicked.connect(self.sync_disk.input_code)
+
+        self.ui.get_code_btn.clicked.connect(self.sync_disk.get_token)
+
+        # Сохранение на диск БД
+        self.ui.btn_push.clicked.connect(self.save_disk) # save_disk
 
         #Кнопки переключения для страници с настройками
         self.ui.main_menu_btn_set.clicked.connect(self.go_to_back)
@@ -72,6 +76,7 @@ class MainWindow(QMainWindow):
         path = os.path.join(app_path, folder)
         path_db = os.path.normpath(os.path.join(path, "password_store.sqlite"))
         if os.path.exists(path_db):
+            self.ui.radioButton_2.setChecked(True)
             if self.ui.db_login_edit.text() is not '' and self.ui.db_pass_edit.text() is not '':
                 self.db = DbSession()
                 self.db.create_table(self.db.session, self.ui.db_login_edit.text(), self.ui.db_pass_edit.text())
@@ -104,12 +109,17 @@ class MainWindow(QMainWindow):
             self.ui.db_pass_info.setSource(QtCore.QUrl.fromLocalFile(self.template4))
             self.animation_info(self.ui.db_pass_info)
 
+    def save_disk(self):
+        self.sync_disk.save_disk()
+        self.animation_info(self.ui.info_ya_api)
+
     def show_db_settings(self):
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_6)
         self.animation_info(self.ui.db_pass_info)
 
     def show_git_settings(self):
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_4)
+        self.animation_info(self.ui.info_ya_api)
 
     def show_key_settings(self):
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_5)
@@ -117,6 +127,7 @@ class MainWindow(QMainWindow):
 
     def show_settings(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_2)
+        self.animation_info(self.ui.info_ya_api)
 
     def show_reestr(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_3)
@@ -137,6 +148,13 @@ class MainWindow(QMainWindow):
         padding: 5px;
         padding-top: 20px;
         """
+        info_error = """
+          background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(228, 17, 55, 1), stop:1 rgba(228, 17, 55, 0));
+        border: none;
+        border-radius: 25px;
+        padding: 5px;
+        padding-top: 20px;
+        """
         info_danger = """
         background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(203, 206, 65, 1), stop:1 rgba(203, 206, 65, 0));
         border: none;
@@ -144,7 +162,7 @@ class MainWindow(QMainWindow):
         padding: 5px;
         padding-top: 20px;
         """
-        return {'success': info_success, 'danger': info_danger}
+        return {'success': info_success, 'danger': info_danger, 'error': info_error}
 
     def animation_info(self, info_panel):
         info_panel_height = info_panel.height()
@@ -159,12 +177,6 @@ class MainWindow(QMainWindow):
         self.animation.setDuration(700)
         self.animation.setEasingCurve(QEasingCurve.InBack)
         self.animation.start()
-        # self.animation = QPropertyAnimation(info_panel, b"minimumHeight")
-        # self.animation.setStartValue(width)
-        # self.animation.setEndValue(info_panel_height)
-        # self.animation.setDuration(500)
-        # self.animation.setEasingCurve(QEasingCurve.InBack)
-        # self.animation.start()
 
 # Определение ОС
     def check_os_type(self):
@@ -226,5 +238,6 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = MainWindow()
+    app.setApplicationName("Doug's Application")
+    window = MainWindow(app)
     app.exec_()

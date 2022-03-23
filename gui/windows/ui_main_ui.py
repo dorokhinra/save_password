@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_uioWJUOR.ui'
+## Form generated from reading UI file 'main_uiNvNxQb.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -9,6 +9,7 @@
 ################################################################################
 
 from qt_core import *
+
 import gui.resources.res_rc
 
 class Ui_MainWindow(object):
@@ -475,18 +476,112 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_14.addItem(self.verticalSpacer_11)
 
-        self.token_edit = QLineEdit(self.frame_7)
-        self.token_edit.setObjectName(u"token_edit")
-        self.token_edit.setMinimumSize(QSize(0, 40))
-        self.token_edit.setStyleSheet(u"QLineEdit {\n"
+        self.frame_get_frame = QFrame(self.frame_7)
+        self.frame_get_frame.setObjectName(u"frame_get_frame")
+        self.frame_get_frame.setStyleSheet(u"#frame_get_frame {\n"
+"	border:none;\n"
+"	background-color: rgba(255, 255, 255, 0.0);\n"
+"}")
+        self.frame_get_frame.setFrameShape(QFrame.StyledPanel)
+        self.frame_get_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_11 = QHBoxLayout(self.frame_get_frame)
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_11.addItem(self.horizontalSpacer_7)
+
+        self.get_code_btn = QPushButton(self.frame_get_frame)
+        self.get_code_btn.setObjectName(u"get_code_btn")
+        self.get_code_btn.setMinimumSize(QSize(200, 40))
+        self.get_code_btn.setMaximumSize(QSize(16777215, 40))
+        self.get_code_btn.setStyleSheet(u"QPushButton{\n"
+"	font: 12pt \"Sans Serif\";\n"
+"	background-color: rgba(37, 48, 38, 0.7);\n"
+"\n"
+"border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgba(37, 48, 38, 1);\n"
+"border: 3px   solid rgba(195, 195, 195, 0.7);;\n"
+"	 \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgba(216, 216, 216, 0.2);\n"
+"}")
+
+        self.horizontalLayout_11.addWidget(self.get_code_btn)
+
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_11.addItem(self.horizontalSpacer_8)
+
+
+        self.verticalLayout_14.addWidget(self.frame_get_frame)
+
+        self.input_code_frame = QFrame(self.frame_7)
+        self.input_code_frame.setObjectName(u"input_code_frame")
+        self.input_code_frame.setMaximumSize(QSize(16777215, 0))
+        self.input_code_frame.setStyleSheet(u"	border:none;\n"
+"	background-color: rgba(255, 255, 255, 0.0);")
+        self.input_code_frame.setFrameShape(QFrame.StyledPanel)
+        self.input_code_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_26 = QVBoxLayout(self.input_code_frame)
+        self.verticalLayout_26.setObjectName(u"verticalLayout_26")
+        self.edit_code = QLineEdit(self.input_code_frame)
+        self.edit_code.setObjectName(u"edit_code")
+        self.edit_code.setMinimumSize(QSize(0, 40))
+        self.edit_code.setStyleSheet(u"QLineEdit {\n"
 "border-radius: 10px;\n"
 "background-color: rgba(36, 36, 36, 0.9);\n"
 "border: 3px   solid rgba(37, 48, 38, 1);	 \n"
 "padding: 5px;\n"
 "}")
-        self.token_edit.setEchoMode(QLineEdit.Password)
 
-        self.verticalLayout_14.addWidget(self.token_edit)
+        self.verticalLayout_26.addWidget(self.edit_code)
+
+        self.frame_24 = QFrame(self.input_code_frame)
+        self.frame_24.setObjectName(u"frame_24")
+        self.frame_24.setFrameShape(QFrame.StyledPanel)
+        self.frame_24.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_12 = QHBoxLayout(self.frame_24)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_12.addItem(self.horizontalSpacer_9)
+
+        self.input_code_btn = QPushButton(self.frame_24)
+        self.input_code_btn.setObjectName(u"input_code_btn")
+        self.input_code_btn.setMinimumSize(QSize(200, 40))
+        self.input_code_btn.setStyleSheet(u"QPushButton{\n"
+"	font: 12pt \"Sans Serif\";\n"
+"	background-color: rgba(37, 48, 38, 0.7);\n"
+"\n"
+"border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgba(37, 48, 38, 1);\n"
+"border: 3px   solid rgba(195, 195, 195, 0.7);;\n"
+"	 \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgba(216, 216, 216, 0.2);\n"
+"}")
+
+        self.horizontalLayout_12.addWidget(self.input_code_btn)
+
+        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_12.addItem(self.horizontalSpacer_10)
+
+
+        self.verticalLayout_26.addWidget(self.frame_24)
+
+
+        self.verticalLayout_14.addWidget(self.input_code_frame)
 
         self.label_info_sinc = QLabel(self.frame_7)
         self.label_info_sinc.setObjectName(u"label_info_sinc")
@@ -1240,7 +1335,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.stackedWidget.setCurrentIndex(1)
-        self.stackedWidget_2.setCurrentIndex(2)
+        self.stackedWidget_2.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1268,7 +1363,10 @@ class Ui_MainWindow(object):
         self.db_btn.setText(QCoreApplication.translate("MainWindow", u"   \u0411\u0430\u0437\u0430 \u0434\u0430\u043d\u043d\u044b\u0445    ", None))
         self.main_menu_btn_set.setText(QCoreApplication.translate("MainWindow", u"   \u0433\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0438\u043d\u0445\u0440\u043e\u043d\u0433\u0438\u0437\u0430\u0446\u0438\u044f ", None))
-        self.token_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0442\u043e\u043a\u0435\u043d \u0434\u043b\u044f \u0441\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0430\u0446\u0438\u0438", None))
+        self.get_code_btn.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u043a\u043e\u0434", None))
+        self.edit_code.setText("")
+        self.edit_code.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043a\u043e\u0434 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u044f", None))
+        self.input_code_btn.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c", None))
         self.label_info_sinc.setText("")
         self.btn_push.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u043d\u0430 \u042f.\u0414\u0438\u0441\u043a", None))
         self.btn_update.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0431\u043d\u043e\u0432\u0438\u0442\u044c", None))

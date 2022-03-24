@@ -17,6 +17,7 @@ class CheckSync:
         self.template_error_2 = os.path.normpath(os.path.join(self.path_html, "infoYa3.html"))
         self.template_danger_db = os.path.normpath(os.path.join(self.path_html, "info2.html"))
         self.template_danger_3 = os.path.normpath(os.path.join(self.path_html, "infoYa5.html"))
+        self.template_danger_4 = os.path.normpath(os.path.join(self.path_html, "infoYa6.html"))
 
         folder = "database/db_file"
         path = os.path.join(self.path, folder)
@@ -58,17 +59,11 @@ class CheckSync:
     def save_disk(self):
         if os.path.exists(self.path_db):
             try:
-                store = list(self.y.listdir('disk:/Приложения/'))
-                dir_name = ''
-                for name in store:
-                    if name['name'] == 'store':
-                        dir_name = name['name']
+                dir_name = self.check_YaDisk_file_and_dir()['dirname']
                 if dir_name == '':
                     self.y.mkdir("disk:/Приложения/store")
-
                 # print(datetime.datetime.now())
                 self.y.upload(self.path_db, f"disk:/Приложения/store/{datetime.datetime.now()}")
-
                 self.parent.info_ya_api.setStyleSheet(self.style['success'])
                 self.parent.info_ya_api.setSource(QtCore.QUrl.fromLocalFile(self.template_succes_update))
             except yadisk.exceptions.ForbiddenError:
@@ -79,8 +74,19 @@ class CheckSync:
             self.parent.info_ya_api.setStyleSheet(self.style['danger'])
             self.parent.info_ya_api.setSource(QtCore.QUrl.fromLocalFile(self.template_danger_db))
 
-    def update_db_to_disk(self):
-        pass
+    def update_db_to_Ya_disk(self):
+        list_file = self.check_YaDisk_file_and_dir()['list_file']
+        if len(list_file) != 0:
+            try:
+                self.y.download(f'disk:/Приложения/store/{list_file[-1]}', self.path_db)
+                self.parent.info_ya_api.setStyleSheet(self.style['success'])
+                self.parent.info_ya_api.setSource(QtCore.QUrl.fromLocalFile(self.template_succes_update))
+            except yadisk.exceptions.ForbiddenError:
+                self.parent.info_ya_api.setStyleSheet(self.style['danger'])
+                self.parent.info_ya_api.setSource(QtCore.QUrl.fromLocalFile(self.template_danger_3))
+        else:
+            self.parent.info_ya_api.setStyleSheet(self.style['danger'])
+            self.parent.info_ya_api.setSource(QtCore.QUrl.fromLocalFile(self.template_danger_4))
 
     def check_sync(self):
         if self.settings.value('token') is not None:
@@ -125,6 +131,20 @@ class CheckSync:
         self.animation_2.setDuration(700)
         self.animation_2.setEasingCurve(QEasingCurve.InOutCubic)
         self.animation_2.start()
+
+    def check_YaDisk_file_and_dir(self):
+        store = list(self.y.listdir('disk:/Приложения/'))
+        dir_name = ''
+        list_file = []
+        for name in store:
+            if name['name'] == 'store':
+                dir_name = name['name']
+                list_file = list(self.y.listdir('disk:/Приложения/store/'))
+                if len(list_file) != 0:
+                   list_file = sorted([dict_file_name['name'] for dict_file_name in list_file])
+
+        return {'dirname': dir_name, 'list_file': list_file}
+
 
 # if __name__ == '__main__':
 #     CheckSync().check_token()

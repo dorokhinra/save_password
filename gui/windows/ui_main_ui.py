@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_uiNvNxQb.ui'
+## Form generated from reading UI file 'main_uiATAhrf.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -478,6 +478,7 @@ class Ui_MainWindow(object):
 
         self.frame_get_frame = QFrame(self.frame_7)
         self.frame_get_frame.setObjectName(u"frame_get_frame")
+        self.frame_get_frame.setMaximumSize(QSize(16777215, 60))
         self.frame_get_frame.setStyleSheet(u"#frame_get_frame {\n"
 "	border:none;\n"
 "	background-color: rgba(255, 255, 255, 0.0);\n"
@@ -1210,27 +1211,55 @@ class Ui_MainWindow(object):
         self.frame_12.setObjectName(u"frame_12")
         self.frame_12.setMinimumSize(QSize(250, 0))
         self.frame_12.setMaximumSize(QSize(250, 16777215))
+        self.frame_12.setStyleSheet(u"#frame_12 {\n"
+"	background-image: url(:/images/fon_menu.png);\n"
+"}")
         self.frame_12.setFrameShape(QFrame.StyledPanel)
         self.frame_12.setFrameShadow(QFrame.Raised)
         self.verticalLayout_18 = QVBoxLayout(self.frame_12)
+        self.verticalLayout_18.setSpacing(0)
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
-        self.label_17 = QLabel(self.frame_12)
+        self.verticalLayout_18.setContentsMargins(0, 0, 0, 0)
+        self.frame_26 = QFrame(self.frame_12)
+        self.frame_26.setObjectName(u"frame_26")
+        self.frame_26.setMinimumSize(QSize(0, 100))
+        self.frame_26.setStyleSheet(u"#frame_26 {\n"
+"background-color: rgba(37, 48, 38, 0.8);\n"
+"}")
+        self.frame_26.setFrameShape(QFrame.StyledPanel)
+        self.frame_26.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_29 = QVBoxLayout(self.frame_26)
+        self.verticalLayout_29.setSpacing(2)
+        self.verticalLayout_29.setObjectName(u"verticalLayout_29")
+        self.verticalLayout_29.setContentsMargins(0, 0, 0, 0)
+        self.frame_25 = QFrame(self.frame_26)
+        self.frame_25.setObjectName(u"frame_25")
+        self.frame_25.setMinimumSize(QSize(0, 40))
+        self.frame_25.setStyleSheet(u"#frame_25 {\n"
+" background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(164, 16, 131, 1), stop:1 rgba(164, 16, 131, 0));\n"
+"}")
+        self.frame_25.setFrameShape(QFrame.StyledPanel)
+        self.frame_25.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_28 = QVBoxLayout(self.frame_25)
+        self.verticalLayout_28.setObjectName(u"verticalLayout_28")
+        self.label_17 = QLabel(self.frame_25)
         self.label_17.setObjectName(u"label_17")
         self.label_17.setMinimumSize(QSize(0, 40))
         self.label_17.setStyleSheet(u"font: 12pt \"Sans Serif\";\n"
 "border-bottom: 2px   solid rgb(184, 184, 184);\n"
-"background-color: rgba(37, 48, 38, 1);\n"
+"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(117, 231, 163, 1), stop:1 rgba(117, 231, 163, 0));\n"
 "border-radius: 5px;")
         self.label_17.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_18.addWidget(self.label_17)
+        self.verticalLayout_28.addWidget(self.label_17)
 
-        self.treeView_2 = QTreeView(self.frame_12)
+        self.treeView_2 = QTreeView(self.frame_25)
         self.treeView_2.setObjectName(u"treeView_2")
+        self.treeView_2.setStyleSheet(u"background-color: rgba(193, 193, 193, 0.1);")
 
-        self.verticalLayout_18.addWidget(self.treeView_2)
+        self.verticalLayout_28.addWidget(self.treeView_2)
 
-        self.main_menu_page_edit_btn = QPushButton(self.frame_12)
+        self.main_menu_page_edit_btn = QPushButton(self.frame_25)
         self.main_menu_page_edit_btn.setObjectName(u"main_menu_page_edit_btn")
         self.main_menu_page_edit_btn.setMinimumSize(QSize(0, 50))
         self.main_menu_page_edit_btn.setStyleSheet(u"QPushButton{\n"
@@ -1250,44 +1279,79 @@ class Ui_MainWindow(object):
 "}")
         self.main_menu_page_edit_btn.setIcon(icon8)
 
-        self.verticalLayout_18.addWidget(self.main_menu_page_edit_btn)
+        self.verticalLayout_28.addWidget(self.main_menu_page_edit_btn)
 
-        self.main_menu_page_edit_btn.raise_()
-        self.treeView_2.raise_()
-        self.label_17.raise_()
+
+        self.verticalLayout_29.addWidget(self.frame_25)
+
+
+        self.verticalLayout_18.addWidget(self.frame_26)
+
 
         self.horizontalLayout_8.addWidget(self.frame_12)
 
+        self.horizontalSpacer_11 = QSpacerItem(20, 10, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_8.addItem(self.horizontalSpacer_11)
+
         self.frame_13 = QFrame(self.page_edit)
         self.frame_13.setObjectName(u"frame_13")
-        self.frame_13.setStyleSheet(u"#frame_13{\n"
-"	background-color: rgba(195, 195, 195, 0.3);\n"
+        self.frame_13.setStyleSheet(u"#frame_13{	\n"
+"	background-image: url(:/images/fon_table.png);\n"
+"	border-radius: 25px;\n"
 "}")
         self.frame_13.setFrameShape(QFrame.StyledPanel)
         self.frame_13.setFrameShadow(QFrame.Raised)
         self.verticalLayout_17 = QVBoxLayout(self.frame_13)
-        self.verticalLayout_17.setSpacing(1)
+        self.verticalLayout_17.setSpacing(0)
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
-        self.label_18 = QLabel(self.frame_13)
+        self.verticalLayout_17.setContentsMargins(0, 0, 0, 0)
+        self.frame_23 = QFrame(self.frame_13)
+        self.frame_23.setObjectName(u"frame_23")
+        self.frame_23.setStyleSheet(u"#frame_23 {\n"
+"	background-color: rgba(65, 65, 65, 0.8);\n"
+"border-radius: 25px;\n"
+"}")
+        self.frame_23.setFrameShape(QFrame.StyledPanel)
+        self.frame_23.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_27 = QVBoxLayout(self.frame_23)
+        self.verticalLayout_27.setSpacing(0)
+        self.verticalLayout_27.setObjectName(u"verticalLayout_27")
+        self.verticalLayout_27.setContentsMargins(0, 0, 0, 0)
+        self.label_18 = QLabel(self.frame_23)
         self.label_18.setObjectName(u"label_18")
         self.label_18.setMinimumSize(QSize(0, 40))
         self.label_18.setMaximumSize(QSize(16777215, 40))
-        self.label_18.setStyleSheet(u"font: 12pt \"Sans Serif\";\n"
-"background-color: rgba(37, 48, 38, 1);\n"
+        self.label_18.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(117, 231, 163, 1), stop:1 rgba(117, 231, 163, 0));\n"
+"font: 12pt \"Sans Serif\";\n"
+"border-top-left-radius: 20px;\n"
+"border-top-right-radius: 20px;\n"
 "")
         self.label_18.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_17.addWidget(self.label_18)
+        self.verticalLayout_27.addWidget(self.label_18)
 
-        self.frame_14 = QFrame(self.frame_13)
+        self.frame_14 = QFrame(self.frame_23)
         self.frame_14.setObjectName(u"frame_14")
+        self.frame_14.setStyleSheet(u"#frame_14{\n"
+" background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(91, 193, 200, 1), stop:1 rgba(91, 193, 200, 0));\n"
+"border-bottom-left-radius: 20px;\n"
+"border-bottom-right-radius: 20px;\n"
+"}")
         self.frame_14.setFrameShape(QFrame.StyledPanel)
         self.frame_14.setFrameShadow(QFrame.Raised)
 
-        self.verticalLayout_17.addWidget(self.frame_14)
+        self.verticalLayout_27.addWidget(self.frame_14)
+
+
+        self.verticalLayout_17.addWidget(self.frame_23)
 
 
         self.horizontalLayout_8.addWidget(self.frame_13)
+
+        self.horizontalSpacer_12 = QSpacerItem(15, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_8.addItem(self.horizontalSpacer_12)
 
         self.stackedWidget.addWidget(self.page_edit)
 
@@ -1334,8 +1398,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
-        self.stackedWidget_2.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget_2.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

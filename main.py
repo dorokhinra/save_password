@@ -1,4 +1,5 @@
 #IMPORT MUDULES
+import asyncio
 import os
 import glob
 import sys
@@ -49,8 +50,11 @@ class MainWindow(QMainWindow):
 
         self.ui.get_code_btn.clicked.connect(self.sync_disk.get_token)
 
-        # Сохранение на диск БД
+        # Сохранение на Ядиск БД
         self.ui.btn_push.clicked.connect(self.save_disk) # save_disk
+
+        #Загрузка на локальный диск
+        self.ui.btn_update.clicked.connect(self.upload_disk)
 
         #Кнопки переключения для страници с настройками
         self.ui.main_menu_btn_set.clicked.connect(self.go_to_back)
@@ -70,6 +74,10 @@ class MainWindow(QMainWindow):
         self.check_os_type()
         self.show()
 
+    def upload_disk(self):
+        self.sync_disk.update_db_to_Ya_disk()
+        self.animation_info(self.ui.info_ya_api)
+
     def check_db(self):
         app_path = os.path.abspath(os.getcwd())
         folder = "database/db_file"
@@ -81,13 +89,24 @@ class MainWindow(QMainWindow):
                 self.db = DbSession()
                 self.db.create_table(self.db.session, self.ui.db_login_edit.text(), self.ui.db_pass_edit.text())
                 self.ui.pushButton.setEnabled(False)
+                self.ui.btn_pass_reestr.setEnabled(True)
+                self.ui.btn_pass_reestr.setToolTip('')
+                self.ui.btn_edit_pass_reestr.setEnabled(True)
+                self.ui.btn_edit_pass_reestr.setToolTip('')
                 self.ui.db_pass_info.setStyleSheet(self.style_sheet_info()['success'])
                 self.ui.db_pass_info.setSource(QtCore.QUrl.fromLocalFile(self.template3))
                 self.animation_info(self.ui.db_pass_info)
             else:
+                self.ui.btn_pass_reestr.setEnabled(False)
+                self.ui.btn_pass_reestr.setToolTip(
+                    'Для разблокирования кнопки\n необходимо настроить подключение к БД!')
+                self.ui.btn_edit_pass_reestr.setEnabled(False)
+                self.ui.btn_edit_pass_reestr.setToolTip('Для разблокирования кнопки\n необходимо настроить подключение к БД!')
                 self.ui.db_pass_info.setStyleSheet(self.style_sheet_info()['danger'])
                 self.ui.db_pass_info.setSource(QtCore.QUrl.fromLocalFile(self.template1))
         else:
+            self.ui.btn_pass_reestr.setEnabled(False)
+            self.ui.btn_edit_pass_reestr.setEnabled(False)
             self.ui.db_pass_info.setStyleSheet(self.style_sheet_info()['danger'])
             self.ui.db_pass_info.setSource(QtCore.QUrl.fromLocalFile(self.template2))
             # self.animation_info(self.ui.db_pass_info)

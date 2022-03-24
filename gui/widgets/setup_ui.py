@@ -1,6 +1,7 @@
 from qt_core import *
 import os
 
+
 class SettingsUi():
     def __init__(self, parent, app):
         app_path = os.path.abspath(os.getcwd())

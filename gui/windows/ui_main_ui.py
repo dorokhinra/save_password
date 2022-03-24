@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_uiATAhrf.ui'
+## Form generated from reading UI file 'main_uifeWXVS.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -128,7 +128,32 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.frame = QFrame(self.page_1)
+        self.frame_32 = QFrame(self.page_1)
+        self.frame_32.setObjectName(u"frame_32")
+        self.frame_32.setMinimumSize(QSize(0, 40))
+        self.frame_32.setMaximumSize(QSize(16777215, 227))
+        self.frame_32.setStyleSheet(u"#frame_32{\n"
+"	background-image: url(:/images/fon_baner.png);\n"
+"}")
+        self.frame_32.setFrameShape(QFrame.StyledPanel)
+        self.frame_32.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_36 = QVBoxLayout(self.frame_32)
+        self.verticalLayout_36.setSpacing(0)
+        self.verticalLayout_36.setObjectName(u"verticalLayout_36")
+        self.verticalLayout_36.setContentsMargins(0, 0, 0, 0)
+        self.frame_31 = QFrame(self.frame_32)
+        self.frame_31.setObjectName(u"frame_31")
+        self.frame_31.setMinimumSize(QSize(0, 40))
+        self.frame_31.setStyleSheet(u"#frame_31{\n"
+"	background-color: rgba(31, 31, 31, 0.9);\n"
+"}")
+        self.frame_31.setFrameShape(QFrame.StyledPanel)
+        self.frame_31.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_35 = QVBoxLayout(self.frame_31)
+        self.verticalLayout_35.setSpacing(0)
+        self.verticalLayout_35.setObjectName(u"verticalLayout_35")
+        self.verticalLayout_35.setContentsMargins(0, 0, 0, 0)
+        self.frame = QFrame(self.frame_31)
         self.frame.setObjectName(u"frame")
         self.frame.setMinimumSize(QSize(0, 227))
         self.frame.setMaximumSize(QSize(16777215, 227))
@@ -158,7 +183,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.label_4)
 
 
-        self.verticalLayout_2.addWidget(self.frame)
+        self.verticalLayout_35.addWidget(self.frame)
+
+
+        self.verticalLayout_36.addWidget(self.frame_31)
+
+
+        self.verticalLayout_2.addWidget(self.frame_32)
 
         self.frame_2 = QFrame(self.page_1)
         self.frame_2.setObjectName(u"frame_2")
@@ -1340,6 +1371,279 @@ class Ui_MainWindow(object):
 "}")
         self.frame_14.setFrameShape(QFrame.StyledPanel)
         self.frame_14.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_30 = QVBoxLayout(self.frame_14)
+        self.verticalLayout_30.setSpacing(0)
+        self.verticalLayout_30.setObjectName(u"verticalLayout_30")
+        self.verticalLayout_30.setContentsMargins(0, -1, 0, -1)
+        self.frame_27 = QFrame(self.frame_14)
+        self.frame_27.setObjectName(u"frame_27")
+        self.frame_27.setMinimumSize(QSize(0, 50))
+        self.frame_27.setMaximumSize(QSize(16777215, 50))
+        self.frame_27.setStyleSheet(u" background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(164, 16, 131, 0.8), stop:1 rgba(164, 16, 131, 0.4));")
+        self.frame_27.setFrameShape(QFrame.StyledPanel)
+        self.frame_27.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_31 = QVBoxLayout(self.frame_27)
+        self.verticalLayout_31.setSpacing(0)
+        self.verticalLayout_31.setObjectName(u"verticalLayout_31")
+        self.verticalLayout_31.setContentsMargins(0, 0, 0, 0)
+        self.element_name = QLabel(self.frame_27)
+        self.element_name.setObjectName(u"element_name")
+        self.element_name.setMinimumSize(QSize(0, 50))
+        self.element_name.setStyleSheet(u"background-color: rgba(255, 255, 255, 0.0);\n"
+"font: 11pt \"Sans Serif\";\n"
+"")
+        self.element_name.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_31.addWidget(self.element_name)
+
+
+        self.verticalLayout_30.addWidget(self.frame_27)
+
+        self.frame_28 = QFrame(self.frame_14)
+        self.frame_28.setObjectName(u"frame_28")
+        self.frame_28.setStyleSheet(u"#frame_28 {\n"
+"	background-color: rgba(255, 255, 255, 0.0);\n"
+"}")
+        self.frame_28.setFrameShape(QFrame.StyledPanel)
+        self.frame_28.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_32 = QVBoxLayout(self.frame_28)
+        self.verticalLayout_32.setObjectName(u"verticalLayout_32")
+        self.label_15 = QLabel(self.frame_28)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setMaximumSize(QSize(16777215, 40))
+        self.label_15.setStyleSheet(u"background-color: rgba(255, 255, 255, 0.0);\n"
+"font: 12pt \"Sans Serif\";\n"
+"text-decoration: underline;")
+        self.label_15.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_32.addWidget(self.label_15)
+
+        self.frame_29 = QFrame(self.frame_28)
+        self.frame_29.setObjectName(u"frame_29")
+        self.frame_29.setMinimumSize(QSize(0, 70))
+        self.frame_29.setMaximumSize(QSize(16777215, 70))
+        self.frame_29.setStyleSheet(u"font: 11pt \"Sans Serif\";\n"
+"background-color: rgba(255, 255, 255, 0.0);")
+        self.frame_29.setFrameShape(QFrame.StyledPanel)
+        self.frame_29.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_13 = QHBoxLayout(self.frame_29)
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_13.addItem(self.horizontalSpacer_13)
+
+        self.elemen_radio = QRadioButton(self.frame_29)
+        self.elemen_radio.setObjectName(u"elemen_radio")
+        self.elemen_radio.setStyleSheet(u"QRadioButton {\n"
+"	background-color: rgba(85, 255, 0, 0.0);\n"
+"}\n"
+"\n"
+"QRadioButton::indicator {\n"
+"border: 3px solid; \n"
+"border-color: rgba(37, 48, 38, 0.7);\n"
+"width: 40px;\n"
+"height: 25px;\n"
+"border-radius: 5px;\n"
+"}\n"
+"\n"
+"QRadioButton::indicator::unchecked{ \n"
+"border: 3px solid; \n"
+"border-color: rgba(37, 48, 38, 0.7);\n"
+"border-radius: 5px;\n"
+"background-color: rgba(195, 195, 195, 0.7);\n"
+"width: 40px;\n"
+"height: 25px;\n"
+"}\n"
+"\n"
+"QRadioButton::indicator::checked{ \n"
+"border: 3px solid; \n"
+"border-color: rgba(37, 48, 38, 0.9);\n"
+"border-radius: 6px;\n"
+"background-color: rgba(255, 131, 23, 0.7);\n"
+"width: 40px;\n"
+"height: 25px;\n"
+"}\n"
+"")
+
+        self.horizontalLayout_13.addWidget(self.elemen_radio)
+
+        self.horizontalSpacer_15 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_13.addItem(self.horizontalSpacer_15)
+
+        self.cotegori_radio = QRadioButton(self.frame_29)
+        self.cotegori_radio.setObjectName(u"cotegori_radio")
+        self.cotegori_radio.setStyleSheet(u"QRadioButton {\n"
+"	background-color: rgba(85, 255, 0, 0.0);\n"
+"}\n"
+"\n"
+"QRadioButton::indicator {\n"
+"border: 3px solid; \n"
+"border-color: rgba(37, 48, 38, 0.7);\n"
+"width: 40px;\n"
+"height: 25px;\n"
+"border-radius: 5px;\n"
+"}\n"
+"\n"
+"QRadioButton::indicator::unchecked{ \n"
+"border: 3px solid; \n"
+"border-color: rgba(37, 48, 38, 0.7);\n"
+"border-radius: 5px;\n"
+"background-color: rgba(195, 195, 195, 0.7);\n"
+"width: 40px;\n"
+"height: 25px;\n"
+"}\n"
+"\n"
+"QRadioButton::indicator::checked{ \n"
+"border: 3px solid; \n"
+"border-color: rgba(37, 48, 38, 0.9);\n"
+"border-radius: 6px;\n"
+"background-color: rgba(255, 131, 23, 0.7);\n"
+"width: 40px;\n"
+"height: 25px;\n"
+"}\n"
+"")
+
+        self.horizontalLayout_13.addWidget(self.cotegori_radio)
+
+        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_13.addItem(self.horizontalSpacer_14)
+
+
+        self.verticalLayout_32.addWidget(self.frame_29)
+
+        self.frame_30 = QFrame(self.frame_28)
+        self.frame_30.setObjectName(u"frame_30")
+        self.frame_30.setStyleSheet(u"#frame_30{\n"
+"	background-color: rgba(255, 255, 255, 0.0);\n"
+"}")
+        self.frame_30.setFrameShape(QFrame.StyledPanel)
+        self.frame_30.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_33 = QVBoxLayout(self.frame_30)
+        self.verticalLayout_33.setObjectName(u"verticalLayout_33")
+        self.verticalLayout_33.setContentsMargins(40, 11, 40, 11)
+        self.frame_name_category_edit = QFrame(self.frame_30)
+        self.frame_name_category_edit.setObjectName(u"frame_name_category_edit")
+        self.frame_name_category_edit.setMaximumSize(QSize(16777215, 50))
+        self.frame_name_category_edit.setStyleSheet(u"#frame_name_category_edit{\n"
+"	background-color: rgba(255, 255, 255, 0.0);\n"
+"}")
+        self.frame_name_category_edit.setFrameShape(QFrame.StyledPanel)
+        self.frame_name_category_edit.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_34 = QVBoxLayout(self.frame_name_category_edit)
+        self.verticalLayout_34.setObjectName(u"verticalLayout_34")
+        self.edit_name_category = QLineEdit(self.frame_name_category_edit)
+        self.edit_name_category.setObjectName(u"edit_name_category")
+        self.edit_name_category.setMinimumSize(QSize(0, 40))
+        self.edit_name_category.setStyleSheet(u"QLineEdit {\n"
+"border-radius: 10px;\n"
+"background-color: rgba(36, 36, 36, 0.9);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);	 \n"
+"padding: 5px;\n"
+"}")
+
+        self.verticalLayout_34.addWidget(self.edit_name_category)
+
+
+        self.verticalLayout_33.addWidget(self.frame_name_category_edit)
+
+        self.frame_element_edit = QFrame(self.frame_30)
+        self.frame_element_edit.setObjectName(u"frame_element_edit")
+        self.frame_element_edit.setMaximumSize(QSize(16777215, 250))
+        self.frame_element_edit.setStyleSheet(u"#frame_element_edit{\n"
+"	background-color: rgba(255, 255, 255, 0.0);\n"
+"}\n"
+"QLineEdit {\n"
+"border-radius: 10px;\n"
+"background-color: rgba(36, 36, 36, 0.9);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);	 \n"
+"padding: 5px;\n"
+"}")
+        self.frame_element_edit.setFrameShape(QFrame.StyledPanel)
+        self.frame_element_edit.setFrameShadow(QFrame.Raised)
+        self.gridLayout_4 = QGridLayout(self.frame_element_edit)
+        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.gridLayout_4.setVerticalSpacing(25)
+        self.edit_password = QLineEdit(self.frame_element_edit)
+        self.edit_password.setObjectName(u"edit_password")
+        self.edit_password.setMinimumSize(QSize(0, 40))
+        self.edit_password.setEchoMode(QLineEdit.Password)
+
+        self.gridLayout_4.addWidget(self.edit_password, 0, 1, 1, 1)
+
+        self.edit_login = QLineEdit(self.frame_element_edit)
+        self.edit_login.setObjectName(u"edit_login")
+        self.edit_login.setMinimumSize(QSize(0, 40))
+
+        self.gridLayout_4.addWidget(self.edit_login, 0, 0, 1, 1)
+
+        self.description_edit = QTextEdit(self.frame_element_edit)
+        self.description_edit.setObjectName(u"description_edit")
+        self.description_edit.setStyleSheet(u"border-radius: 10px;\n"
+"background-color: rgba(36, 36, 36, 0.9);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);	 \n"
+"padding: 5px;")
+
+        self.gridLayout_4.addWidget(self.description_edit, 2, 0, 1, 2)
+
+
+        self.verticalLayout_33.addWidget(self.frame_element_edit)
+
+        self.confitm_edit_reestr_frame = QFrame(self.frame_30)
+        self.confitm_edit_reestr_frame.setObjectName(u"confitm_edit_reestr_frame")
+        self.confitm_edit_reestr_frame.setMinimumSize(QSize(0, 0))
+        self.confitm_edit_reestr_frame.setMaximumSize(QSize(16777215, 60))
+        self.confitm_edit_reestr_frame.setStyleSheet(u"#confitm_edit_reestr_frame{\n"
+"	background-color: rgba(255, 255, 255, 0.0);\n"
+"}")
+        self.confitm_edit_reestr_frame.setFrameShape(QFrame.StyledPanel)
+        self.confitm_edit_reestr_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_14 = QHBoxLayout(self.confitm_edit_reestr_frame)
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.horizontalSpacer_16 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_14.addItem(self.horizontalSpacer_16)
+
+        self.confitm_edit_reestr_btn = QPushButton(self.confitm_edit_reestr_frame)
+        self.confitm_edit_reestr_btn.setObjectName(u"confitm_edit_reestr_btn")
+        self.confitm_edit_reestr_btn.setMinimumSize(QSize(200, 40))
+        self.confitm_edit_reestr_btn.setStyleSheet(u"QPushButton{\n"
+"	font: 12pt \"Sans Serif\";\n"
+"	background-color: rgba(37, 48, 38, 0.8);\n"
+"\n"
+"border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgba(37, 48, 38, 0.6);\n"
+"border: 3px   solid rgba(195, 195, 195, 0.7);\n"
+"	 \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgba(216, 216, 216, 0.2);\n"
+"}")
+
+        self.horizontalLayout_14.addWidget(self.confitm_edit_reestr_btn)
+
+        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_14.addItem(self.horizontalSpacer_17)
+
+
+        self.verticalLayout_33.addWidget(self.confitm_edit_reestr_frame)
+
+        self.verticalSpacer_18 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_33.addItem(self.verticalSpacer_18)
+
+
+        self.verticalLayout_32.addWidget(self.frame_30)
+
+
+        self.verticalLayout_30.addWidget(self.frame_28)
+
 
         self.verticalLayout_27.addWidget(self.frame_14)
 
@@ -1464,6 +1768,15 @@ class Ui_MainWindow(object):
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0435\u0440\u0435\u0432\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432", None))
         self.main_menu_page_edit_btn.setText(QCoreApplication.translate("MainWindow", u"  \u0413\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u043e\u0440 \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430", None))
+        self.element_name.setText(QCoreApplication.translate("MainWindow", u"vk", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c:", None))
+        self.elemen_radio.setText(QCoreApplication.translate("MainWindow", u"\u042d\u043b\u0435\u043c\u0435\u043d\u0442", None))
+        self.cotegori_radio.setText(QCoreApplication.translate("MainWindow", u"\u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044e", None))
+        self.edit_name_category.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435", None))
+        self.edit_password.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
+        self.edit_login.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438\u043d", None))
+        self.description_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435", None))
+        self.confitm_edit_reestr_btn.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"\u0432\u0435\u0440\u0441\u0438\u044f 1.0", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"Dorokhinra", None))
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"2022 \u0433\u043e\u0434", None))

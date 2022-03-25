@@ -38,3 +38,10 @@ def create_tables():
 #     	create_utc TEXT
 #     );
 #     """
+
+def query_data():
+    query_all_categories = """
+    SELECT * FROM categories;
+    """
+
+    return {'query_all_categories': query_all_categories}

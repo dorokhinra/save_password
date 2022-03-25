@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_uifeWXVS.ui'
+## Form generated from reading UI file 'main_uiHGbXAB.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -1286,7 +1286,9 @@ class Ui_MainWindow(object):
 
         self.treeView_2 = QTreeView(self.frame_25)
         self.treeView_2.setObjectName(u"treeView_2")
-        self.treeView_2.setStyleSheet(u"background-color: rgba(193, 193, 193, 0.1);")
+        self.treeView_2.setStyleSheet(u"QTreeView {\n"
+"background-color: rgba(193, 193, 193, 0.1);\n"
+"        }            ")
 
         self.verticalLayout_28.addWidget(self.treeView_2)
 
@@ -1503,6 +1505,7 @@ class Ui_MainWindow(object):
 "height: 25px;\n"
 "}\n"
 "")
+        self.cotegori_radio.setChecked(True)
 
         self.horizontalLayout_13.addWidget(self.cotegori_radio)
 
@@ -1525,7 +1528,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_33.setContentsMargins(40, 11, 40, 11)
         self.frame_name_category_edit = QFrame(self.frame_30)
         self.frame_name_category_edit.setObjectName(u"frame_name_category_edit")
-        self.frame_name_category_edit.setMaximumSize(QSize(16777215, 50))
+        self.frame_name_category_edit.setMaximumSize(QSize(16777215, 100))
         self.frame_name_category_edit.setStyleSheet(u"#frame_name_category_edit{\n"
 "	background-color: rgba(255, 255, 255, 0.0);\n"
 "}")
@@ -1544,6 +1547,43 @@ class Ui_MainWindow(object):
 "}")
 
         self.verticalLayout_34.addWidget(self.edit_name_category)
+
+        self.check_parent_element = QCheckBox(self.frame_name_category_edit)
+        self.check_parent_element.setObjectName(u"check_parent_element")
+        self.check_parent_element.setStyleSheet(u"\n"
+"QCheckBox {\n"
+"	background-color: rgba(85, 255, 0, 0.0);\n"
+"}\n"
+"\n"
+"QCheckBox::indicator {\n"
+"border: 3px solid; \n"
+"border-color: rgba(37, 48, 38, 0.7);\n"
+"width: 40px;\n"
+"height: 25px;\n"
+"border-radius: 5px;\n"
+"}\n"
+"\n"
+"QCheckBox::indicator::unchecked{ \n"
+"border: 3px solid; \n"
+"border-color: rgba(37, 48, 38, 0.7);\n"
+"border-radius: 5px;\n"
+"background-color: rgba(195, 195, 195, 0.7);\n"
+"width: 40px;\n"
+"height: 25px;\n"
+"}\n"
+"\n"
+"QCheckBox::indicator::checked{ \n"
+"border: 3px solid; \n"
+"border-color: rgba(37, 48, 38, 0.9);\n"
+"border-radius: 6px;\n"
+"background-color: rgba(255, 131, 23, 0.7);\n"
+"width: 40px;\n"
+"height: 25px;\n"
+"}\n"
+"")
+        self.check_parent_element.setChecked(True)
+
+        self.verticalLayout_34.addWidget(self.check_parent_element)
 
 
         self.verticalLayout_33.addWidget(self.frame_name_category_edit)
@@ -1633,10 +1673,6 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_33.addWidget(self.confitm_edit_reestr_frame)
-
-        self.verticalSpacer_18 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_33.addItem(self.verticalSpacer_18)
 
 
         self.verticalLayout_32.addWidget(self.frame_30)
@@ -1773,6 +1809,7 @@ class Ui_MainWindow(object):
         self.elemen_radio.setText(QCoreApplication.translate("MainWindow", u"\u042d\u043b\u0435\u043c\u0435\u043d\u0442", None))
         self.cotegori_radio.setText(QCoreApplication.translate("MainWindow", u"\u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044e", None))
         self.edit_name_category.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435", None))
+        self.check_parent_element.setText(QCoreApplication.translate("MainWindow", u"\u0420\u043e\u0434\u0438\u0442\u0435\u043b\u044c\u0441\u043a\u0438\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None))
         self.edit_password.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
         self.edit_login.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438\u043d", None))
         self.description_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435", None))

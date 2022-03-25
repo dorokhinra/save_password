@@ -2603,7 +2603,9 @@ border-radius: 5px;</string>
                     <item>
                      <widget class="QTreeView" name="treeView_2">
                       <property name="styleSheet">
-                       <string notr="true">background-color: rgba(193, 193, 193, 0.1);</string>
+                       <string notr="true">QTreeView {
+background-color: rgba(193, 193, 193, 0.1);
+        }            </string>
                       </property>
                      </widget>
                     </item>
@@ -3005,6 +3007,9 @@ height: 25px;
                             <property name="text">
                              <string>категорию</string>
                             </property>
+                            <property name="checked">
+                             <bool>true</bool>
+                            </property>
                            </widget>
                           </item>
                           <item>
@@ -3054,7 +3059,7 @@ height: 25px;
                             <property name="maximumSize">
                              <size>
                               <width>16777215</width>
-                              <height>50</height>
+                              <height>100</height>
                              </size>
                             </property>
                             <property name="styleSheet">
@@ -3087,6 +3092,49 @@ padding: 5px;
                                </property>
                                <property name="placeholderText">
                                 <string>Название</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QCheckBox" name="check_parent_element">
+                               <property name="styleSheet">
+                                <string notr="true">
+QCheckBox {
+	background-color: rgba(85, 255, 0, 0.0);
+}
+
+QCheckBox::indicator {
+border: 3px solid; 
+border-color: rgba(37, 48, 38, 0.7);
+width: 40px;
+height: 25px;
+border-radius: 5px;
+}
+
+QCheckBox::indicator::unchecked{ 
+border: 3px solid; 
+border-color: rgba(37, 48, 38, 0.7);
+border-radius: 5px;
+background-color: rgba(195, 195, 195, 0.7);
+width: 40px;
+height: 25px;
+}
+
+QCheckBox::indicator::checked{ 
+border: 3px solid; 
+border-color: rgba(37, 48, 38, 0.9);
+border-radius: 6px;
+background-color: rgba(255, 131, 23, 0.7);
+width: 40px;
+height: 25px;
+}
+</string>
+                               </property>
+                               <property name="text">
+                                <string>Родительский элемент</string>
+                               </property>
+                               <property name="checked">
+                                <bool>true</bool>
                                </property>
                               </widget>
                              </item>
@@ -3252,19 +3300,6 @@ QPushButton:pressed {
                              </item>
                             </layout>
                            </widget>
-                          </item>
-                          <item>
-                           <spacer name="verticalSpacer_18">
-                            <property name="orientation">
-                             <enum>Qt::Vertical</enum>
-                            </property>
-                            <property name="sizeHint" stdset="0">
-                             <size>
-                              <width>20</width>
-                              <height>40</height>
-                             </size>
-                            </property>
-                           </spacer>
                           </item>
                          </layout>
                         </widget>

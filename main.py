@@ -15,6 +15,8 @@ from gui.widgets.setup_ui import SettingsUi
 #БаЗа Данных
 from database.session import DbSession
 
+from database.service import CatigoriesView
+
 from system_modules.synchronization import CheckSync
 
 #MAIN_WINDOW
@@ -40,6 +42,10 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_1)
         self.ui.btn_settings.clicked.connect(self.show_settings)
         self.ui.btn_pass_reestr.clicked.connect(self.show_reestr)
+
+        #получение название элемента при нажатии на элемент в деревена странице редактирования
+        self.ui.treeView_2.clicked.connect(self.get_value_category)
+
         self.ui.btn_edit_pass_reestr.clicked.connect(self.show_edit_reestr)
         #установка первой страницей синхронизации с базой данных
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.page_4)
@@ -73,6 +79,19 @@ class MainWindow(QMainWindow):
         self.ui.pushButton.clicked.connect(self.create_db)
         self.check_os_type()
         self.show()
+
+    def get_value_category(self, val):
+        self.ui.treeView_2.selectionModel().select(
+            QItemSelection(
+                self.ui.treeView_2.model().index(0, 0),
+                self.ui.treeView_2.model().index(0, self.ui.treeView_2.model().columnCount() - 1)
+            ),
+            QItemSelectionModel.Select
+        )
+        print(val.data())
+
+
+
 
     def upload_disk(self):
         self.sync_disk.update_db_to_Ya_disk()
@@ -156,7 +175,8 @@ class MainWindow(QMainWindow):
 
     def show_edit_reestr(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_edit)
-
+        set_cat = CatigoriesView(self.ui, self.db.session)
+        set_cat.get_data({'login': self.ui.db_login_edit.text(), 'password': self.ui.db_pass_edit.text()})
     @staticmethod
     def style_sheet_info():
 
@@ -238,11 +258,10 @@ class MainWindow(QMainWindow):
         delta = event.pos() - self.old_pos
         self.move(self.pos() + delta)
 
-
     def on_min(self):
         self.showMinimized()
 
-#Диалог закрытия приложения
+    #Диалог закрытия приложения
     def closeEvent(self):
         # Переопределить colseEvent
         reply = QMessageBox.question \
@@ -254,6 +273,7 @@ class MainWindow(QMainWindow):
             sys.exit()
         else:
             pass
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

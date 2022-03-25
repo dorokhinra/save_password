@@ -48,7 +48,7 @@ class CatigoriesView:
         self.parent.treeView_2.setColumnHidden(1, True)
         self.select_mod = QItemSelectionModel(self.treeModel)
         self.parent.treeView_2.setSelectionModel(self.select_mod)
-
+        self.parent.treeView_2.selectionModel().select(self.parent.treeView_2.model().index(0, 1), QItemSelectionModel.Select | QItemSelectionModel.Rows)
 
     def import_data(self, data, root=''):
         self.treeModel.setRowCount(0)

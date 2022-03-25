@@ -81,14 +81,8 @@ class MainWindow(QMainWindow):
         self.show()
 
     def get_value_category(self, val):
-        self.ui.treeView_2.selectionModel().select(
-            QItemSelection(
-                self.ui.treeView_2.model().index(0, 0),
-                self.ui.treeView_2.model().index(0, self.ui.treeView_2.model().columnCount() - 1)
-            ),
-            QItemSelectionModel.Select
-        )
-        print(val.data())
+       d =1
+       print(val.data())
 
 
 

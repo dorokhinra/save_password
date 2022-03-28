@@ -42,6 +42,9 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_1)
         self.ui.btn_settings.clicked.connect(self.show_settings)
         self.ui.btn_pass_reestr.clicked.connect(self.show_reestr)
+        self.id = ''
+
+        self.ui.frame_element_edit.setVisible(False)
 
         #получение название элемента при нажатии на элемент в деревена странице редактирования
         self.ui.treeView_2.clicked.connect(self.get_value_category)
@@ -62,6 +65,10 @@ class MainWindow(QMainWindow):
         #Загрузка на локальный диск
         self.ui.btn_update.clicked.connect(self.upload_disk)
 
+        self.ui.cotegori_radio.clicked.connect(self.show_category_edit)
+
+        self.ui.elemen_radio.clicked.connect(self.show_element_edit)
+
         #Кнопки переключения для страници с настройками
         self.ui.main_menu_btn_set.clicked.connect(self.go_to_back)
         self.ui.git_btn.clicked.connect(self.show_git_settings)
@@ -80,12 +87,11 @@ class MainWindow(QMainWindow):
         self.check_os_type()
         self.show()
 
+
+
     def get_value_category(self, val):
-       d =1
-       print(val.data())
-
-
-
+        self.id = val.data(Qt.UserRole)
+        self.ui.element_name.setText(val.data())
 
     def upload_disk(self):
         self.sync_disk.update_db_to_Ya_disk()
@@ -98,7 +104,7 @@ class MainWindow(QMainWindow):
         path_db = os.path.normpath(os.path.join(path, "password_store.sqlite"))
         if os.path.exists(path_db):
             self.ui.radioButton_2.setChecked(True)
-            if self.ui.db_login_edit.text() is not '' and self.ui.db_pass_edit.text() is not '':
+            if self.ui.db_login_edit.text() != '' and self.ui.db_pass_edit.text() != '':
                 self.db = DbSession()
                 self.db.create_table(self.db.session, self.ui.db_login_edit.text(), self.ui.db_pass_edit.text())
                 self.ui.pushButton.setEnabled(False)
@@ -125,7 +131,7 @@ class MainWindow(QMainWindow):
             # self.animation_info(self.ui.db_pass_info)
 
     def create_db(self):
-        if self.ui.db_login_edit.text() is not '' and self.ui.db_pass_edit.text() is not '':
+        if self.ui.db_login_edit.text() != '' and self.ui.db_pass_edit.text() != '':
             if self.ui.radioButton.isChecked():
                 self.db = DbSession()
                 self.db.create_table(self.db.session, self.ui.db_login_edit.text(), self.ui.db_pass_edit.text())
@@ -196,6 +202,42 @@ class MainWindow(QMainWindow):
         padding-top: 20px;
         """
         return {'success': info_success, 'danger': info_danger, 'error': info_error}
+
+    def show_category_edit(self):
+        self.ui.frame_name_category_edit.setVisible(True)
+        self.ui.frame_element_edit.setVisible(False)
+
+    def show_element_edit(self):
+        self.ui.frame_name_category_edit.setVisible(False)
+        self.ui.frame_element_edit.setVisible(True)
+
+    # def show_element_edit_anim(self):
+    #     frame_height = self.ui.frame_element_edit.height()
+    #     print(frame_height)
+    #     width = 0
+    #     if frame_height == 0:
+    #         width = 250
+    #     # Start animation
+    #     self.animation = QPropertyAnimation(self.ui.frame_element_edit, b"maximumHeight")
+    #     self.animation.setStartValue(frame_height)
+    #     self.animation.setEndValue(width)
+    #     self.animation.setDuration(700)
+    #     self.animation.setEasingCurve(QEasingCurve.InOutCubic)
+    #     self.animation.start()
+    #
+    # def category_animation(self):
+    #     frame_height = self.ui.frame_name_category_edit.height()
+    #     width = 0
+    #     if frame_height == 0:
+    #         width = 74
+    #     # Start animation
+    #     self.animation = QPropertyAnimation(self.ui.frame_name_category_edit, b"maximumHeight")
+    #     self.animation.setStartValue(frame_height)
+    #     self.animation.setEndValue(width)
+    #     self.animation.setDuration(700)
+    #     self.animation.setEasingCurve(QEasingCurve.InOutCubic)
+    #     self.animation.start()
+
 
     def animation_info(self, info_panel):
         info_panel_height = info_panel.height()

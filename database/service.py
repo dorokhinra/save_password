@@ -6,7 +6,7 @@ from database.query import query_data
 
 
 class StandartItem(QStandardItem):
-    def __init__(self, txt='', font_size=12, set_bold=False, color=QColor(255, 255, 255)):
+    def __init__(self, txt='', font_size=12, set_bold=False, color=QColor(255, 255, 255), data_text=None):
         super().__init__()
 
         fnt = QFont('Open Sans', font_size)
@@ -16,6 +16,7 @@ class StandartItem(QStandardItem):
         self.setForeground(color)
         self.setFont(fnt)
         self.setText(txt)
+        self.setData(data_text, Qt.UserRole)
 
 
 class CatigoriesView:
@@ -45,10 +46,6 @@ class CatigoriesView:
         # self.sort_cat(list_categories, 0, elem_list=[])
         self.import_data(list_categories)
         self.parent.treeView_2.expandAll()
-        self.parent.treeView_2.setColumnHidden(1, True)
-        self.select_mod = QItemSelectionModel(self.treeModel)
-        self.parent.treeView_2.setSelectionModel(self.select_mod)
-        self.parent.treeView_2.selectionModel().select(self.parent.treeView_2.model().index(0, 1), QItemSelectionModel.Select | QItemSelectionModel.Rows)
 
     def import_data(self, data, root=''):
         self.treeModel.setRowCount(0)
@@ -68,8 +65,15 @@ class CatigoriesView:
                     continue
                 parent = seen[pid]
             dbid = value['id']
+            data_item = StandartItem(value['name_category'], data_text=value['id'])
             parent.appendRow([
-                StandartItem(value['name_category']),
-                StandartItem(value['id'])
+                data_item
             ])
             seen[dbid] = parent.child(parent.rowCount() - 1)
+
+
+
+class CreateElement():
+    def __init__(self):
+        pass
+

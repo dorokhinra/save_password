@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_uiHGbXAB.ui'
+## Form generated from reading UI file 'main_uimnPMMd.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -9,7 +9,6 @@
 ################################################################################
 
 from qt_core import *
-
 import gui.resources.res_rc
 
 class Ui_MainWindow(object):
@@ -1376,12 +1375,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_30 = QVBoxLayout(self.frame_14)
         self.verticalLayout_30.setSpacing(0)
         self.verticalLayout_30.setObjectName(u"verticalLayout_30")
-        self.verticalLayout_30.setContentsMargins(0, -1, 0, -1)
+        self.verticalLayout_30.setContentsMargins(0, 0, 0, -1)
         self.frame_27 = QFrame(self.frame_14)
         self.frame_27.setObjectName(u"frame_27")
         self.frame_27.setMinimumSize(QSize(0, 50))
         self.frame_27.setMaximumSize(QSize(16777215, 50))
-        self.frame_27.setStyleSheet(u" background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(164, 16, 131, 0.8), stop:1 rgba(164, 16, 131, 0.4));")
+        self.frame_27.setStyleSheet(u"background-color: rgba(37, 48, 38, 0.8);")
         self.frame_27.setFrameShape(QFrame.StyledPanel)
         self.frame_27.setFrameShadow(QFrame.Raised)
         self.verticalLayout_31 = QVBoxLayout(self.frame_27)
@@ -1391,7 +1390,7 @@ class Ui_MainWindow(object):
         self.element_name = QLabel(self.frame_27)
         self.element_name.setObjectName(u"element_name")
         self.element_name.setMinimumSize(QSize(0, 50))
-        self.element_name.setStyleSheet(u"background-color: rgba(255, 255, 255, 0.0);\n"
+        self.element_name.setStyleSheet(u"background-color: rgba(37, 48, 38, 0.6);\n"
 "font: 11pt \"Sans Serif\";\n"
 "")
         self.element_name.setAlignment(Qt.AlignCenter)
@@ -1404,7 +1403,7 @@ class Ui_MainWindow(object):
         self.frame_28 = QFrame(self.frame_14)
         self.frame_28.setObjectName(u"frame_28")
         self.frame_28.setStyleSheet(u"#frame_28 {\n"
-"	background-color: rgba(255, 255, 255, 0.0);\n"
+"	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(117, 231, 163, 1), stop:1 rgba(117, 231, 163, 0));\n"
 "}")
         self.frame_28.setFrameShape(QFrame.StyledPanel)
         self.frame_28.setFrameShadow(QFrame.Raised)
@@ -1547,43 +1546,6 @@ class Ui_MainWindow(object):
 "}")
 
         self.verticalLayout_34.addWidget(self.edit_name_category)
-
-        self.check_parent_element = QCheckBox(self.frame_name_category_edit)
-        self.check_parent_element.setObjectName(u"check_parent_element")
-        self.check_parent_element.setStyleSheet(u"\n"
-"QCheckBox {\n"
-"	background-color: rgba(85, 255, 0, 0.0);\n"
-"}\n"
-"\n"
-"QCheckBox::indicator {\n"
-"border: 3px solid; \n"
-"border-color: rgba(37, 48, 38, 0.7);\n"
-"width: 40px;\n"
-"height: 25px;\n"
-"border-radius: 5px;\n"
-"}\n"
-"\n"
-"QCheckBox::indicator::unchecked{ \n"
-"border: 3px solid; \n"
-"border-color: rgba(37, 48, 38, 0.7);\n"
-"border-radius: 5px;\n"
-"background-color: rgba(195, 195, 195, 0.7);\n"
-"width: 40px;\n"
-"height: 25px;\n"
-"}\n"
-"\n"
-"QCheckBox::indicator::checked{ \n"
-"border: 3px solid; \n"
-"border-color: rgba(37, 48, 38, 0.9);\n"
-"border-radius: 6px;\n"
-"background-color: rgba(255, 131, 23, 0.7);\n"
-"width: 40px;\n"
-"height: 25px;\n"
-"}\n"
-"")
-        self.check_parent_element.setChecked(True)
-
-        self.verticalLayout_34.addWidget(self.check_parent_element)
 
 
         self.verticalLayout_33.addWidget(self.frame_name_category_edit)
@@ -1804,12 +1766,11 @@ class Ui_MainWindow(object):
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0435\u0440\u0435\u0432\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432", None))
         self.main_menu_page_edit_btn.setText(QCoreApplication.translate("MainWindow", u"  \u0413\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u043e\u0440 \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430", None))
-        self.element_name.setText(QCoreApplication.translate("MainWindow", u"vk", None))
+        self.element_name.setText(QCoreApplication.translate("MainWindow", u"\u0420\u043e\u0434\u0438\u0442\u0435\u043b\u044c\u0441\u043a\u0438\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None))
         self.label_15.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c:", None))
         self.elemen_radio.setText(QCoreApplication.translate("MainWindow", u"\u042d\u043b\u0435\u043c\u0435\u043d\u0442", None))
         self.cotegori_radio.setText(QCoreApplication.translate("MainWindow", u"\u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044e", None))
         self.edit_name_category.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435", None))
-        self.check_parent_element.setText(QCoreApplication.translate("MainWindow", u"\u0420\u043e\u0434\u0438\u0442\u0435\u043b\u044c\u0441\u043a\u0438\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None))
         self.edit_password.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
         self.edit_login.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438\u043d", None))
         self.description_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435", None))

@@ -2779,6 +2779,9 @@ border-bottom-right-radius: 20px;
                     <property name="leftMargin">
                      <number>0</number>
                     </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
                     <property name="rightMargin">
                      <number>0</number>
                     </property>
@@ -2797,7 +2800,7 @@ border-bottom-right-radius: 20px;
                        </size>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true"> background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(164, 16, 131, 0.8), stop:1 rgba(164, 16, 131, 0.4));</string>
+                       <string notr="true">background-color: rgba(37, 48, 38, 0.8);</string>
                       </property>
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
@@ -2830,12 +2833,12 @@ border-bottom-right-radius: 20px;
                           </size>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">background-color: rgba(255, 255, 255, 0.0);
+                          <string notr="true">background-color: rgba(37, 48, 38, 0.6);
 font: 11pt &quot;Sans Serif&quot;;
 </string>
                          </property>
                          <property name="text">
-                          <string>vk</string>
+                          <string>Родительский элемент</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
@@ -2849,7 +2852,7 @@ font: 11pt &quot;Sans Serif&quot;;
                      <widget class="QFrame" name="frame_28">
                       <property name="styleSheet">
                        <string notr="true">#frame_28 {
-	background-color: rgba(255, 255, 255, 0.0);
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(117, 231, 163, 1), stop:1 rgba(117, 231, 163, 0));
 }</string>
                       </property>
                       <property name="frameShape">
@@ -3092,49 +3095,6 @@ padding: 5px;
                                </property>
                                <property name="placeholderText">
                                 <string>Название</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QCheckBox" name="check_parent_element">
-                               <property name="styleSheet">
-                                <string notr="true">
-QCheckBox {
-	background-color: rgba(85, 255, 0, 0.0);
-}
-
-QCheckBox::indicator {
-border: 3px solid; 
-border-color: rgba(37, 48, 38, 0.7);
-width: 40px;
-height: 25px;
-border-radius: 5px;
-}
-
-QCheckBox::indicator::unchecked{ 
-border: 3px solid; 
-border-color: rgba(37, 48, 38, 0.7);
-border-radius: 5px;
-background-color: rgba(195, 195, 195, 0.7);
-width: 40px;
-height: 25px;
-}
-
-QCheckBox::indicator::checked{ 
-border: 3px solid; 
-border-color: rgba(37, 48, 38, 0.9);
-border-radius: 6px;
-background-color: rgba(255, 131, 23, 0.7);
-width: 40px;
-height: 25px;
-}
-</string>
-                               </property>
-                               <property name="text">
-                                <string>Родительский элемент</string>
-                               </property>
-                               <property name="checked">
-                                <bool>true</bool>
                                </property>
                               </widget>
                              </item>

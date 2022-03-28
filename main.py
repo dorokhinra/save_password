@@ -5,6 +5,9 @@ import glob
 import sys
 import time
 #IMPORT QTQORE
+from PyQt5.QtSql import QSqlQuery
+
+from database.query import query_delete_category
 from qt_core import *
 # UI
 from gui.windows.ui_main_ui import Ui_MainWindow
@@ -15,9 +18,13 @@ from gui.widgets.setup_ui import SettingsUi
 #БаЗа Данных
 from database.session import DbSession
 
-from database.service import CatigoriesView
+from database.service import CatigoriesView, CreateCategory
 
 from system_modules.synchronization import CheckSync
+
+#Import py_context_menu
+from gui.widgets.py_context_menu import ContextMenuOn
+
 
 #MAIN_WINDOW
 class MainWindow(QMainWindow):
@@ -36,7 +43,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         SettingsUi(self.ui, app)
-        self.setWindowFlags(Qt.FramelessWindowHint)
+
         self.ui.roll_up_btn.clicked.connect(self.on_min)
         self.ui.exit_btn.clicked.connect(self.closeEvent)
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_1)
@@ -45,6 +52,8 @@ class MainWindow(QMainWindow):
         self.id = ''
 
         self.ui.frame_element_edit.setVisible(False)
+        # self.ui.edit_name_category.text()
+
 
         #получение название элемента при нажатии на элемент в деревена странице редактирования
         self.ui.treeView_2.clicked.connect(self.get_value_category)
@@ -69,6 +78,8 @@ class MainWindow(QMainWindow):
 
         self.ui.elemen_radio.clicked.connect(self.show_element_edit)
 
+        self.ui.confitm_edit_reestr_btn.clicked.connect(self.confirm_edit)
+
         #Кнопки переключения для страници с настройками
         self.ui.main_menu_btn_set.clicked.connect(self.go_to_back)
         self.ui.git_btn.clicked.connect(self.show_git_settings)
@@ -81,12 +92,30 @@ class MainWindow(QMainWindow):
         #Кнопка переключения главного меню для реестра
         self.ui.go_back_menu_reestr.clicked.connect(self.go_to_back)
 
+        self.db = ''
         #БАЗА дАННЫХ
         self.check_db()
         self.ui.pushButton.clicked.connect(self.create_db)
         self.check_os_type()
+        # Показать выпадающее меню при клике мыши
+        self.context_menu = ContextMenuOn(self.del_widget)
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.ui.treeView_2.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.ui.treeView_2.customContextMenuRequested.connect(self.context_menu.on_custom_context_menu)
         self.show()
 
+
+
+    def del_widget(self, id):
+
+        query_string = query_delete_category(id)
+        self.db.session.open(self.ui.db_login_edit.text(), self.ui.db_pass_edit.text())
+        self.query = QSqlQuery(self.db.session)
+        self.query.prepare(query_string)
+        self.query.exec_()
+        set_cat = CatigoriesView(self.ui, self.db.session)
+        set_cat.get_data(
+            {'login': self.ui.db_login_edit.text(), 'password': self.ui.db_pass_edit.text()})
 
 
     def get_value_category(self, val):
@@ -129,6 +158,15 @@ class MainWindow(QMainWindow):
             self.ui.db_pass_info.setStyleSheet(self.style_sheet_info()['danger'])
             self.ui.db_pass_info.setSource(QtCore.QUrl.fromLocalFile(self.template2))
             # self.animation_info(self.ui.db_pass_info)
+
+    def confirm_edit(self):
+        create = CreateCategory(self.ui, self.db.session, self.id)
+        if self.ui.cotegori_radio.isChecked():
+            create.create_cat()
+        else:
+            create.create_elem()
+
+
 
     def create_db(self):
         if self.ui.db_login_edit.text() != '' and self.ui.db_pass_edit.text() != '':
@@ -177,6 +215,7 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_edit)
         set_cat = CatigoriesView(self.ui, self.db.session)
         set_cat.get_data({'login': self.ui.db_login_edit.text(), 'password': self.ui.db_pass_edit.text()})
+
     @staticmethod
     def style_sheet_info():
 

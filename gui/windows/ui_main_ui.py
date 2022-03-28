@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_uimnPMMd.ui'
+## Form generated from reading UI file 'main_uiiEtlWc.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -9,6 +9,7 @@
 ################################################################################
 
 from qt_core import *
+
 import gui.resources.res_rc
 
 class Ui_MainWindow(object):
@@ -1287,7 +1288,96 @@ class Ui_MainWindow(object):
         self.treeView_2.setObjectName(u"treeView_2")
         self.treeView_2.setStyleSheet(u"QTreeView {\n"
 "background-color: rgba(193, 193, 193, 0.1);\n"
-"        }            ")
+"        }  \n"
+"/* VERTICAL SCROLLBAR */\n"
+" QScrollBar:vertical {\n"
+"	border: none;\n"
+"    background: rgb(45, 45, 68);\n"
+"    width: 14px;\n"
+"    margin: 15px 0 15px 0;\n"
+"	border-radius: 0px;\n"
+" }\n"
+"\n"
+"/*  HANDLE BAR VERTICAL */\n"
+"QScrollBar::handle:vertical {	\n"
+"	background-color: rgb(80, 80, 122);\n"
+"	min-height: 30px;\n"
+"	border-radius: 7px;\n"
+"}\n"
+"QScrollBar::handle:vertical:hover{	\n"
+"	background-color: rgb(255, 0, 127);\n"
+"}\n"
+"QScrollBar::handle:vertical:pressed {	\n"
+"	background-color: rgb(185, 0, 92);\n"
+"}\n"
+"\n"
+"/* BTN TOP - SCROLLBAR */\n"
+"QScrollBar::sub-line:vertical {\n"
+"	border: none;\n"
+"	background-color: rgb(59, 59, 90);\n"
+"	height: 15px;\n"
+"	border-top-left-radius: 7px;\n"
+"	border-top-right-radius: 7px;\n"
+"	subcontrol-position: top;\n"
+"	subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:vertical:hover {	\n"
+"	background-color: rgb(255, 0, 127);\n"
+"}\n"
+"QScrollBar::sub-line:vertical:"
+                        "pressed {	\n"
+"	background-color: rgb(185, 0, 92);\n"
+"}\n"
+"\n"
+"/* BTN BOTTOM - SCROLLBAR */\n"
+"QScrollBar::add-line:vertical {\n"
+"	border: none;\n"
+"	background-color: rgb(59, 59, 90);\n"
+"	height: 15px;\n"
+"	border-bottom-left-radius: 7px;\n"
+"	border-bottom-right-radius: 7px;\n"
+"	subcontrol-position: bottom;\n"
+"	subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::add-line:vertical:hover {	\n"
+"	background-color: rgb(255, 0, 127);\n"
+"}\n"
+"QScrollBar::add-line:vertical:pressed {	\n"
+"	background-color: rgb(185, 0, 92);\n"
+"}\n"
+"\n"
+"/* RESET ARROW */\n"
+"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
+"	background: none;\n"
+"}\n"
+"QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
+"	background: none;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"/* HORIZONTAL SCROLLBAR - HOMEWORK */\n"
+"QScrollBar:horizontal {\n"
+"   \n"
+"}\n"
+"QScrollBar::handle:horizontal {\n"
+"    \n"
+"}\n"
+"QScrollBar::add-line:horizontal {\n"
+"    \n"
+"}\n"
+"QScrollBar::sub-line:horizontal {\n"
+"    \n"
+"}\n"
+"QScroll"
+                        "Bar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal\n"
+"{\n"
+"\n"
+"}\n"
+"QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal\n"
+"{\n"
+"\n"
+"}    ")
 
         self.verticalLayout_28.addWidget(self.treeView_2)
 
@@ -1592,6 +1682,23 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_33.addWidget(self.frame_element_edit)
 
+        self.info_for_edit_elements = QLabel(self.frame_30)
+        self.info_for_edit_elements.setObjectName(u"info_for_edit_elements")
+        self.info_for_edit_elements.setStyleSheet(u"background-color: rgba(247, 247, 247, 0.0);\n"
+"color: rgb(232, 77, 0);")
+        self.info_for_edit_elements.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_33.addWidget(self.info_for_edit_elements)
+
+        self.label_success_info = QLabel(self.frame_30)
+        self.label_success_info.setObjectName(u"label_success_info")
+        self.label_success_info.setStyleSheet(u"background-color: rgba(247, 247, 247, 0.0);\n"
+"color: rgb(0, 170, 0);")
+        self.label_success_info.setTextFormat(Qt.PlainText)
+        self.label_success_info.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_33.addWidget(self.label_success_info)
+
         self.confitm_edit_reestr_frame = QFrame(self.frame_30)
         self.confitm_edit_reestr_frame.setObjectName(u"confitm_edit_reestr_frame")
         self.confitm_edit_reestr_frame.setMinimumSize(QSize(0, 0))
@@ -1774,6 +1881,8 @@ class Ui_MainWindow(object):
         self.edit_password.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
         self.edit_login.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438\u043d", None))
         self.description_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435", None))
+        self.info_for_edit_elements.setText("")
+        self.label_success_info.setText("")
         self.confitm_edit_reestr_btn.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"\u0432\u0435\u0440\u0441\u0438\u044f 1.0", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"Dorokhinra", None))

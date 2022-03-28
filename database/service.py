@@ -2,7 +2,7 @@ from collections import deque
 
 from PyQt5.QtSql import QSqlQuery
 from qt_core import *
-from database.query import query_data
+from database.query import query_data, query_insert_cat, query_insert_elem
 
 
 class StandartItem(QStandardItem):
@@ -73,7 +73,57 @@ class CatigoriesView:
 
 
 
-class CreateElement():
-    def __init__(self):
-        pass
+class CreateCategory():
+    def __init__(self, parent, session, id):
+        self.parent = parent
+        self.session = session
+        self.id = id
 
+    def create_cat(self):
+        if self.parent.edit_name_category.text() != '':
+            if self.id == None:
+                self.id = ''
+            data = {'parent_id': self.id, 'name': self.parent.edit_name_category.text()}
+            query_string = query_insert_cat(data)
+            self.session.open( self.parent.db_login_edit.text(), self.parent.db_pass_edit.text())
+            self.query = QSqlQuery(self.session)
+            self.query.prepare(query_string)
+            self.query.exec_()
+            set_cat = CatigoriesView(self.parent, self.session)
+            set_cat.get_data({'login': self.parent.db_login_edit.text(), 'password': self.parent.db_pass_edit.text()})
+            self.parent.label_success_info.setVisible(False)
+            self.clear_all()
+        else:
+            self.parent.info_for_edit_elements.setText('Укажите наименование категории!')
+            self.parent.label_success_info.setVisible(False)
+
+    def create_elem(self):
+        if self.parent.edit_login.text() != '' and self.parent.edit_password.text():
+            if self.id is None or self.id == '':
+                self.parent.info_for_edit_elements.setText('Сначала выберите родительский элемент!')
+            else:
+                data = {'login': self.parent.edit_login.text(),
+                        'password': self.parent.edit_password.text(),
+                        'description': self.parent.description_edit.toPlainText(),
+                        'parent_id': self.id}
+                query_string = query_insert_elem(data)
+                self.session.open(self.parent.db_login_edit.text(), self.parent.db_pass_edit.text())
+                self.query = QSqlQuery(self.session)
+                self.query.prepare(query_string)
+                self.query.exec_()
+                set_cat = CatigoriesView(self.parent, self.session)
+                set_cat.get_data(
+                    {'login': self.parent.db_login_edit.text(), 'password': self.parent.db_pass_edit.text()})
+                self.parent.label_success_info.setVisible(True)
+                self.parent.label_success_info.setText('Данные успешно добалены!')
+                self.clear_all()
+        else:
+            self.parent.info_for_edit_elements.setText('Заполните логин и пароль!')
+            self.parent.label_success_info.setVisible(False)
+
+    def clear_all(self):
+        self.parent.edit_login.setText('')
+        self.parent.edit_password.setText('')
+        self.parent.description_edit.setText('')
+        self.parent.edit_name_category.setText('')
+        self.parent.info_for_edit_elements.setText('')

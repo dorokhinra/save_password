@@ -77,5 +77,6 @@ class SettingsUi():
 
         parent.db_pass_info.verticalScrollBar().setVisible(False)
         parent.info_ya_api.verticalScrollBar().setVisible(False)
+        parent.label_success_info.setVisible(False)
 
 

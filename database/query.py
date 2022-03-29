@@ -64,3 +64,28 @@ def query_delete_category(id):
     return f"""
     DELETE FROM categories WHERE id = '{id}';
     """
+
+def query_delete_element_in_cat(id):
+    return f"""
+       DELETE FROM password_store WHERE parent_id = '{id}';
+       """
+
+def query_update_elem(data):
+    return f"""
+    UPDATE password_store SET login = '{data['login']}', password = '{data['password']}', description = '{data['description']}', create_utc = '{datetime.datetime.now()}' WHERE id = '{data['id']}';
+    """
+
+def query_delet_elem(id):
+    return f"""
+         DELETE FROM password_store WHERE id = '{id}';
+         """
+
+def query_change_category_on_double_click(id, data):
+    return f"""
+    UPDATE categories SET name_category = '{data}', create_utc = '{datetime.datetime.now()}' WHERE id = '{id}';
+    """
+
+def query_select_elem_for_decrypt(id):
+    return f"""
+    SELECT * FROM password_store WHERE id = '{id}';
+    """

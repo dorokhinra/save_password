@@ -5,9 +5,11 @@ import glob
 import sys
 import time
 #IMPORT QTQORE
+from PyQt5 import QtSql
 from PyQt5.QtSql import QSqlQuery
 
-from database.query import query_delete_category
+from database.query import query_delete_category, query_change_category_on_double_click, query_delete_element_in_cat, \
+    query_delet_elem, query_update_elem
 from qt_core import *
 # UI
 from gui.windows.ui_main_ui import Ui_MainWindow
@@ -18,12 +20,13 @@ from gui.widgets.setup_ui import SettingsUi
 #БаЗа Данных
 from database.session import DbSession
 
-from database.service import CatigoriesView, CreateCategory
+from database.service import CatigoriesView, CreateCategory, CatigoriesViewForReestr, Table_view
+from system_modules.decript_elem import decrypt_elem
 
 from system_modules.synchronization import CheckSync
 
 #Import py_context_menu
-from gui.widgets.py_context_menu import ContextMenuOn
+from gui.widgets.py_context_menu import ContextMenuOn, ContextMenuForTableElem
 
 
 #MAIN_WINDOW
@@ -85,12 +88,19 @@ class MainWindow(QMainWindow):
         self.ui.git_btn.clicked.connect(self.show_git_settings)
         self.ui.key_btn.clicked.connect(self.show_key_settings)
         self.ui.db_btn.clicked.connect(self.show_db_settings)
-
+        self.setTreeModel()
         #Кнопки на странице изменения реестра
         self.ui.main_menu_page_edit_btn.clicked.connect(self.go_to_back)
 
         #Кнопка переключения главного меню для реестра
         self.ui.go_back_menu_reestr.clicked.connect(self.go_to_back)
+
+        self.ui.confirm_edit_elem_btn.clicked.connect(self.edit_element_in_pass_reestr)
+
+        #получение parent_id по нажатию на элемент
+        self.ui.treeView.clicked.connect(self.select_category_for_select_element)
+
+        self.ui.delete_elem_btn.clicked.connect(self.del_elem)
 
         self.db = ''
         #БАЗА дАННЫХ
@@ -102,20 +112,107 @@ class MainWindow(QMainWindow):
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.ui.treeView_2.setContextMenuPolicy(Qt.CustomContextMenu)
         self.ui.treeView_2.customContextMenuRequested.connect(self.context_menu.on_custom_context_menu)
+        # Контекстное меню на таблицу с паролями
+        self.context_menu_for_table_pass = ContextMenuForTableElem(self.decrypt_elem)
+        self.ui.tableView.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.ui.tableView.customContextMenuRequested.connect(self.context_menu_for_table_pass.on_custom_context_menu)
+
+        #расшифрованный элемент
+        self.data_decrypt_elem = {}
         self.show()
 
 
+    def edit_element_in_pass_reestr(self):
+        if self.data_decrypt_elem != {}:
+            if self.ui.decrypt_login_edit.text() != '' and self.ui.decrypt_pass_edit.text() != '':
+                data = {'id': self.data_decrypt_elem['id'],
+                        'login': self.ui.decrypt_login_edit.text(),
+                        'password': self.ui.decrypt_pass_edit.text(),
+                        'description': self.ui.decrypt_description_edit.toPlainText()}
+                self.db.session.open(self.ui.db_login_edit.text(), self.ui.db_pass_edit.text())
+                self.query = QSqlQuery(self.db.session)
+                query_string_elem = query_update_elem(data)
+                self.query.prepare(query_string_elem)
+                self.query.exec_()
+                self.clear_widget_vis_pass_reestr()
+                Table_view(self, self.db.session, self.data_decrypt_elem['parent_id'])
+                self.data_decrypt_elem = {}
+
+            else:
+                self.ui.label_info_pass_reestr.setText('Заполните логин и пароль!')
+        else:
+            pass
+
+    def clear_widget_vis_pass_reestr(self):
+        self.ui.decrypt_login_edit.setText('')
+        self.ui.decrypt_pass_edit.setText('')
+        self.ui.decrypt_description_edit.setText('')
+        self.ui.label_info_pass_reestr.setText('')
+
+    def del_elem(self):
+        if self.data_decrypt_elem != {}:
+            self.db.session.open(self.ui.db_login_edit.text(), self.ui.db_pass_edit.text())
+            self.query = QSqlQuery(self.db.session)
+            query_string_elem = query_delet_elem(self.data_decrypt_elem['id'])
+            self.query.prepare(query_string_elem)
+            self.query.exec_()
+            self.clear_widget_vis_pass_reestr()
+            Table_view(self, self.db.session, self.data_decrypt_elem['parent_id'])
+            self.data_decrypt_elem = {}
+        else:
+            pass
+
+    def decrypt_elem(self, wid, index):
+        row = index.row()
+        index = self.ui.tableView.model().index(row, 0)
+        elem_id = self.ui.tableView.model().data(index)
+        auth = {'login': self.ui.db_login_edit.text(), 'password': self.ui.db_pass_edit.text()}
+        self.data_decrypt_elem = decrypt_elem(auth=auth, session=self.db.session, id=elem_id)
+        self.ui.decrypt_login_edit.setText(self.data_decrypt_elem['login'])
+        self.ui.decrypt_pass_edit.setText(self.data_decrypt_elem['password'])
+        self.ui.decrypt_description_edit.setText(self.data_decrypt_elem['description'])
+
+    def setTreeModel(self):
+        self.treeModel = QStandardItemModel()
+        self.rootNode = self.treeModel.invisibleRootItem()
+        self.ui.treeView_2.setHeaderHidden(True)
+        self.ui.treeView_2.setModel(self.treeModel)
+        self.ui.treeView_2.setAnimated(True)
+        self.treeModel.dataChanged.connect(self.change_category_on_double_click)
+
+    def change_category_on_double_click(self, val):
+        cat_id = val.data(Qt.UserRole)
+        cat_data = val.data()
+        query_string = query_change_category_on_double_click(cat_id, cat_data)
+        self.db.session.open(self.ui.db_login_edit.text(), self.ui.db_pass_edit.text())
+        self.query = QSqlQuery(self.db.session)
+        self.query.prepare(query_string)
+        self.query.exec_()
+        self.ui.treeView_2.update()
+        self.ui.element_name.setText(cat_data)
+
+
+    def select_category_for_select_element(self, val):
+        self.ui.label_16.setText(val.data())
+        Table_view(self, self.db.session, val.data(Qt.UserRole))
+        self.clear_widget_vis_pass_reestr()
+        self.data_decrypt_elem = {}
+        # print(val.data(Qt.UserRole))
 
     def del_widget(self, id):
-
         query_string = query_delete_category(id)
         self.db.session.open(self.ui.db_login_edit.text(), self.ui.db_pass_edit.text())
         self.query = QSqlQuery(self.db.session)
         self.query.prepare(query_string)
         self.query.exec_()
-        set_cat = CatigoriesView(self.ui, self.db.session)
+        query_string_elem = query_delete_element_in_cat(id)
+        self.query.prepare(query_string_elem)
+        self.query.exec_()
+        set_cat = CatigoriesView(self.ui, self.db.session, self.treeModel)
         set_cat.get_data(
             {'login': self.ui.db_login_edit.text(), 'password': self.ui.db_pass_edit.text()})
+        self.id = ''
+        self.ui.element_name.setText('Родительский элемент')
 
 
     def get_value_category(self, val):
@@ -160,7 +257,7 @@ class MainWindow(QMainWindow):
             # self.animation_info(self.ui.db_pass_info)
 
     def confirm_edit(self):
-        create = CreateCategory(self.ui, self.db.session, self.id)
+        create = CreateCategory(self.ui, self.db.session, self.id, self.treeModel)
         if self.ui.cotegori_radio.isChecked():
             create.create_cat()
         else:
@@ -207,13 +304,18 @@ class MainWindow(QMainWindow):
 
     def show_reestr(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_3)
+        set_cat = CatigoriesViewForReestr(self.ui, self.db.session)
+        set_cat.get_data({'login': self.ui.db_login_edit.text(), 'password': self.ui.db_pass_edit.text()})
+        self.clear_widget_vis_pass_reestr()
+        self.data_decrypt_elem = {}
+        self.ui.tableView.update()
 
     def go_to_back(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_1)
 
     def show_edit_reestr(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_edit)
-        set_cat = CatigoriesView(self.ui, self.db.session)
+        set_cat = CatigoriesView(self.ui, self.db.session, self.treeModel)
         set_cat.get_data({'login': self.ui.db_login_edit.text(), 'password': self.ui.db_pass_edit.text()})
 
     @staticmethod

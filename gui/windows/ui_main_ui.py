@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_uiiEtlWc.ui'
+## Form generated from reading UI file 'main_uiXUIkgN.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -1160,7 +1160,10 @@ class Ui_MainWindow(object):
         self.frame_5.setObjectName(u"frame_5")
         self.frame_5.setMinimumSize(QSize(250, 0))
         self.frame_5.setMaximumSize(QSize(250, 16777215))
-        self.frame_5.setStyleSheet(u"QPushButton{\n"
+        self.frame_5.setStyleSheet(u"#frame_5 {\n"
+"	background-image: url(:/images/fon_menu.png);\n"
+"}\n"
+"QPushButton{\n"
 "	font: 12pt \"Sans Serif\";\n"
 "	background-color: rgba(195, 195, 195, 0.7);\n"
 "border-radius: 15px;\n"
@@ -1178,60 +1181,305 @@ class Ui_MainWindow(object):
         self.frame_5.setFrameShape(QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QFrame.Raised)
         self.verticalLayout = QVBoxLayout(self.frame_5)
+        self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.label_9 = QLabel(self.frame_5)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.frame_33 = QFrame(self.frame_5)
+        self.frame_33.setObjectName(u"frame_33")
+        self.frame_33.setMinimumSize(QSize(0, 50))
+        self.frame_33.setStyleSheet(u"#frame_33 {\n"
+"	background-color: rgba(37, 48, 38, 0.5);\n"
+"}")
+        self.frame_33.setFrameShape(QFrame.StyledPanel)
+        self.frame_33.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_37 = QVBoxLayout(self.frame_33)
+        self.verticalLayout_37.setSpacing(0)
+        self.verticalLayout_37.setObjectName(u"verticalLayout_37")
+        self.verticalLayout_37.setContentsMargins(0, 0, 0, 0)
+        self.reestr_tree_frame = QFrame(self.frame_33)
+        self.reestr_tree_frame.setObjectName(u"reestr_tree_frame")
+        self.reestr_tree_frame.setStyleSheet(u"background-color: rgba(0, 85, 0, 0.3);")
+        self.reestr_tree_frame.setFrameShape(QFrame.StyledPanel)
+        self.reestr_tree_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_12 = QVBoxLayout(self.reestr_tree_frame)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.label_9 = QLabel(self.reestr_tree_frame)
         self.label_9.setObjectName(u"label_9")
         self.label_9.setMinimumSize(QSize(0, 40))
         self.label_9.setMaximumSize(QSize(16777215, 30))
         self.label_9.setStyleSheet(u"font: 12pt \"Sans Serif\";\n"
 "border-bottom: 2px   solid rgb(184, 184, 184);\n"
-"background-color: rgba(37, 48, 38, 1);\n"
+"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(117, 231, 163, 1), stop:1 rgba(117, 231, 163, 0));\n"
 "border-radius: 5px;")
         self.label_9.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout.addWidget(self.label_9)
+        self.verticalLayout_12.addWidget(self.label_9)
 
-        self.reestr_tree_frame = QFrame(self.frame_5)
-        self.reestr_tree_frame.setObjectName(u"reestr_tree_frame")
-        self.reestr_tree_frame.setFrameShape(QFrame.StyledPanel)
-        self.reestr_tree_frame.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_12 = QVBoxLayout(self.reestr_tree_frame)
-        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
         self.treeView = QTreeView(self.reestr_tree_frame)
         self.treeView.setObjectName(u"treeView")
+        self.treeView.setStyleSheet(u"background-color: rgba(180, 180, 180, 0.2);")
 
         self.verticalLayout_12.addWidget(self.treeView)
 
-
-        self.verticalLayout.addWidget(self.reestr_tree_frame)
-
-        self.go_back_menu_reestr = QPushButton(self.frame_5)
+        self.go_back_menu_reestr = QPushButton(self.reestr_tree_frame)
         self.go_back_menu_reestr.setObjectName(u"go_back_menu_reestr")
         self.go_back_menu_reestr.setMinimumSize(QSize(0, 50))
+        self.go_back_menu_reestr.setStyleSheet(u"QPushButton{\n"
+"	font: 12pt \"Sans Serif\";\n"
+"	background-color: rgba(195, 195, 195, 0.7);\n"
+"border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgba(197, 197, 197, 0.4);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);\n"
+"	 \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgba(216, 216, 216, 0.2);\n"
+"}")
         self.go_back_menu_reestr.setIcon(icon8)
         self.go_back_menu_reestr.setIconSize(QSize(20, 20))
 
-        self.verticalLayout.addWidget(self.go_back_menu_reestr)
+        self.verticalLayout_12.addWidget(self.go_back_menu_reestr)
+
+
+        self.verticalLayout_37.addWidget(self.reestr_tree_frame)
+
+
+        self.verticalLayout.addWidget(self.frame_33)
 
 
         self.horizontalLayout_7.addWidget(self.frame_5)
 
+        self.horizontalSpacer_18 = QSpacerItem(20, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_18)
+
         self.frame_3 = QFrame(self.page_3)
         self.frame_3.setObjectName(u"frame_3")
         self.frame_3.setStyleSheet(u"#frame_3{\n"
-"	background-color: rgba(195, 195, 195, 0.3);\n"
+"	border-radius:25px;\n"
+"	background-image: url(:/images/fon_table.png);\n"
 "}")
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
         self.verticalLayout_13 = QVBoxLayout(self.frame_3)
+        self.verticalLayout_13.setSpacing(0)
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
-        self.tableView = QTableView(self.frame_3)
-        self.tableView.setObjectName(u"tableView")
+        self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.frame_35 = QFrame(self.frame_3)
+        self.frame_35.setObjectName(u"frame_35")
+        self.frame_35.setStyleSheet(u"#frame_35{\n"
+"	\n"
+"	background-color: rgba(171, 171, 171, 0.7);\n"
+"border-radius:25px;\n"
+"}")
+        self.frame_35.setFrameShape(QFrame.StyledPanel)
+        self.frame_35.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_39 = QVBoxLayout(self.frame_35)
+        self.verticalLayout_39.setSpacing(0)
+        self.verticalLayout_39.setObjectName(u"verticalLayout_39")
+        self.verticalLayout_39.setContentsMargins(0, 0, 0, 0)
+        self.frame_34 = QFrame(self.frame_35)
+        self.frame_34.setObjectName(u"frame_34")
+        self.frame_34.setStyleSheet(u"#frame_34{\n"
+"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(117, 231, 163, 1), stop:1 rgba(117, 231, 163, 0));\n"
+"border-radius:25px;\n"
+"}")
+        self.frame_34.setFrameShape(QFrame.StyledPanel)
+        self.frame_34.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_38 = QVBoxLayout(self.frame_34)
+        self.verticalLayout_38.setSpacing(0)
+        self.verticalLayout_38.setObjectName(u"verticalLayout_38")
+        self.verticalLayout_38.setContentsMargins(15, 15, 15, 15)
+        self.frame_36 = QFrame(self.frame_34)
+        self.frame_36.setObjectName(u"frame_36")
+        self.frame_36.setStyleSheet(u"background-color: rgba(37, 48, 38, 0.8);")
+        self.frame_36.setFrameShape(QFrame.StyledPanel)
+        self.frame_36.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_40 = QVBoxLayout(self.frame_36)
+        self.verticalLayout_40.setSpacing(0)
+        self.verticalLayout_40.setObjectName(u"verticalLayout_40")
+        self.label_16 = QLabel(self.frame_36)
+        self.label_16.setObjectName(u"label_16")
+        self.label_16.setStyleSheet(u"background-color: rgba(255, 255, 255, 0.0);\n"
+"font: 12pt \"Sans Serif\";")
+        self.label_16.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_13.addWidget(self.tableView)
+        self.verticalLayout_40.addWidget(self.label_16)
+
+
+        self.verticalLayout_38.addWidget(self.frame_36)
+
+        self.tableView = QTableView(self.frame_34)
+        self.tableView.setObjectName(u"tableView")
+        self.tableView.setStyleSheet(u"QTableView {\n"
+"border:none;\n"
+"	background-color: rgba(0, 85, 255, 0.0);\n"
+"	padding: 5px;\n"
+"}\n"
+"\n"
+"QTableView::item:selected {\n"
+"	background-color: rgba(0, 85, 255, 0.3);\n"
+"}\n"
+"\n"
+"QHeaderView, QHeaderView::section {\n"
+"background-color: rgba(255, 255, 255, 0.0);\n"
+"height: 40px;\n"
+"color: rgb(255, 255, 255);\n"
+"font-size:10pt;\n"
+"border:none;\n"
+"}\n"
+"\n"
+"QTableView::item {\n"
+"border-bottom: 1px solid rgb(76, 25, 76);\n"
+"background-color: rgba(36, 36, 36, 0.9);\n"
+"color: rgb(255, 255, 255);\n"
+"\n"
+"}\n"
+"")
+        self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.tableView.horizontalHeader().setVisible(False)
+        self.tableView.verticalHeader().setVisible(False)
+
+        self.verticalLayout_38.addWidget(self.tableView)
+
+        self.frame_37 = QFrame(self.frame_34)
+        self.frame_37.setObjectName(u"frame_37")
+        self.frame_37.setMinimumSize(QSize(0, 0))
+        self.frame_37.setMaximumSize(QSize(16777215, 200))
+        self.frame_37.setStyleSheet(u"#frame_37{\n"
+"	background-color: rgba(255, 255, 255, 0.0);\n"
+"}")
+        self.frame_37.setFrameShape(QFrame.StyledPanel)
+        self.frame_37.setFrameShadow(QFrame.Raised)
+        self.gridLayout_5 = QGridLayout(self.frame_37)
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.decrypt_login_edit = QLineEdit(self.frame_37)
+        self.decrypt_login_edit.setObjectName(u"decrypt_login_edit")
+        self.decrypt_login_edit.setMinimumSize(QSize(300, 0))
+        self.decrypt_login_edit.setMaximumSize(QSize(450, 16777215))
+        self.decrypt_login_edit.setStyleSheet(u"QLineEdit {\n"
+"border-radius: 10px;\n"
+"background-color: rgba(36, 36, 36, 0.9);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);	 \n"
+"padding: 5px;\n"
+"}")
+
+        self.gridLayout_5.addWidget(self.decrypt_login_edit, 0, 0, 1, 1)
+
+        self.decrypt_pass_edit = QLineEdit(self.frame_37)
+        self.decrypt_pass_edit.setObjectName(u"decrypt_pass_edit")
+        self.decrypt_pass_edit.setStyleSheet(u"QLineEdit {\n"
+"border-radius: 10px;\n"
+"background-color: rgba(36, 36, 36, 0.9);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);	 \n"
+"padding: 5px;\n"
+"}")
+
+        self.gridLayout_5.addWidget(self.decrypt_pass_edit, 0, 1, 1, 1)
+
+        self.decrypt_description_edit = QTextEdit(self.frame_37)
+        self.decrypt_description_edit.setObjectName(u"decrypt_description_edit")
+        self.decrypt_description_edit.setMaximumSize(QSize(16777215, 100))
+        self.decrypt_description_edit.setStyleSheet(u"QTextEdit {\n"
+"border-radius: 10px;\n"
+"background-color: rgba(36, 36, 36, 0.9);\n"
+"border: 3px   solid rgba(37, 48, 38, 1);	 \n"
+"padding: 5px;\n"
+"}")
+
+        self.gridLayout_5.addWidget(self.decrypt_description_edit, 1, 0, 1, 2)
+
+        self.label_info_pass_reestr = QLabel(self.frame_37)
+        self.label_info_pass_reestr.setObjectName(u"label_info_pass_reestr")
+        self.label_info_pass_reestr.setStyleSheet(u"background-color: rgba(255, 255, 255, 0.0);\n"
+"color: rgb(255, 25, 117);")
+        self.label_info_pass_reestr.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_5.addWidget(self.label_info_pass_reestr, 2, 0, 1, 2)
+
+
+        self.verticalLayout_38.addWidget(self.frame_37)
+
+        self.frame_38 = QFrame(self.frame_34)
+        self.frame_38.setObjectName(u"frame_38")
+        self.frame_38.setMinimumSize(QSize(0, 40))
+        self.frame_38.setStyleSheet(u"background-color: rgba(255, 255, 255, 0.0);")
+        self.frame_38.setFrameShape(QFrame.StyledPanel)
+        self.frame_38.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_15 = QHBoxLayout(self.frame_38)
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.horizontalSpacer_20 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_15.addItem(self.horizontalSpacer_20)
+
+        self.confirm_edit_elem_btn = QPushButton(self.frame_38)
+        self.confirm_edit_elem_btn.setObjectName(u"confirm_edit_elem_btn")
+        self.confirm_edit_elem_btn.setMinimumSize(QSize(200, 40))
+        self.confirm_edit_elem_btn.setMaximumSize(QSize(16777215, 40))
+        self.confirm_edit_elem_btn.setStyleSheet(u"QPushButton{\n"
+"	font: 12pt \"Sans Serif\";\n"
+"	background-color: rgba(37, 48, 38, 0.8);\n"
+"\n"
+"border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgba(37, 48, 38, 0.6);\n"
+"border: 3px   solid rgba(195, 195, 195, 0.7);\n"
+"	 \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgba(216, 216, 216, 0.2);\n"
+"}")
+
+        self.horizontalLayout_15.addWidget(self.confirm_edit_elem_btn)
+
+        self.delete_elem_btn = QPushButton(self.frame_38)
+        self.delete_elem_btn.setObjectName(u"delete_elem_btn")
+        self.delete_elem_btn.setMinimumSize(QSize(200, 40))
+        self.delete_elem_btn.setStyleSheet(u"QPushButton{\n"
+"	font: 12pt \"Sans Serif\";\n"
+"	background-color: rgba(255, 127, 15, 0.8);\n"
+"\n"
+"border-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"background-color: rgba(255, 127, 15, 0.4);\n"
+"border: 3px   solid rgba(195, 195, 195, 0.7);\n"
+"	 \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgba(255, 127, 15, 1);\n"
+"}")
+
+        self.horizontalLayout_15.addWidget(self.delete_elem_btn)
+
+        self.horizontalSpacer_21 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_15.addItem(self.horizontalSpacer_21)
+
+
+        self.verticalLayout_38.addWidget(self.frame_38)
+
+
+        self.verticalLayout_39.addWidget(self.frame_34)
+
+
+        self.verticalLayout_13.addWidget(self.frame_35)
 
 
         self.horizontalLayout_7.addWidget(self.frame_3)
+
+        self.horizontalSpacer_19 = QSpacerItem(20, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_19)
 
         self.stackedWidget.addWidget(self.page_3)
         self.page_edit = QWidget()
@@ -1465,7 +1713,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_30 = QVBoxLayout(self.frame_14)
         self.verticalLayout_30.setSpacing(0)
         self.verticalLayout_30.setObjectName(u"verticalLayout_30")
-        self.verticalLayout_30.setContentsMargins(0, 0, 0, -1)
+        self.verticalLayout_30.setContentsMargins(0, 0, 0, 0)
         self.frame_27 = QFrame(self.frame_14)
         self.frame_27.setObjectName(u"frame_27")
         self.frame_27.setMinimumSize(QSize(0, 50))
@@ -1494,6 +1742,8 @@ class Ui_MainWindow(object):
         self.frame_28.setObjectName(u"frame_28")
         self.frame_28.setStyleSheet(u"#frame_28 {\n"
 "	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(117, 231, 163, 1), stop:1 rgba(117, 231, 163, 0));\n"
+"border-bottom-left-radius: 20px;\n"
+"border-bottom-right-radius: 20px;\n"
 "}")
         self.frame_28.setFrameShape(QFrame.StyledPanel)
         self.frame_28.setFrameShadow(QFrame.Raised)
@@ -1807,7 +2057,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(2)
         self.stackedWidget_2.setCurrentIndex(2)
 
 
@@ -1870,6 +2120,13 @@ class Ui_MainWindow(object):
         self.db_login_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f \u0431\u0430\u0437\u044b \u0434\u0430\u043d\u043d\u044b\u0445", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0435\u0440\u0435\u0432\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432", None))
         self.go_back_menu_reestr.setText(QCoreApplication.translate("MainWindow", u"   \u0433\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
+        self.label_16.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u0438", None))
+        self.decrypt_login_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u043b\u043e\u0433\u0438\u043d", None))
+        self.decrypt_pass_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u043f\u0430\u0440\u043e\u043b\u044c", None))
+        self.decrypt_description_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435", None))
+        self.label_info_pass_reestr.setText("")
+        self.confirm_edit_elem_btn.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c", None))
+        self.delete_elem_btn.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0435\u043b\u0435\u043c\u0435\u043d\u0442", None))
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0435\u0440\u0435\u0432\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432", None))
         self.main_menu_page_edit_btn.setText(QCoreApplication.translate("MainWindow", u"  \u0413\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e", None))
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u043e\u0440 \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430", None))

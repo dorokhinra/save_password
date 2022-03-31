@@ -28,6 +28,7 @@ from system_modules.synchronization import CheckSync
 #Import py_context_menu
 from gui.widgets.py_context_menu import ContextMenuOn, ContextMenuForTableElem
 
+from  system_modules.encryption import Encryption
 
 #MAIN_WINDOW
 class MainWindow(QMainWindow):
@@ -116,6 +117,9 @@ class MainWindow(QMainWindow):
         self.context_menu_for_table_pass = ContextMenuForTableElem(self.decrypt_elem)
         self.ui.tableView.setContextMenuPolicy(Qt.CustomContextMenu)
         self.ui.tableView.customContextMenuRequested.connect(self.context_menu_for_table_pass.on_custom_context_menu)
+
+        #Шифрование
+
 
         #расшифрованный элемент
         self.data_decrypt_elem = {}

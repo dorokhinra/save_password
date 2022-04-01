@@ -119,20 +119,33 @@ class MainWindow(QMainWindow):
         self.ui.tableView.customContextMenuRequested.connect(self.context_menu_for_table_pass.on_custom_context_menu)
 
         #Шифрование
+        self.encrypt = Encryption(self.ui)
+        self.encrypt.check_key()
 
+        self.ui.btn_add_key.clicked.connect(self.confirm_edit_key)
 
         #расшифрованный элемент
         self.data_decrypt_elem = {}
         self.show()
 
 
+    def confirm_edit_key(self):
+        self.encrypt.bush_connect_button()
+        if self.ui.db_login_edit.text() != '' and self.ui.db_pass_edit.text() != '':
+            if self.encrypt.key != '':
+                self.ui.btn_pass_reestr.setEnabled(True)
+                self.ui.btn_pass_reestr.setToolTip('')
+                self.ui.btn_edit_pass_reestr.setEnabled(True)
+                self.ui.btn_edit_pass_reestr.setToolTip('')
+
     def edit_element_in_pass_reestr(self):
         if self.data_decrypt_elem != {}:
+
             if self.ui.decrypt_login_edit.text() != '' and self.ui.decrypt_pass_edit.text() != '':
                 data = {'id': self.data_decrypt_elem['id'],
-                        'login': self.ui.decrypt_login_edit.text(),
-                        'password': self.ui.decrypt_pass_edit.text(),
-                        'description': self.ui.decrypt_description_edit.toPlainText()}
+                        'login':  self.encrypt.encrypt_message(self.ui.decrypt_login_edit.text()).decode(),
+                        'password':  self.encrypt.encrypt_message(self.ui.decrypt_pass_edit.text()).decode(),
+                        'description':  self.encrypt.encrypt_message(self.ui.decrypt_description_edit.toPlainText()).decode()}
                 self.db.session.open(self.ui.db_login_edit.text(), self.ui.db_pass_edit.text())
                 self.query = QSqlQuery(self.db.session)
                 query_string_elem = query_update_elem(data)
@@ -171,7 +184,7 @@ class MainWindow(QMainWindow):
         index = self.ui.tableView.model().index(row, 0)
         elem_id = self.ui.tableView.model().data(index)
         auth = {'login': self.ui.db_login_edit.text(), 'password': self.ui.db_pass_edit.text()}
-        self.data_decrypt_elem = decrypt_elem(auth=auth, session=self.db.session, id=elem_id)
+        self.data_decrypt_elem = decrypt_elem(auth=auth, session=self.db.session, id=elem_id, decrypt_func=self.encrypt.decrypt_message)
         self.ui.decrypt_login_edit.setText(self.data_decrypt_elem['login'])
         self.ui.decrypt_pass_edit.setText(self.data_decrypt_elem['password'])
         self.ui.decrypt_description_edit.setText(self.data_decrypt_elem['description'])
@@ -238,13 +251,14 @@ class MainWindow(QMainWindow):
                 self.db = DbSession()
                 self.db.create_table(self.db.session, self.ui.db_login_edit.text(), self.ui.db_pass_edit.text())
                 self.ui.pushButton.setEnabled(False)
-                self.ui.btn_pass_reestr.setEnabled(True)
-                self.ui.btn_pass_reestr.setToolTip('')
-                self.ui.btn_edit_pass_reestr.setEnabled(True)
-                self.ui.btn_edit_pass_reestr.setToolTip('')
                 self.ui.db_pass_info.setStyleSheet(self.style_sheet_info()['success'])
                 self.ui.db_pass_info.setSource(QtCore.QUrl.fromLocalFile(self.template3))
                 self.animation_info(self.ui.db_pass_info)
+                if self.encrypt.key != '':
+                    self.ui.btn_pass_reestr.setEnabled(True)
+                    self.ui.btn_pass_reestr.setToolTip('')
+                    self.ui.btn_edit_pass_reestr.setEnabled(True)
+                    self.ui.btn_edit_pass_reestr.setToolTip('')
             else:
                 self.ui.btn_pass_reestr.setEnabled(False)
                 self.ui.btn_pass_reestr.setToolTip(
@@ -265,7 +279,7 @@ class MainWindow(QMainWindow):
         if self.ui.cotegori_radio.isChecked():
             create.create_cat()
         else:
-            create.create_elem()
+            create.create_elem(self.encrypt.encrypt_message)
 
 
 

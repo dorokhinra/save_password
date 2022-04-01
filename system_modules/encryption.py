@@ -1,10 +1,11 @@
-import base64
+# import base64
 import os
 
 from cryptography.fernet import Fernet
+from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-
+import base64
 
 class Encryption():
     def __init__(self, parent):
@@ -28,42 +29,49 @@ class Encryption():
             if not os.path.exists(self.path_key):
                 self.create_key()
             self.decrypt_key()
+
         else:
             self.parent.info_key.setStyleSheet('color: rgb(234, 78, 117);')
             self.parent.info_key.setText('Заполните все поля!')
 
     def create_key(self):
         # Создаем ключ и сохраняем его в файл
+        key_pass = Fernet.generate_key()
         password = self.parent.edit_pass_key.text()
-        key_gen = Fernet.generate_key()
-        salt = os.urandom(16)
-        kdf = PBKDF2HMAC(algorithm=hashes.SHA256(),
-                         length=32,
-                         salt=salt,
-                         iterations=100000,
-                         )
-        key_pass = base64.urlsafe_b64encode(kdf.derive(password.encode()))
-        f = Fernet(key_pass)
-        token = f.encrypt(key_gen)
+
+        kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=b"staticsalt", iterations=100000,
+                         backend=default_backend())
+        key = base64.urlsafe_b64encode(kdf.derive(password.encode()))
+        f = Fernet(key)
+        token = f.encrypt(key_pass)
         with open(self.path_key, 'wb') as key_file:
             key_file.write(token)
 
     def decrypt_key(self):
         password = self.parent.edit_pass_key.text()
-        salt = os.urandom(16)
-        kdf = PBKDF2HMAC(algorithm=hashes.SHA256(),
-                         length=32,
-                         salt=salt,
-                         iterations=100000,
-                         )
-        key_pass = base64.urlsafe_b64encode(kdf.derive(password.encode()))
-        f = Fernet(key_pass)
+
+        kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=b"staticsalt", iterations=100000,
+                         backend=default_backend())
+        key = base64.urlsafe_b64encode(kdf.derive(password.encode()))
+        f = Fernet(key)
+
         with open(self.path_key, 'rb') as file:
             encrypt_key = file.read()
         try:
             self.key = f.decrypt(encrypt_key)
-
+            self.parent.btn_add_key.setEnabled(True)
+            self.parent.info_key.setStyleSheet('color: rgb(255, 255, 255);')
+            self.parent.info_key.setText('Успешно!')
         except:
             self.parent.info_key.setStyleSheet('color: rgb(234, 78, 117);')
             self.parent.info_key.setText('Не верный пароль!')
+
+    def decrypt_message(self, message):
+        f = Fernet(self.key)
+
+        return f.decrypt(message.encode())
+
+    def encrypt_message(self, message):
+        f = Fernet(self.key)
+        return f.encrypt(message.encode())
 

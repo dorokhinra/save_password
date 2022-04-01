@@ -129,6 +129,9 @@ class CatigoriesViewForReestr:
             seen[dbid] = parent.child(parent.rowCount() - 1)
 
 
+
+
+
 class CreateCategory():
     def __init__(self, parent, session, id, model):
         self.parent = parent
@@ -154,15 +157,16 @@ class CreateCategory():
             self.parent.info_for_edit_elements.setText('Укажите наименование категории!')
             self.parent.label_success_info.setVisible(False)
 
-    def create_elem(self):
+    def create_elem(self, encrypt_func):
         if self.parent.edit_login.text() != '' and self.parent.edit_password.text():
             if self.id is None or self.id == '':
                 self.parent.info_for_edit_elements.setText('Сначала выберите родительский элемент!')
             else:
-                data = {'login': self.parent.edit_login.text(),
-                        'password': self.parent.edit_password.text(),
-                        'description': self.parent.description_edit.toPlainText(),
+                data = {'login': encrypt_func(self.parent.edit_login.text()).decode(),
+                        'password': encrypt_func(self.parent.edit_password.text()).decode(),
+                        'description': encrypt_func(self.parent.description_edit.toPlainText()).decode(),
                         'parent_id': self.id}
+
                 query_string = query_insert_elem(data)
                 self.session.open(self.parent.db_login_edit.text(), self.parent.db_pass_edit.text())
                 self.query = QSqlQuery(self.session)

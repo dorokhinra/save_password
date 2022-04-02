@@ -34,7 +34,7 @@ class CheckSync:
         self.animation_get_code_btn()
 
     def input_code(self):
-        if self.parent.edit_code.text() is not '':
+        if self.parent.edit_code.text() != '':
             code = self.parent.edit_code.text()
             try:
                 response = self.y.get_token(code)

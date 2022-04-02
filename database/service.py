@@ -51,7 +51,7 @@ class CatigoriesView:
 
     def import_data(self, data, root=''):
         self.treeModel.setRowCount(0)
-        if root is '':
+        if root == '':
             root = self.treeModel.invisibleRootItem()
             root.appendRow(StandartItem('Родительский элемент'))
         seen = {}
@@ -106,7 +106,7 @@ class CatigoriesViewForReestr:
 
     def import_data(self, data, root=''):
         self.treeModel.setRowCount(0)
-        if root is '':
+        if root == '':
             root = self.treeModel.invisibleRootItem()
             root.appendRow(StandartItem('Родительский элемент'))
         seen = {}

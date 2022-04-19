@@ -1,8 +1,0 @@
-<RCC>
-  <qresource prefix="images">
-    <file>fon_table.png</file>
-    <file>fon_menu.png</file>
-    <file>fon_baner.png</file>
-    <file>fon.png</file>
-  </qresource>
-</RCC>

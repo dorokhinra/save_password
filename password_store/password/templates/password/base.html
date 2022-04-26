@@ -19,20 +19,33 @@
 <div class="content">
 <div class="container">
 <div class="row">
-    {% if bar %}
+    {% if bar or cats %}
         <div style="margin-top: 20px"></div>
-      <div class="col-lg-2 col-12">
-       <div valign="top" class="left-chapters">
+      <div class="col-lg-2 col-md-12 col-12 left-chapters">
+       <div valign="top" class="">
+       {% if bar %}
               <ul class="navbar-nav">
           {% for p in bar %}
          <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">{{ p }}</a>
+         {% if p.name == title %}
+           <a style="color: #0059b2" aria-current="page" href="{%  url p.url %}">{{ p.name }}</a>
+         {% else %}
+          <a class="nav-link active" aria-current="page" href="{%  url p.url %}">{{ p.name }}</a>
+         {% endif %}
         </li>
           {% endfor %}
               </ul>
+           {% else %}
+             <ul class="navbar-nav">
+          {% for p in cats %}
+         <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">{{ p.name_category }}</a>
+        </li>
+          {% endfor %}
+           {% endif %}
        </div>
     </div>
-    <div class="col-lg-10  col-12">
+    <div class="col-lg-8  col-12">
     {% else %}
     <div class="col-12">
     {% endif %}

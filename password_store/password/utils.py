@@ -1,3 +1,5 @@
+from collections import deque
+
 from password.models import *
 
 class DataMixim:
@@ -7,6 +9,32 @@ class DataMixim:
         context = kwargs
         if context.get('cats', False) != False:
             cats = Category.objects.all().values('id', 'name_category', 'parent_id')
-            context['cats'] = cats
+            context['cats'] = self.import_data(cats)
 
         return context
+    @staticmethod
+    def import_data(data, root=''): #Построение деоева элементов
+        list_data = []
+        if root == '':
+            root = list_data  # Вначале создаем пустой список
+            root.append({'id':'0', 'text': 'Родитель', 'icon': "fa fa-folder", 'href': '/edit_reestr/0'})
+        seen = {}
+        values = deque(data) # Загоняем данные в много этереируемую запоминаемую коллекцию
+        while values:
+            value = values.popleft()
+            if value['parent_id'] == '':
+                parent = root   # Если это родитель оставляем все как есть
+            else:
+                pid = value['parent_id']
+                if pid not in seen:
+                    values.append(value)
+                    continue
+                p = seen[pid]
+                if p.get('nodes', False) == False:
+                    p['nodes'] = []
+                parent = p['nodes']
+            dbid = value['id']
+            data_item = {'id':value['id'], 'text': value['name_category'], 'icon': "fa fa-folder", 'href': ''} # f'/edit_reestr/{value["id"]}'
+            parent.append(data_item)
+            seen[dbid] = parent[len(parent) - 1]
+        return root

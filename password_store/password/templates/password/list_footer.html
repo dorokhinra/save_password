@@ -12,8 +12,12 @@
 
     <ul class="nav col-md-4 justify-content-end">
         {% for i in menu %}
+            {% if i.url == 'edit_reestr' %}
+             <li class="nav-item"><a href="{% url i.url %}" class="nav-link px-2 text-muted">{{ i.name }}</a></li>
+            {% else %}
       <li class="nav-item"><a href="{% url i.url %}" class="nav-link px-2 text-muted">{{ i.name }}</a></li>
-    {% endfor %}
+    {% endif %}
+        {% endfor %}
     </ul>
   </footer>
 </div>

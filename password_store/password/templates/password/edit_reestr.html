@@ -1,7 +1,14 @@
 {% extends 'password/base.html' %}
 
 {% block content %}
-    <h1>Изменение реестра</h1>
+    <h1 style="text-align: center" id="cat_name">Категория: </h1>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+  $('#tree').on('click', function(e) {
+                     let cat_id = e.target.id
+                    {#$.get( {% url 'edit_reestr' %}, {'data': cat_id} );#}
+                    $('#cat_name').html('Категория: '+ e.target.textContent)
 
-
+                });
+</script>
 {% endblock %}

@@ -1,14 +1,51 @@
 {% extends 'password/base.html' %}
 
 {% block content %}
-    <h1 style="text-align: center" id="cat_name">Категория: </h1>
+
+<div class="card" style="width: 50rem;" >
+<h1 style="text-align: center" >Категория: <label id="cat_name">Родитель</label>
+    <label id="cat_id" style="display:none">0</label> </h1>
+    <div style="padding-left: 40px; padding-right: 40px; position: center">
+     <form method="post" enctype="multipart/form-data" id="category_form">
+    {% csrf_token %}
+<div class="errors">{{ form.non_field_errors }}</div>
+         <div class="mb-3">
+        <label for="{{ form.name_category.id_for_label }}" class="form-label">{{ form.name_category.label }}</label>
+        {{ form.name_category }}
+    </div>
+  <div class="row" style="margin-bottom: 10px">
+         <div class="col-3"></div>
+       <button id="submit_btn" class="col-6 btn btn-success btn-sm">Принять</button>
+         <div class="col-3"></div>
+             </div>
+    </form>
+
+
+</div>
+</div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
+
+    $('#category_form').submit(function (e){
+                        e.preventDefault()
+                        let postData = $('#category_form').serializeArray()
+                        if ($('#cat_id').text() !== '0'){
+                            postData.push({'name': 'parent_id', 'value': $('#cat_id').text()})
+                        }
+                         if ($('#cat_id').text() !== ''){
+                             $.post({% url 'edit_reestr' %}, postData, function(data){
+                     console.log(data)
+                });
+                        } else {
+                             console.log('Выберите категорию')
+                         }
+
+                    })
+
   $('#tree').on('click', function(e) {
                      let cat_id = e.target.id
-                    {#$.get( {% url 'edit_reestr' %}, {'data': cat_id} );#}
-                    $('#cat_name').html('Категория: '+ e.target.textContent)
-
+                    $('#cat_name').html(e.target.textContent)
+                    $('#cat_id').html(cat_id)
                 });
 </script>
 {% endblock %}

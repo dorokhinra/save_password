@@ -7,7 +7,7 @@ class IndexContent(models.Model):
 
 
 class Category(models.Model):
-    parent_id = models.ForeignKey('self', default=None, on_delete=models.CASCADE, verbose_name='Категория')
+    parent_id = models.ForeignKey('self', default=None, blank=True, on_delete=models.CASCADE,  verbose_name='Категория', null=True)
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     time_update = models.DateTimeField(auto_now=True, verbose_name='Время обновления')
     name_category = models.CharField(max_length=255, verbose_name='Название категории')

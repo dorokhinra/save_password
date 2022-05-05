@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
 
@@ -62,8 +63,7 @@ class EditReestr(DataMixim, TemplateView):
         category_form.save()
         context = self.get_context_data(**kwargs)
 
-        print(123)
-        return self.render_to_response(context)
+        return HttpResponse("<h3>Категория добавлена</h3>")
 
 def encryption(request):
     bar = [{'name': 'Синхронизация', 'url': 'setting_pass'}, {'name': 'Шифрование', 'url': 'encryption'}]

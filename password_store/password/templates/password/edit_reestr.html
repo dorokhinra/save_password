@@ -1,5 +1,5 @@
 {% extends 'password/base.html' %}
-
+{% load static %}
 {% block content %}
 
 <div class="card" style="width: 50rem;" >
@@ -24,7 +24,15 @@
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     <script src="{% static 'password/js/bstreeview.min.js' %}" ></script>
+    <script src="{% static 'password/js/jquery.toast.min.js' %}"></script>
 <script>
+
+$(document).ready(function(){
+  document.oncontextmenu = function() {return false;};
+
+  clickElem()
+});
 
     $('#category_form').submit(function (e){
                         e.preventDefault()
@@ -34,18 +42,76 @@
                         }
                          if ($('#cat_id').text() !== ''){
                              $.post({% url 'edit_reestr' %}, postData, function(data){
-                     console.log(data)
+                        $.toast({
+                                            heading: 'Внимание!',
+                                            text: data.msg,
+                                            icon: 'info',
+                                            position: 'mid-center',
+                                            stack: false
+                                        })
+
+                             $('#tree').empty()
+                             $('#treeUpdate').html('<div id="tree"/>')
+                             $('#tree').bstreeview({
+                                      data: data.tree.cats
+                                    });
+                        clickElem()
                 });
                         } else {
-                             console.log('Выберите категорию')
+                             $.toast({
+                                    heading: 'Внимение!',
+                                    text: 'Выберите категорию!',
+                                    showHideTransition: 'plain',
+                                    icon: 'warning',
+                                 position: 'mid-center',
+                                 stack: false
+})
                          }
-
                     })
+let test = null
 
-  $('#tree').on('click', function(e) {
-                     let cat_id = e.target.id
+     let contextMenu = {
+                id: 'CONTEXT-MENU',
+                data: [
+                    {header: 'Меню'},
+                        {
+                        icon: 'glyphicon-plus',
+                        text: 'Удалить категорию',
+                        action: function(e, selector) { deleteCategory(test) }
+                        },
+                        ]
+                     }
+
+let deleteCategory = (pk) => {
+        $.ajax({
+    url: {% url 'delete_cat' %},
+    type: 'DELETE',
+    dataType: "json",
+    data: pk,
+      success: (result) => {
+        $.toast({ heading: 'Внимание!',  text: result.msg,  icon: 'info',  position: 'mid-center',  stack: false })
+      }
+});
+}
+
+let clickElem = () => {
+    $('#tree').mousedown(function(e){
+    if( e.button === 2 ) {
+        $('#liveToast').toggle("slow" )
+
+        test = e.target.id
+      return false
+    } else if (e.button === 0)
+    {
+         let cat_id = e.target.id
                     $('#cat_name').html(e.target.textContent)
                     $('#cat_id').html(cat_id)
-                });
+      return false;
+    }
+    return true;
+  });
+}
+{#clickElem()#}
+
 </script>
 {% endblock %}

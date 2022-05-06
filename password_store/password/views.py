@@ -1,14 +1,15 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render
 from django.urls import reverse_lazy
-
+import json
+from django.views import View
 from django.views.generic import ListView, CreateView
-
+from django.views.generic.edit import DeleteView
 from password.forms import AddCategoryForm
 from password.utils import DataMixim
 # Create your views here.
 from django.views.generic import TemplateView
-
+from django.views.decorators.csrf import csrf_exempt
 # @login_required(redirect_field_name='login')
 from password.models import *
 # Класс отображения всех элементов согласно модели на странице (отвечает ListView)
@@ -62,8 +63,18 @@ class EditReestr(DataMixim, TemplateView):
         category_form = self.form_class(self.request.POST)
         category_form.save()
         context = self.get_context_data(**kwargs)
+        c_def = self.get_user_context(cats=[])
+        return HttpResponse(json.dumps({'msg': "<p>Категория добавлена</p>",
+                                        'tree': dict(list(list(c_def.items())))}), content_type="application/json")
 
-        return HttpResponse("<h3>Категория добавлена</h3>")
+@csrf_exempt
+def delete_category(request):
+    if request.method == 'DELETE':
+        p = request.body.decode()
+        cat_id = Category.objects.get(pk=p)
+        cat_id.delete()
+    return HttpResponse(json.dumps({'msg': "<p>Категория удалена!</p>"}))
+
 
 def encryption(request):
     bar = [{'name': 'Синхронизация', 'url': 'setting_pass'}, {'name': 'Шифрование', 'url': 'encryption'}]

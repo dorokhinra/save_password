@@ -60,20 +60,40 @@ class EditReestr(DataMixim, TemplateView):
         return dict(list(context.items()) + list(list(c_def.items())))
 
     def post(self, request, *args, **kwargs):
-        category_form = self.form_class(self.request.POST)
-        category_form.save()
-        context = self.get_context_data(**kwargs)
-        c_def = self.get_user_context(cats=[])
-        return HttpResponse(json.dumps({'msg': "<p>Категория добавлена</p>",
+        try:
+            category_form = self.form_class(self.request.POST)
+            category_form.save()
+            context = self.get_context_data(**kwargs)
+            c_def = self.get_user_context(cats=[])
+            return HttpResponse(json.dumps({'msg': "<p>Категория добавлена</p>",
                                         'tree': dict(list(list(c_def.items())))}), content_type="application/json")
+        except:
+            return HttpResponse(json.dumps({'msg': "<p>Поробуйте выбрать другую категорию, возможна эта удалена!</p>",
+                                     'tree': ''}), content_type="application/json")
+
+
+# class DeleteCat(DeleteView):
+#     model = Category
+#
+#     @csrf_exempt
+#     def delete(self, request, *args, **kwargs):
+#         self.object = self.get_object()
+#         p = self.get_queryset()
+#         print(request)
+#         return HttpResponse('')
+
 
 @csrf_exempt
 def delete_category(request):
+
     if request.method == 'DELETE':
         p = request.body.decode()
         cat_id = Category.objects.get(pk=p)
         cat_id.delete()
-    return HttpResponse(json.dumps({'msg': "<p>Категория удалена!</p>"}))
+        cats = Category.objects.all().values('id', 'name_category', 'parent_id')
+        initTree = DataMixim().import_data(cats)
+    return HttpResponse(json.dumps({'msg': "<p>Категория удалена!</p>",
+                                   'tree': {'cats': initTree}}))
 
 
 def encryption(request):

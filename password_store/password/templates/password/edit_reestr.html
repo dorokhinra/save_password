@@ -2,7 +2,19 @@
 {% load static %}
 {% block content %}
 
-    <div class="card" style="width: 50rem;" >
+    <div class="container">
+     <div class="card" style="border: none; margin-bottom: 20px" >
+            <form>
+                <div class="row">
+                <div class="col-2"></div>
+           <button id="cat_btn" class="col-3 btn btn-primary btn-sm">Добавить категорию</button>
+                     <div class="col"></div>
+           <button id="elem_btn" class="col-3 btn btn-primary btn-sm">Добавить элемент</button>
+                  <div class="col-2"></div>
+                    </div>
+            </form>
+     </div>
+    <div class="card"  >
         <h1 style="text-align: center" >Категория: <label id="cat_name">Родитель</label>
             <label id="cat_id" style="display:none">0</label> </h1>
         <div style="padding-left: 40px; padding-right: 40px; position: center">
@@ -19,10 +31,17 @@
                     <div class="col-3"></div>
                 </div>
             </form>
-
-
         </div>
     </div>
+     <div class="card">
+         <form method="post">
+             {{ add_ell_form }}
+         </form>
+
+    </div>
+    </div>
+
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="{% static 'password/js/bstreeview.min.js' %}" ></script>
     <script src="{% static 'password/js/jquery.toast.min.js' %}"></script>
@@ -100,11 +119,13 @@
 
         let deleteCategory = (pk) => {
 
-            $.ajax({
-                url: {% url 'delete_cat' %},
-                type: 'DELETE',
+            let arr  = $('#category_form').serializeArray()
+            arr.pop()
+               $.ajax({
+                url: '/delete_category/'+ pk,
+                type: 'post',
                 dataType: "json",
-                data: pk,
+                data: arr,
                 success: (result) => {
                     updateTree(result)
                     clickElem()
@@ -112,6 +133,8 @@
                     $.toast({ heading: 'Внимание!',  text: result.msg,  icon: 'info',  position: 'mid-center',  stack: false })
                 }
             });
+
+
         }
 
         let clickElem = () => {

@@ -5,7 +5,7 @@ import json
 from django.views import View
 from django.views.generic import ListView, CreateView
 from django.views.generic.edit import DeleteView
-from password.forms import AddCategoryForm
+from password.forms import AddCategoryForm, AddElement
 from password.utils import DataMixim
 # Create your views here.
 from django.views.generic import TemplateView
@@ -53,8 +53,9 @@ class EditReestr(DataMixim, TemplateView):
 
     #  Изменение контекста прилождения, если необходимо добавить свои значения и переменные
     def get_context_data(self, *, object_list=None, **kwargs):
+        elem_form = AddElement
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Изменение элементов', cats=[], form=self.form_class)
+        c_def = self.get_user_context(title='Изменение элементов', cats=[], form=self.form_class, add_ell_form=elem_form)
         # if self.request.GET:
         #     print(self.request.GET['data'])
         return dict(list(context.items()) + list(list(c_def.items())))
@@ -72,6 +73,21 @@ class EditReestr(DataMixim, TemplateView):
                                      'tree': ''}), content_type="application/json")
 
 
+class DeleteCategory(DeleteView):
+    model = Category
+    template_name = 'password/confirm_delete.html'
+    success_url = reverse_lazy('home')
+
+    def post(self, request, *args, **kwargs):
+        pk = kwargs['pk']
+        del_cats = Category.objects.get(pk=pk)
+        del_cats.delete()
+        cats = Category.objects.all().values('id', 'name_category', 'parent_id')
+        initTree = DataMixim().import_data(cats)
+        return HttpResponse(json.dumps({'msg': "<p>Категория удалена!</p>",
+                                        'tree': {'cats': initTree}}))
+
+
 # class DeleteCat(DeleteView):
 #     model = Category
 #
@@ -83,17 +99,17 @@ class EditReestr(DataMixim, TemplateView):
 #         return HttpResponse('')
 
 
-@csrf_exempt
-def delete_category(request):
-
-    if request.method == 'DELETE':
-        p = request.body.decode()
-        cat_id = Category.objects.get(pk=p)
-        cat_id.delete()
-        cats = Category.objects.all().values('id', 'name_category', 'parent_id')
-        initTree = DataMixim().import_data(cats)
-    return HttpResponse(json.dumps({'msg': "<p>Категория удалена!</p>",
-                                   'tree': {'cats': initTree}}))
+# @csrf_exempt
+# def delete_category(request):
+#
+#     if request.method == 'DELETE':
+#         p = request.body.decode()
+#         cat_id = Category.objects.get(pk=p)
+#         cat_id.delete()
+#         cats = Category.objects.all().values('id', 'name_category', 'parent_id')
+#         initTree = DataMixim().import_data(cats)
+#     return HttpResponse(json.dumps({'msg': "<p>Категория удалена!</p>",
+#                                    'tree': {'cats': initTree}}))
 
 
 def encryption(request):

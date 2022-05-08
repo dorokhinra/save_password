@@ -13,7 +13,16 @@ class AddCategoryForm(forms.ModelForm):
         fields = ['parent_id', 'name_category']
         widgets = {
             'name_category': forms.TextInput(attrs={'class': 'form-control'})
-
         }
 
 
+class AddElement(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        model = password_store
+        fields = ['parent_id', 'login', 'password', 'description']
+        widgets = {
+
+        }

@@ -8,5 +8,5 @@ urlpatterns = [
     path('pass_reestr/', pass_reestr, name='pass_reestr'),
     path('edit_reestr/', EditReestr.as_view(), name='edit_reestr'),
     path('encryption/', encryption, name='encryption'),
-    path('delete_category/', delete_category, name='delete_cat')
+    path('delete_category/<str:pk>', DeleteCategory.as_view(), name='delete_cat')
 ]

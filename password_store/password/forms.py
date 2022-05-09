@@ -19,10 +19,13 @@ class AddCategoryForm(forms.ModelForm):
 class AddElement(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['description'].label = 'Описание'
 
     class Meta:
         model = password_store
         fields = ['parent_id', 'login', 'password', 'description']
         widgets = {
-
+            'login': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Логин'}),
+            'password': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Пароль', 'type': 'password'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'})
         }

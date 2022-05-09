@@ -47,22 +47,26 @@ def setting_pass_ya_disk(request):
 
 class EditReestr(DataMixim, TemplateView):
     form_class = AddCategoryForm
+    elem_form = AddElement
     template_name = 'password/edit_reestr.html'
 
     success_url = reverse_lazy('home')
 
     #  Изменение контекста прилождения, если необходимо добавить свои значения и переменные
     def get_context_data(self, *, object_list=None, **kwargs):
-        elem_form = AddElement
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Изменение элементов', cats=[], form=self.form_class, add_ell_form=elem_form)
+        c_def = self.get_user_context(title='Изменение элементов', cats=[], form=self.form_class,
+                                      add_ell_form=self.elem_form)
         # if self.request.GET:
         #     print(self.request.GET['data'])
         return dict(list(context.items()) + list(list(c_def.items())))
 
     def post(self, request, *args, **kwargs):
-        try:
+        if self.request.POST.get('name_category', False) != False:
             category_form = self.form_class(self.request.POST)
+        else:
+            category_form = self.elem_form(self.request.POST)
+        try:
             category_form.save()
             context = self.get_context_data(**kwargs)
             c_def = self.get_user_context(cats=[])

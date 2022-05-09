@@ -3,8 +3,8 @@
 {% block content %}
 
     <div class="container">
-     <div class="card" style="border: none; margin-bottom: 20px" >
-            <form>
+     <div class="card" style="border: none; margin-bottom: 20px">
+
                 <div class="row">
                 <div class="col-2"></div>
            <button id="cat_btn" class="col-3 btn btn-primary btn-sm">Добавить категорию</button>
@@ -12,9 +12,9 @@
            <button id="elem_btn" class="col-3 btn btn-primary btn-sm">Добавить элемент</button>
                   <div class="col-2"></div>
                     </div>
-            </form>
+
      </div>
-    <div class="card"  >
+    <div class="card"  id="block_cat">
         <h1 style="text-align: center" >Категория: <label id="cat_name">Родитель</label>
             <label id="cat_id" style="display:none">0</label> </h1>
         <div style="padding-left: 40px; padding-right: 40px; position: center">
@@ -33,9 +33,32 @@
             </form>
         </div>
     </div>
-     <div class="card">
+     <div class="card" style="padding: 10px; display: none" id="block_elem">
          <form method="post">
-             {{ add_ell_form }}
+             {% csrf_token %}
+             <div class="errors">{{ add_ell_form.non_field_errors }}</div>
+             <div class="row md-3">
+                  <div class="col-6">
+                 <label for="{{ add_ell_form.login.id_for_label }}" class="form-label">{{ add_ell_form.login.label }}</label>
+             {{ add_ell_form.login }}
+             </div>
+                  <div class="col-6">
+                 <label for="{{ add_ell_form.password.id_for_label }}" class="form-label">
+                     {{ add_ell_form.password.label }}
+                 </label>
+             {{ add_ell_form.password }}
+             </div>
+             </div>
+             <div class="mb-3">
+                    <label for="{{ add_ell_form.description.id_for_label }}" class="form-label">{{ add_ell_form.description.label }}</label>
+                    {{ add_ell_form.description }}
+                </div>
+            <div class="row" style="margin-bottom: 10px">
+                    <div class="col-3"></div>
+                    <button id="submit_btn_for_ell" class="col-6 btn btn-success btn-sm">Принять</button>
+                    <div class="col-3"></div>
+                </div>
+
          </form>
 
     </div>
@@ -45,12 +68,12 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="{% static 'password/js/bstreeview.min.js' %}" ></script>
     <script src="{% static 'password/js/jquery.toast.min.js' %}"></script>
+    <script src="{% static 'password/js/main.js' %}"></script>
     <script>
-
         $(document).ready(function(){
             document.oncontextmenu = function() {return false;};
-
             clickElem()
+            context.attach('#tree', contextMenu);
         });
 
         $('#category_form').submit(function (e){
@@ -82,9 +105,6 @@
                     stack: false
                 })
                     }
-
-
-
                 });
             } else {
                 $.toast({
@@ -97,64 +117,7 @@
                 })
             }
         })
-        let test = null
-        let updateTree = (data) => {
-            $('#tree').empty()
-            $('#treeUpdate').html('<div id="tree"/>')
-            $('#tree').bstreeview({
-                data: data.tree.cats
-            });
-        }
-        let contextMenu = {
-            id: 'CONTEXT-MENU',
-            data: [
-                {header: 'Меню'},
-                {
-                    icon: 'glyphicon-plus',
-                    text: 'Удалить категорию',
-                    action: function(e, selector) { deleteCategory(test) }
-                },
-            ]
-        }
-
-        let deleteCategory = (pk) => {
-
-            let arr  = $('#category_form').serializeArray()
-            arr.pop()
-               $.ajax({
-                url: '/delete_category/'+ pk,
-                type: 'post',
-                dataType: "json",
-                data: arr,
-                success: (result) => {
-                    updateTree(result)
-                    clickElem()
-                    context.attach('#tree', contextMenu);
-                    $.toast({ heading: 'Внимание!',  text: result.msg,  icon: 'info',  position: 'mid-center',  stack: false })
-                }
-            });
-
-
-        }
-
-        let clickElem = () => {
-            $('#tree').mousedown(function(e){
-                if( e.button === 2 ) {
-                    $('#liveToast').toggle("slow" )
-
-                    test = e.target.id
-                    return false
-                } else if (e.button === 0)
-                {
-                    let cat_id = e.target.id
-                    $('#cat_name').html(e.target.textContent)
-                    $('#cat_id').html(cat_id)
-                    return false;
-                }
-                return true;
-            });
-        }
-        {#clickElem()#}
-
+        check_edit_cat()
+        check_edit_elem()
     </script>
 {% endblock %}

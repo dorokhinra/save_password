@@ -27,7 +27,7 @@ class password_store(models.Model):
     description = models.TextField(blank=True)
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     time_update = models.DateTimeField(auto_now=True, verbose_name='Время обновления')
-    parent_id = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория',
+    parent_id = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name='Категория',
                                     related_name='get_category')
 
     def __str__(self):

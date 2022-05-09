@@ -14,9 +14,9 @@
                     </div>
 
      </div>
+        <h3 style="text-align: center" >Категория: <label id="cat_name">Родитель</label>
+            <label id="cat_id" style="display:none">0</label> </h3>
     <div class="card"  id="block_cat">
-        <h1 style="text-align: center" >Категория: <label id="cat_name">Родитель</label>
-            <label id="cat_id" style="display:none">0</label> </h1>
         <div style="padding-left: 40px; padding-right: 40px; position: center">
             <form method="post" enctype="multipart/form-data" id="category_form">
                 {% csrf_token %}
@@ -35,7 +35,7 @@
     </div>
 
      <div class="card" style="padding: 10px; display: none" id="block_elem">
-         <form method="post">
+         <form id="create_elem_form">
              {% csrf_token %}
              <div class="errors">{{ add_ell_form.non_field_errors }}</div>
              <div class="row md-3">
@@ -54,14 +54,12 @@
                     <label for="{{ add_ell_form.description.id_for_label }}" class="form-label">{{ add_ell_form.description.label }}</label>
                     {{ add_ell_form.description }}
                 </div>
-            <div class="row" style="margin-bottom: 10px">
+         </form>
+    <div class="row" style="margin-bottom: 10px">
                     <div class="col-3"></div>
                     <button id="submit_btn_for_ell" class="col-6 btn btn-success btn-sm">Принять</button>
                     <div class="col-3"></div>
                 </div>
-
-         </form>
-
     </div>
     </div>
 
@@ -85,9 +83,10 @@
             }
             if ($('#cat_id').text() !== ''){
                 $.post({% url 'edit_reestr' %}, postData, function(data){
+                    $('#category_form')[0].reset()
                     if (data.tree.cats !== undefined ){
                        $.toast({
-                        heading: 'Внимание!',
+                        heading: 'Сообщение!',
                         text: data.msg,
                         icon: 'info',
                         position: 'mid-center',
@@ -120,5 +119,33 @@
         })
         check_edit_cat()
         check_edit_elem()
+
+        $('#submit_btn_for_ell').on('click', function (){
+            let data = $('#create_elem_form').serializeArray()
+              if ($('#cat_id').text() !== '0'){
+                data.push({'name': 'parent_id', 'value': $('#cat_id').text()})
+                  $.post({% url 'edit_reestr' %}, data, function(data){
+                       $.toast({
+                    heading: 'Сообщение!',
+                    text: data.msg,
+                    showHideTransition: 'plain',
+                     icon: 'info',
+                    position: 'mid-center',
+                    stack: false
+                })
+                      $('#create_elem_form')[0].reset()
+                  })
+            } else {
+                    $.toast({
+                    heading: 'Внимение!',
+                    text: 'Выберите категорию!',
+                    showHideTransition: 'plain',
+                    icon: 'warning',
+                    position: 'mid-center',
+                    stack: false
+                })
+              }
+        })
+
     </script>
 {% endblock %}

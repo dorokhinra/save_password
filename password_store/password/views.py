@@ -62,19 +62,32 @@ class EditReestr(DataMixim, TemplateView):
         return dict(list(context.items()) + list(list(c_def.items())))
 
     def post(self, request, *args, **kwargs):
-        if self.request.POST.get('name_category', False) != False:
-            category_form = self.form_class(self.request.POST)
+        if self.request.POST.get('name_category', False) == False:
+            return self.create_elem()
         else:
-            category_form = self.elem_form(self.request.POST)
+            return self.create_category(**kwargs)
+
+    def create_elem(self):
+        category_form = self.elem_form(self.request.POST)
         try:
             category_form.save()
+            category_form.clean()
+            return HttpResponse(json.dumps({'msg': "<p>Элемент добавлен</p>"}), content_type='application/json')
+        except:
+            return HttpResponse(json.dumps({'msg': '<p>Что-то пошло не так!</p>'}), content_type="application/json")
+
+    def create_category(self, **kwargs):
+        category_form = self.form_class(self.request.POST)
+        try:
+            category_form.save()
+            category_form.clean()
             context = self.get_context_data(**kwargs)
             c_def = self.get_user_context(cats=[])
             return HttpResponse(json.dumps({'msg': "<p>Категория добавлена</p>",
-                                        'tree': dict(list(list(c_def.items())))}), content_type="application/json")
+                                            'tree': dict(list(list(c_def.items())))}), content_type="application/json")
         except:
             return HttpResponse(json.dumps({'msg': "<p>Поробуйте выбрать другую категорию, возможна эта удалена!</p>",
-                                     'tree': ''}), content_type="application/json")
+                                            'tree': ''}), content_type="application/json")
 
 
 class DeleteCategory(DeleteView):

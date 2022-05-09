@@ -20,7 +20,7 @@ class Category(models.Model):
         verbose_name_plural = 'Название категории'
         ordering = ['-time_create', 'name_category']
 
-
+#
 class password_store(models.Model):
     login = models.CharField(max_length=255, verbose_name='Логин')
     password = models.CharField(max_length=255, verbose_name='Пароль')

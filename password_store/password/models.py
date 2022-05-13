@@ -7,7 +7,8 @@ class IndexContent(models.Model):
 
 
 class Category(models.Model):
-    parent_id = models.ForeignKey('self', default=None, blank=True, on_delete=models.CASCADE,  verbose_name='Категория', null=True)
+    parent_id = models.ForeignKey('self', default=None, blank=True, on_delete=models.CASCADE,  verbose_name='Категория',
+                                  null=True)
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     time_update = models.DateTimeField(auto_now=True, verbose_name='Время обновления')
     name_category = models.CharField(max_length=255, verbose_name='Название категории')
@@ -20,8 +21,8 @@ class Category(models.Model):
         verbose_name_plural = 'Название категории'
         ordering = ['-time_create', 'name_category']
 
-#
-class password_store(models.Model):
+
+class PasswordStore(models.Model):
     login = models.CharField(max_length=255, verbose_name='Логин')
     password = models.CharField(max_length=255, verbose_name='Пароль')
     description = models.TextField(blank=True)

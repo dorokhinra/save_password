@@ -1,7 +1,23 @@
 {% extends 'password/base.html' %}
 
 {% block content %}
-    <h1>Реестр паролей</h1>
-
+<table class="table table-dark table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Логин</th>
+      <th scope="col">Пароль</th>
+      <th scope="col">Описание</th>
+    </tr>
+  </thead>
+ <tbody class="table-secondary">
+ {% for i in pass_table %}
+    <tr>
+      <td>{{ i.login }}</td>
+      <td>{{  i.password }}</td>
+      <td>{{ i.description }}</td>
+    </tr>
+ {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}

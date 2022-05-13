@@ -22,7 +22,7 @@ class AddElement(forms.ModelForm):
         self.fields['description'].label = 'Описание'
 
     class Meta:
-        model = password_store
+        model = PasswordStore
         fields = ['parent_id', 'login', 'password', 'description']
         widgets = {
             'login': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Логин'}),

@@ -68,3 +68,22 @@ let check_edit_elem = () => {
     })
 }
 
+/////////For Pass Reestr///////
+
+  let getElems = () => {
+         $('#tree').on('click', function(e){
+    let parent_id = e.target.id
+        if (parent_id !== '') {
+            document.location.href = '/pass_reestr/'+ parent_id
+        }
+    })
+  }
+
+
+  let getIdElem = () => {
+    $('#elems').mousedown(function(e){
+                if( e.button === 2 ) {
+                elemId = e.target.id
+                }
+    })
+  }

@@ -27,6 +27,7 @@ class PassHome(DataMixim, ListView):
         c_def = self.get_user_context(title='Главная страница')
         return dict(list(context.items()) + list(list(c_def.items())))
 
+
 # def index(requests):
 #     bar = ['Синхронизация', 'Шифрование']
 #     return render(requests, 'password/index.html', {'menu': menu, 'bar': bar})
@@ -44,11 +45,15 @@ class PassReestr(DataMixim, ListView):
     model = PasswordStore
     template_name = 'password/pass_reestr.html'
     context_object_name = 'pass_table'
+    form_class = AddElement
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Реестр элементов', cats=[])
+        c_def = self.get_user_context(title='Реестр элементов', cats=[], form=self.form_class)
         return dict(list(context.items()) + list(list(c_def.items())))
+
+    def get_queryset(self):
+        return PasswordStore.objects.filter(parent_id=self.kwargs['parent_id'])
 
 
 def setting_pass_ya_disk(request):

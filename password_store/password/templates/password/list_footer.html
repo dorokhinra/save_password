@@ -12,8 +12,8 @@
 
     <ul class="nav col-md-4 justify-content-end">
         {% for i in menu %}
-            {% if i.url == 'edit_reestr' %}
-             <li class="nav-item"><a href="{% url i.url %}" class="nav-link px-2 text-muted">{{ i.name }}</a></li>
+           {% if i.url == 'pass_reestr' %}
+        <li class="nav-item">  <a class="nav-link active" aria-current="page" href="{% url i.url 0 %}">{{ m.name }}</a></li>
             {% else %}
       <li class="nav-item"><a href="{% url i.url %}" class="nav-link px-2 text-muted">{{ i.name }}</a></li>
     {% endif %}

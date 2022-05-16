@@ -12,8 +12,8 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           {% for m in menu %}
         <li class="nav-item">
-        {% if m.url == 'edit_reestr' %}
-           <a class="nav-link active" aria-current="page" href="{% url m.url %}">{{ m.name }}</a>
+        {% if m.url == 'pass_reestr' %}
+           <a class="nav-link active" aria-current="page" href="{% url m.url 0 %}">{{ m.name }}</a>
              {% else %}
           <a class="nav-link active" aria-current="page" href="{% url m.url %}">{{ m.name }}</a>
         {% endif %}

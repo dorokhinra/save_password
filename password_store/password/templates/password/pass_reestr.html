@@ -1,7 +1,7 @@
 {% extends 'password/base.html' %}
 
 {% block content %}
-    <h3>Элементы в категории</h3>
+    <h3>Элементы в категории: {{ cat_name }}</h3>
 <table class="table table-dark table-striped">
     <thead>
     <tr>
@@ -52,8 +52,11 @@
          </form>
  </div>
 
+
+
 <script lang="js">
     let elemId = null
+
      getIdElem()
   let contextMenuForElem = {
             id: 'CONTEXT-MENU',
@@ -62,17 +65,19 @@
                     {
                     icon: 'glyphicon-plus',
                     text: 'Расшифровать',
-                    action: function(e, selector) { console.log(elemId) }
+                    action: function(e, selector) { getDecryptElems(elemId) }
                 },
                 {
                     icon: 'glyphicon-plus',
                     text: 'Удалить эелемент',
-                    action: function(e, selector) {console.log(elemId) }
+                    action: function(e, selector) { $('#delete_act').attr('action', '/delete_element/'+elemId+'/delete'); $('#deleteModal').modal('toggle'); }
                 }
 
             ]
         }
         context.attach('#elems', contextMenuForElem);
+
+
 
   getElems()
 

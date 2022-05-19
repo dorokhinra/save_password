@@ -42,3 +42,11 @@ class DataMixim:
 
         return root
     # endregion
+
+
+class DecryptMixim:
+
+    def decryption(self, **kwargs):
+        elem_id = kwargs['elem_id']
+        enc_data = PasswordStore.objects.get(pk=elem_id)
+        return enc_data

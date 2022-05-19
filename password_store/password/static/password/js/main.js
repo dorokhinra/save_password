@@ -1,5 +1,5 @@
          let test = null
-        let updateTree = (data) => {
+        const updateTree = (data) => {
             $('#tree').empty()
             $('#treeUpdate').html('<div id="tree"/>')
             $('#tree').bstreeview({
@@ -18,7 +18,7 @@
             ]
         }
 
-        let deleteCategory = (pk) => {
+        const deleteCategory = (pk) => {
 
             let arr  = $('#category_form').serializeArray()
             arr.pop()
@@ -36,7 +36,7 @@
             });
         }
 
-        let clickElem = () => {
+        const clickElem = () => {
             $('#tree').mousedown(function(e){
                 if( e.button === 2 ) {
                     $('#liveToast').toggle("slow" )
@@ -54,14 +54,14 @@
             });
         }
 
-let check_edit_cat = () => {
+const check_edit_cat = () => {
     $('#cat_btn').on('click', function (){
         $('#block_cat').show()
         $('#block_elem').hide()
     })
 }
 
-let check_edit_elem = () => {
+const check_edit_elem = () => {
     $('#elem_btn').on('click', function (){
         $('#block_cat').hide()
         $('#block_elem').show()
@@ -70,7 +70,7 @@ let check_edit_elem = () => {
 
 /////////For Pass Reestr///////
 
-  let getElems = () => {
+  const getElems = () => {
          $('#tree').on('click', function(e){
     let parent_id = e.target.id
         if (parent_id !== '') {
@@ -80,10 +80,25 @@ let check_edit_elem = () => {
   }
 
 
-  let getIdElem = () => {
+  const getIdElem = () => {
     $('#elems').mousedown(function(e){
                 if( e.button === 2 ) {
                 elemId = e.target.id
                 }
     })
   }
+
+  const getDecryptElems = (pk) => {
+        if(pk !== ''){
+           $.ajax({
+                url: '/decrypt_elem/'+ pk+'/',
+                type: 'get',
+                success: (result) => {
+                    $('#id_login').val(result.data.login)
+                    $('#id_password').attr('type','input')
+                    $('#id_password').val(result.data.password)
+                    $('#id_description').val(result.data.description)
+                    console.log(result)                }
+            });
+        }
+}

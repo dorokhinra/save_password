@@ -20,3 +20,7 @@ def show_menu(sorted=None, user=None):
 def show_footer(sorted=None, user=None):
     return {'menu': menu}
 
+
+@register.inclusion_tag('password/modal.html', name='modal')
+def show_modal():
+    pass

@@ -6,7 +6,7 @@ from django.views import View
 from django.views.generic import ListView, CreateView
 from django.views.generic.edit import DeleteView
 from password.forms import AddCategoryForm, AddElement
-from password.utils import DataMixim
+from password.utils import DataMixim, DecryptMixim
 # Create your views here.
 from django.views.generic import TemplateView
 from django.views.decorators.csrf import csrf_exempt
@@ -41,6 +41,16 @@ def pass_reestr(request):
     return render(request, 'password/pass_reestr.html')
 
 
+class OptionsForReestr(TemplateView):
+    def get(self, request, *args, **kwargs):
+        pass
+
+
+class DeleteElement(DeleteView):
+    model = PasswordStore
+    success_url = reverse_lazy('pass_reestr', kwargs={'parent_id': 0})
+
+
 class PassReestr(DataMixim, ListView):
     model = PasswordStore
     template_name = 'password/pass_reestr.html'
@@ -49,11 +59,27 @@ class PassReestr(DataMixim, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Реестр элементов', cats=[], form=self.form_class)
+        pk = self.kwargs['parent_id']
+        if pk != '0':
+            cat_name = Category.objects.get(pk=pk)
+            cat_name = cat_name.name_category
+        else:
+            cat_name = 'Родитель'
+        c_def = self.get_user_context(title='Реестр элементов', cats=[], form=self.form_class, cat_name=cat_name)
         return dict(list(context.items()) + list(list(c_def.items())))
 
     def get_queryset(self):
         return PasswordStore.objects.filter(parent_id=self.kwargs['parent_id'])
+
+
+class DecryptElem(DecryptMixim, TemplateView):
+    def get(self, request, *args, **kwargs):
+        decrypt_elem = self.decryption(elem_id=self.kwargs['pk'])
+        data = {'pk': decrypt_elem.pk,
+                'login': decrypt_elem.login,
+                'password': decrypt_elem.password,
+                'description': decrypt_elem.description}
+        return HttpResponse(json.dumps({'data': data}), content_type='application/json')
 
 
 def setting_pass_ya_disk(request):
@@ -108,7 +134,6 @@ class EditReestr(DataMixim, TemplateView):
 
 class DeleteCategory(DeleteView):
     model = Category
-    template_name = 'password/confirm_delete.html'
     success_url = reverse_lazy('home')
 
     def post(self, request, *args, **kwargs):

@@ -1,7 +1,22 @@
 {% extends 'password/base.html' %}
 
 {% block content %}
-    <h1>Настройки</h1>
+    <input id="url" type="hidden" value="{% url 'download' ts='file' %}">
+    <div class="container">
 
+         <h3>Скачать базу данных</h3>
+    <div class="card" style="padding: 40px">
+        <div class="row">
+    <button id='btn_download' class="btn btn-success col-4">На компьютер</button>
+<div class="col"></div>
+     <button id='btn_ya_disk' class="btn btn-success col-4">На Яндекс диск</button>
+    </div>
+    </div>
 
+    </div>
+<script>
+$('#btn_download').on('click', function (){
+    document.location.href = $('#url').val()
+})
+</script>
 {% endblock %}

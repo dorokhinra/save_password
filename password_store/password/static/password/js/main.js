@@ -95,6 +95,7 @@ const check_edit_elem = () => {
                 type: 'get',
                 success: (result) => {
                     $('#id_login').val(result.data.login)
+                    $('#create_elem').attr('action', '/update_elem/'+ result.data.pk + '/')
                     $('#id_password').attr('type','input')
                     $('#id_password').val(result.data.password)
                     $('#id_description').val(result.data.description)

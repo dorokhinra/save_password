@@ -1,12 +1,12 @@
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, FileResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
 import json
 from django.views import View
 from django.views.generic import ListView, CreateView
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import DeleteView, UpdateView
 from password.forms import AddCategoryForm, AddElement
-from password.utils import DataMixim, DecryptMixim
+from password.utils import DataMixim, DecryptMixim, SyncDiscMixin
 # Create your views here.
 from django.views.generic import TemplateView
 from django.views.decorators.csrf import csrf_exempt
@@ -72,7 +72,22 @@ class PassReestr(DataMixim, ListView):
         return PasswordStore.objects.filter(parent_id=self.kwargs['parent_id'])
 
 
+class UpdateElem(TemplateView):
+    model = PasswordStore
+    success_url = reverse_lazy('pass_reestr', kwargs={'parent_id': 0})
+
+    def post(self, request, *args, **kwargs):
+        data = self.request.POST
+        elem = self.model.objects.get(pk=kwargs['pk'])
+        elem.login = data['login']
+        elem.password = data['password']
+        elem.description = data['description']
+        elem.save()
+        return HttpResponseRedirect(reverse_lazy('pass_reestr', kwargs={'parent_id': 0}))
+
+
 class DecryptElem(DecryptMixim, TemplateView):
+
     def get(self, request, *args, **kwargs):
         decrypt_elem = self.decryption(elem_id=self.kwargs['pk'])
         data = {'pk': decrypt_elem.pk,
@@ -82,16 +97,26 @@ class DecryptElem(DecryptMixim, TemplateView):
         return HttpResponse(json.dumps({'data': data}), content_type='application/json')
 
 
-def setting_pass_ya_disk(request):
-    bar = [{'name':'Синхронизация', 'url': 'setting_pass'}, {'name': 'Шифрование', 'url': 'encryption'}]
-    return render(request, 'password/setting_pass_ya_disk.html', {'bar': bar, 'title': 'Синхронизация'})
+class SyncDisc(SyncDiscMixin, TemplateView):
+    template_name = 'password/setting_pass_ya_disk.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        data_items = self.get_user_context(title='Синхронизация')
+        return dict(list(context.items()) + list(list(data_items.items())))
+
+    def get(self, request, *args, **kwargs):
+        if self.kwargs.get('ts', False) and self.kwargs['ts'] == 'file':
+            data_items = self.get_user_context(file='ff')
+            return FileResponse(open(data_items['file'], 'rb'))
+        return self.render_to_response(self.get_context_data(**kwargs))
 
 
 class EditReestr(DataMixim, TemplateView):
     form_class = AddCategoryForm
     elem_form = AddElement
     template_name = 'password/edit_reestr.html'
-
     success_url = reverse_lazy('home')
 
     #  Изменение контекста прилождения, если необходимо добавить свои значения и переменные
@@ -104,7 +129,7 @@ class EditReestr(DataMixim, TemplateView):
         return dict(list(context.items()) + list(list(c_def.items())))
 
     def post(self, request, *args, **kwargs):
-        if self.request.POST.get('name_category', False) == False:
+        if not self.request.POST.get('name_category', False):
             return self.create_elem()
         else:
             return self.create_category(**kwargs)

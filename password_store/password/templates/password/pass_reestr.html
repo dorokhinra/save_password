@@ -30,7 +30,7 @@
     <br>
       <h3>Расшифровка и редактирование</h3>
  <div class="card" style="padding: 10px">
-      <form id="create_elem">
+      <form id="create_elem" method="post">
              {% csrf_token %}
              <div class="errors">{{ form.non_field_errors }}</div>
              <div class="row md-3">
@@ -49,6 +49,7 @@
                     <label for="{{ form.description.id_for_label }}" class="form-label">{{ form.description.label }}</label>
                     {{ form.description }}
                 </div>
+          <button type="submit" class="btn btn-sm btn-success">Изменить</button>
          </form>
  </div>
 

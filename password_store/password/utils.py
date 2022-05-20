@@ -1,3 +1,4 @@
+import os
 from collections import deque
 
 from password.models import *
@@ -50,3 +51,18 @@ class DecryptMixim:
         elem_id = kwargs['elem_id']
         enc_data = PasswordStore.objects.get(pk=elem_id)
         return enc_data
+
+
+class SyncDiscMixin:
+
+    def get_user_context(self, **kwargs):
+        context = kwargs
+        if context.get('file', False):
+            app_path = os.path.abspath(os.getcwd())
+            path_db = os.path.normpath(os.path.join(app_path, "db.sqlite3"))
+            context['file'] = path_db
+        else:
+            bar = [{'name': 'Синхронизация', 'url': 'setting_pass'},
+                   {'name': 'Шифрование', 'url': 'encryption'}]
+            context['bar'] = bar
+        return context

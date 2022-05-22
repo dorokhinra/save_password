@@ -2,21 +2,52 @@
 
 {% block content %}
     <input id="url" type="hidden" value="{% url 'download' ts='file' %}">
+    <input id="urlYa" type="hidden" value="{% url 'download' ts='ya_disk' %}">
+    <input id="urlCode" type="hidden" value="{% url 'download' ts='code' %}">
     <div class="container">
 
-         <h3>Скачать базу данных</h3>
-    <div class="card" style="padding: 40px">
-        <div class="row">
-    <button id='btn_download' class="btn btn-success col-4">На компьютер</button>
-<div class="col"></div>
-     <button id='btn_ya_disk' class="btn btn-success col-4">На Яндекс диск</button>
-    </div>
-    </div>
+        <h3>Скачать базу данных</h3>
+        <div class="card" style="padding: 40px">
+            <div class="row">
+                <button id='btn_download' class="btn btn-success col-4">На компьютер</button>
+                <div class="col"></div>
+                <button id='btn_ya_disk' class="btn btn-success col-4">На Яндекс диск</button>
+            </div>
+        </div>
+        <br>
+        <div style="text-align: center; color: #BB5715" id="msg">
+            <h5>Для Синхронизации с яндекс диском необходимо получить токен!</h5>
+        </div>
 
+        <div class="card" id="card_code" style="padding: 30px">
+            <div class="row">
+                <div class="mb-3">
+                    <label for="inp_code" class="form-label">Код подтверждения</label>
+                    <input type="password" class="form-control" id="inp_code" aria-describedby="emailHelp">
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3">
+                    <button id='btn_code' class="btn btn-success col-4">Отправить код</button>
+                </div>
+            </div>
+        </div>
     </div>
-<script>
-$('#btn_download').on('click', function (){
-    document.location.href = $('#url').val()
-})
-</script>
+    <script>
+
+        const disk = new YaDisk()
+
+        $('#btn_download').on('click', function (){
+            document.location.href = $('#url').val()
+        })
+
+        $('#btn_ya_disk').on('click', function (){
+            disk.syncYaDisk()
+        })
+
+        $('#btn_code').on('click', function (){
+            disk.postCode()
+        })
+
+    </script>
 {% endblock %}

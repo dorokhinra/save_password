@@ -110,7 +110,18 @@ class SyncDisc(SyncDiscMixin, TemplateView):
         if self.kwargs.get('ts', False) and self.kwargs['ts'] == 'file':
             data_items = self.get_user_context(file='ff')
             return FileResponse(open(data_items['file'], 'rb'))
+
         return self.render_to_response(self.get_context_data(**kwargs))
+
+    def post(self, request, *args, **kwargs):
+        if self.request.POST:
+            if self.kwargs['ts'] == 'ya_disk':
+                token = self.request.POST['token']
+                msg = self.check_token(token)
+            else:
+                code = self.request.POST['code']
+                msg = self.check_code(code)
+            return HttpResponse(json.dumps({'data': msg}), content_type='application/json')
 
 
 class EditReestr(DataMixim, TemplateView):

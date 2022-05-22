@@ -2,7 +2,8 @@ import os
 from collections import deque
 
 from password.models import *
-
+import yadisk
+import datetime
 
 class DataMixim:
     # paginate_by = 2
@@ -54,15 +55,58 @@ class DecryptMixim:
 
 
 class SyncDiscMixin:
+    app_path = os.path.abspath(os.getcwd())
+    path_db = os.path.normpath(os.path.join(app_path, "db.sqlite3"))
+    y = yadisk.YaDisk("e4b953a1900241a99dad6416dc0c0218", "a74315e22a73436683986016c1ae7c57")
 
     def get_user_context(self, **kwargs):
         context = kwargs
         if context.get('file', False):
-            app_path = os.path.abspath(os.getcwd())
-            path_db = os.path.normpath(os.path.join(app_path, "db.sqlite3"))
-            context['file'] = path_db
+            context['file'] = self.path_db
         else:
             bar = [{'name': 'Синхронизация', 'url': 'setting_pass'},
                    {'name': 'Шифрование', 'url': 'encryption'}]
             context['bar'] = bar
         return context
+
+    def check_token(self, token):
+        if token == '':
+            return {'msg': self.y.get_code_url(), 'status': 'url'}
+        else:
+            self.y.token = token
+            if self.y.check_token():
+
+                return self.save_ya_disk()
+
+    def check_code(self, code):
+        try:
+            response = self.y.get_token(code)
+            self.y.token = response.access_token
+            if self.y.check_token():
+                return {'msg': response.access_token, 'status': 'token'}
+        except yadisk.exceptions.BadRequestError:
+            return {'msg': '', 'status': 'error'}
+
+    def save_ya_disk(self):
+        try:
+            dir_name = self.check_YaDisk_file_and_dir()['dirname']
+            if dir_name == '':
+                self.y.mkdir("disk:/Приложения/store")
+            # print(datetime.datetime.now())
+            self.y.upload(self.path_db, f"disk:/Приложения/store/{datetime.datetime.now()}")
+            return {'msg': 'Сохранено на яндекс диск!', 'status': 'ok'}
+        except yadisk.exceptions.ForbiddenError:
+            return {'msg': 'Что-то пошло не так!', 'status': 'error'}
+
+    def check_YaDisk_file_and_dir(self):
+        store = list(self.y.listdir('disk:/Приложения/'))
+        dir_name = ''
+        list_file = []
+        for name in store:
+            if name['name'] == 'store':
+                dir_name = name['name']
+                list_file = list(self.y.listdir('disk:/Приложения/store/'))
+                if len(list_file) != 0:
+                   list_file = sorted([dict_file_name['name'] for dict_file_name in list_file])
+
+        return {'dirname': dir_name, 'list_file': list_file}

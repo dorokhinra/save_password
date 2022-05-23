@@ -148,6 +148,7 @@ class YaDisk {
     }
 
     syncYaDisk() {
+        this.yaToken = sessionStorage.getItem('yaToken')
         $.ajax({
             url: $('#urlYa').val(),
             type: 'post',

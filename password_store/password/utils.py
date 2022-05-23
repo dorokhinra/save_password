@@ -2,7 +2,7 @@ import os
 from collections import deque
 
 from password.models import *
-import yadisk
+import yadisk_async
 import datetime
 
 class DataMixim:
@@ -57,7 +57,7 @@ class DecryptMixim:
 class SyncDiscMixin:
     app_path = os.path.abspath(os.getcwd())
     path_db = os.path.normpath(os.path.join(app_path, "db.sqlite3"))
-    y = yadisk.YaDisk("e4b953a1900241a99dad6416dc0c0218", "a74315e22a73436683986016c1ae7c57")
+    y = yadisk_async.YaDisk("e4b953a1900241a99dad6416dc0c0218", "a74315e22a73436683986016c1ae7c57")
 
     def get_user_context(self, **kwargs):
         context = kwargs
@@ -69,44 +69,42 @@ class SyncDiscMixin:
             context['bar'] = bar
         return context
 
-    def check_token(self, token):
+    async def check_token(self, token):
         if token == '':
             return {'msg': self.y.get_code_url(), 'status': 'url'}
         else:
             self.y.token = token
-            if self.y.check_token():
+            if await self.y.check_token():
+                return await self.save_ya_disk()
 
-                return self.save_ya_disk()
-
-    def check_code(self, code):
+    async def check_code(self, code):
         try:
-            response = self.y.get_token(code)
+            response = await self.y.get_token(code)
             self.y.token = response.access_token
-            if self.y.check_token():
+            if await self.y.check_token():
                 return {'msg': response.access_token, 'status': 'token'}
-        except yadisk.exceptions.BadRequestError:
+        except yadisk_async.exceptions.BadRequestError:
             return {'msg': '', 'status': 'error'}
 
-    def save_ya_disk(self):
+    async def save_ya_disk(self):
         try:
-            dir_name = self.check_YaDisk_file_and_dir()['dirname']
-            if dir_name == '':
-                self.y.mkdir("disk:/Приложения/store")
+            dir_name = await self.check_YaDisk_file_and_dir()
+            if dir_name['dirname'] == '':
+                await self.y.mkdir("disk:/Приложения/store")
             # print(datetime.datetime.now())
-            self.y.upload(self.path_db, f"disk:/Приложения/store/{datetime.datetime.now()}")
+            await self.y.upload(self.path_db, f"disk:/Приложения/store/{datetime.datetime.now()}")
             return {'msg': 'Сохранено на яндекс диск!', 'status': 'ok'}
-        except yadisk.exceptions.ForbiddenError:
+        except yadisk_async.exceptions.ForbiddenError:
             return {'msg': 'Что-то пошло не так!', 'status': 'error'}
 
-    def check_YaDisk_file_and_dir(self):
-        store = list(self.y.listdir('disk:/Приложения/'))
+    async def check_YaDisk_file_and_dir(self):
+        store_async = await self.y.listdir('disk:/Приложения/')
         dir_name = ''
         list_file = []
-        for name in store:
+        async for name in store_async:
             if name['name'] == 'store':
                 dir_name = name['name']
-                list_file = list(self.y.listdir('disk:/Приложения/store/'))
-                if len(list_file) != 0:
-                   list_file = sorted([dict_file_name['name'] for dict_file_name in list_file])
+                list_file = await self.y.listdir('disk:/Приложения/store/')
+                list_file = sorted([dict_file_name['name'] async for dict_file_name in list_file])
 
         return {'dirname': dir_name, 'list_file': list_file}

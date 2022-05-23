@@ -1,7 +1,9 @@
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, FileResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
-import json
+import json, asyncio
+
+from django.utils.decorators import classonlymethod
 from django.views import View
 from django.views.generic import ListView, CreateView
 from django.views.generic.edit import DeleteView, UpdateView
@@ -97,8 +99,31 @@ class DecryptElem(DecryptMixim, TemplateView):
         return HttpResponse(json.dumps({'data': data}), content_type='application/json')
 
 
-class SyncDisc(SyncDiscMixin, TemplateView):
+async def post(request, *args, **kwargs):
+    tes = SyncDiscMixin()
+    if request.POST:
+        if kwargs['ts'] == 'ya_disk':
+            token = request.POST['token']
+            msg = await tes.check_token(token)
+        else:
+            code = request.POST['code']
+            msg = await tes.check_code(code)
+        return msg
+
+
+async def main_func(request, *args, **kwargs):
+    msg = await asyncio.gather(post(request, *args, **kwargs))
+    return HttpResponse(json.dumps({'data': msg[0]}), content_type='application/json')
+
+
+class SyncDisc(SyncDiscMixin, TemplateView, View):
     template_name = 'password/setting_pass_ya_disk.html'
+
+    @classonlymethod  # Чтобы выполнять асинхронные операции в классе, сначала необходимо переопределить метод as_view()
+    def as_view(cls, **initkwargs):
+        view = super().as_view(**initkwargs)
+        view._is_coroutine = asyncio.coroutines._is_coroutine
+        return view
 
     def get_context_data(self, *, object_list=None, **kwargs):
 
@@ -106,22 +131,40 @@ class SyncDisc(SyncDiscMixin, TemplateView):
         data_items = self.get_user_context(title='Синхронизация')
         return dict(list(context.items()) + list(list(data_items.items())))
 
-    def get(self, request, *args, **kwargs):
+    async def get(self, request, *args, **kwargs):
         if self.kwargs.get('ts', False) and self.kwargs['ts'] == 'file':
             data_items = self.get_user_context(file='ff')
             return FileResponse(open(data_items['file'], 'rb'))
 
         return self.render_to_response(self.get_context_data(**kwargs))
 
-    def post(self, request, *args, **kwargs):
+    async def post(self, request, *args, **kwargs):
         if self.request.POST:
             if self.kwargs['ts'] == 'ya_disk':
                 token = self.request.POST['token']
-                msg = self.check_token(token)
+                msg = await self.check_token(token)
             else:
                 code = self.request.POST['code']
-                msg = self.check_code(code)
+                msg = await self.check_code(code)
             return HttpResponse(json.dumps({'data': msg}), content_type='application/json')
+
+
+# class TestAsync(SyncDiscMixin, TemplateView):
+#     @classonlymethod
+#     def as_view(cls, **initkwargs):
+#         view = super().as_view(**initkwargs)
+#         view._is_coroutine = asyncio.coroutines._is_coroutine
+#         return view
+#
+#     async def post(self, request, *args, **kwargs):
+#         if self.request.POST:
+#             if self.kwargs['ts'] == 'ya_disk':
+#                 token = self.request.POST['token']
+#                 msg = await self.check_token(token)
+#             else:
+#                 code = self.request.POST['code']
+#                 msg = await self.check_code(code)
+#             return HttpResponse(json.dumps({'data': msg}), content_type='application/json')
 
 
 class EditReestr(DataMixim, TemplateView):

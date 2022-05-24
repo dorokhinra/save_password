@@ -12,8 +12,8 @@ menu = [{'name': 'Настройки', 'url': 'setting_pass'},
 
 
 @register.inclusion_tag('password/list_menu.html', name='list_menu')
-def show_menu(sorted=None, user=None):
-    return {'menu': menu}
+def show_menu(request=None, user=None):
+    return {'menu': menu, 'request': request, 'user': user}
 
 
 @register.inclusion_tag('password/list_footer.html', name='list_footer')

@@ -1,5 +1,9 @@
+from asgiref.sync import async_to_sync
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, FileResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 import json, asyncio
 
@@ -7,7 +11,7 @@ from django.utils.decorators import classonlymethod
 from django.views import View
 from django.views.generic import ListView, CreateView
 from django.views.generic.edit import DeleteView, UpdateView
-from password.forms import AddCategoryForm, AddElement
+from password.forms import AddCategoryForm, AddElement, LoginUserForm
 from password.utils import DataMixim, DecryptMixim, SyncDiscMixin
 # Create your views here.
 from django.views.generic import TemplateView
@@ -35,17 +39,23 @@ class PassHome(DataMixim, ListView):
 #     return render(requests, 'password/index.html', {'menu': menu, 'bar': bar})
 
 
-def login(request):
-    return render(request, 'password/login.html')
+class LoginUser(DataMixim, LoginView):
+    form_class = LoginUserForm
+    template_name = 'password/login.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Авторизация')
+        return dict(list(context.items()) + list(list(c_def.items())))
+
+    def get_success_url(self):
+        return reverse_lazy('home')
 
 
-def pass_reestr(request):
-    return render(request, 'password/pass_reestr.html')
-
-
-class OptionsForReestr(TemplateView):
-    def get(self, request, *args, **kwargs):
-        pass
+# Выход пользователя
+def logout_user(request):
+    logout(request)
+    return redirect('login')
 
 
 class DeleteElement(DeleteView):
@@ -99,21 +109,23 @@ class DecryptElem(DecryptMixim, TemplateView):
         return HttpResponse(json.dumps({'data': data}), content_type='application/json')
 
 
-async def post(request, *args, **kwargs):
-    tes = SyncDiscMixin()
-    if request.POST:
-        if kwargs['ts'] == 'ya_disk':
-            token = request.POST['token']
-            msg = await tes.check_token(token)
-        else:
-            code = request.POST['code']
-            msg = await tes.check_code(code)
-        return msg
+# async def post(request, *args, **kwargs):
+#     tes = SyncDiscMixin()
+#     if request.POST:
+#         if kwargs['ts'] == 'ya_disk':
+#             token = request.POST['token']
+#             msg = await tes.check_token(token)
+#         else:
+#             code = request.POST['code']
+#             msg = await tes.check_code(code)
+#         return msg
+#
+#
+# async def main_func(request, *args, **kwargs):
+#     msg = await asyncio.gather(post(request, *args, **kwargs))
+#     return HttpResponse(json.dumps({'data': msg[0]}), content_type='application/json')
 
 
-async def main_func(request, *args, **kwargs):
-    msg = await asyncio.gather(post(request, *args, **kwargs))
-    return HttpResponse(json.dumps({'data': msg[0]}), content_type='application/json')
 
 
 class SyncDisc(SyncDiscMixin, TemplateView, View):

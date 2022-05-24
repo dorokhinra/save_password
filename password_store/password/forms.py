@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+
 from .models import *
 
 
@@ -29,3 +31,13 @@ class AddElement(forms.ModelForm):
             'password': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Пароль', 'type': 'password'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'})
         }
+
+
+class LoginUserForm(AuthenticationForm):
+
+    username = forms.CharField(label='Логин',
+                               widget=forms.TextInput(attrs={'class': 'form-control',
+                                                             'placeholder': 'Введите логин для авторизации'}))
+    password = forms.CharField(label='Пароль',
+                               widget=forms.PasswordInput(attrs={
+                                   'class': 'form-control', 'placeholder': 'Введите пароль для авторизации', 'type': 'password'}))

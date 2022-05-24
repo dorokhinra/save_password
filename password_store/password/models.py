@@ -25,7 +25,7 @@ class Category(models.Model):
 class PasswordStore(models.Model):
     login = models.CharField(max_length=255, verbose_name='Логин')
     password = models.CharField(max_length=255, verbose_name='Пароль')
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True, verbose_name='Описание')
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     time_update = models.DateTimeField(auto_now=True, verbose_name='Время обновления')
     parent_id = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name='Категория',
@@ -35,6 +35,6 @@ class PasswordStore(models.Model):
         return self.login
 
     class Meta:
-        verbose_name = 'Данные для автоизации'
-        verbose_name_plural = 'Данные для автоизации'
+        verbose_name = 'Элементы авторизации'
+        verbose_name_plural = 'Элементы авторизации'
         ordering = ['-time_create']

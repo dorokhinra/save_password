@@ -12,6 +12,22 @@ class PasswordStoreAdmin(admin.ModelAdmin):
 admin.site.register(PasswordStore, PasswordStoreAdmin)
 
 
+class IndexContentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'content')
+    list_display_links = ('id', 'content')
+
+
+admin.site.register(IndexContent, IndexContentAdmin)
+
+
+class KeyStorageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'key', 'user')
+    list_display_links = ('id', 'key')
+
+
+admin.site.register(KeyStorage, KeyStorageAdmin)
+
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name_category', 'time_create')
     list_display_links = ('name_category', )

@@ -8,7 +8,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+{% if request.user.is_authenticated %}
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           {% for m in menu %}
         <li class="nav-item">
@@ -20,6 +20,7 @@
         </li>
           {% endfor %}
       </ul>
+    {% endif %}
         <ul class="navbar-nav ">
             {% if request.user.is_authenticated %}
                 <li class="nav-item"><label class="nav-link active">{{ user.username }} |</label></li>

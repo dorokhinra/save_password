@@ -173,4 +173,45 @@ class YaDisk {
     }
 }
 
+const ajaxRequest = (data, url, workFunc) => {
+     $.ajax({
+            url: url,
+            type: 'post',
+            dataType: 'JSON',
+            data: data,
+            success: (result) => {
+                workFunc(result)
+            }
+        })
+}
 
+class Encryption {
+    constructor(msg) {
+        this.keyPass = sessionStorage.getItem('keyPass')
+        this.msgKey = $('#msg_check_key')
+        this.checkKeyPass(msg)
+    }
+
+    checkKeyPass(msg) {
+        if (this.keyPass !== null) {
+            if (msg !== ''){
+                this.msgKey.attr('style' , 'color: #337B0CE6')
+                this.msgKey.children().html('Все настройки применены успешно!')
+            } else {
+                sessionStorage.removeItem('keyPass')
+            }
+
+        }
+    }
+
+    postKeyPass(result) {
+        if (result.status === 'ok') {
+            sessionStorage.setItem('keyPass', result.passKey)
+        location.reload()
+        } else {
+             $.toast({ heading: 'Ошибка!', text: result.msg,  icon: 'error',
+                           position: 'mid-center',  stack: false })
+        }
+
+    }
+}

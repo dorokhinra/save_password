@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+
+  Redis:
+    container_name: passwoed-store-redis
+    image: localhost:5115/redis:6.2.6-alpine3.14
+    command: redis-server --requirepass password
+    ports:
+    - "6379:6379"

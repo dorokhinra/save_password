@@ -1,0 +1,35 @@
+{% extends 'password/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+             <div class="alert alert-success" style="padding: 30px">
+ <h3>Ваша заявка принята!</h3>
+    <h6>На почту Вам должно прийти письмо с ссылкой на подтверждение регистрации. </h6>
+      <h6>Чтобы зарегистрироваться перейдите по ссылке!</h6>
+<h3>Осталось времени для подтверждения: <label class="seconds">240</label></h3>
+
+    </div>
+        </div>
+    </div>
+
+    </div>
+
+
+<script lang="js">
+var _Seconds = $('.seconds').text(),
+  int;
+int = setInterval(function() { // запускаем интервал
+  if (_Seconds > 0) {
+    _Seconds--; // вычитаем 1
+    $('.seconds').text(_Seconds); // выводим получившееся значение в блок
+  } else {
+    clearInterval(int); // очищаем интервал, чтобы он не продолжал работу при _Seconds = 0
+    alert('End!');
+  }
+}, 1000);
+</script>
+{% endblock %}

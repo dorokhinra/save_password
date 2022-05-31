@@ -1,5 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models import User
 
 from .models import *
 
@@ -64,4 +65,25 @@ class AddUserKey(forms.ModelForm):
         widgets = {
             'key': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Выберите файл для загрузки'}),
             'user': forms.HiddenInput()
+        }
+
+
+class AddUserForm(UserCreationForm):
+    username = forms.CharField(label='Логин',
+                               widget=forms.TextInput(attrs={'class': 'form-control',
+                                                             'placeholder': 'Введите логин'}))
+    password1 = forms.CharField(label='Пароль',
+                                widget=forms.PasswordInput(attrs={
+                                    'class': 'form-control', 'placeholder': 'Введите пароль',
+                                    'type': 'password'}))
+    password2 = forms.CharField(label='Пароль',
+                               widget=forms.PasswordInput(attrs={
+                                   'class': 'form-control', 'placeholder': 'Повторите ввод пароля',
+                                   'type': 'password'}))
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
+        widgets = {
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Адрес эелектронно почты', 'required': 'required'}),
         }

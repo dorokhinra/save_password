@@ -14,9 +14,9 @@
  {% if pass_table|length > 0 %}
  {% for i in pass_table %}
     <tr >
-      <td id={{ i.pk }}>{{ i.login }}</td>
-      <td id={{ i.pk }}>{{  i.password }}</td>
-      <td id={{ i.pk }}>{{ i.description }}</td>
+      <td id={{ i.pk }}>***********</td>
+      <td id={{ i.pk }}>***********</td>
+      <td id={{ i.pk }}>***********</td>
     </tr>
  {% endfor %}
  {% else %}
@@ -71,7 +71,7 @@
                 {
                     icon: 'glyphicon-plus',
                     text: 'Удалить эелемент',
-                    action: function(e, selector) { $('#delete_act').attr('action', '/delete_element/'+elemId+'/delete'); $('#deleteModal').modal('toggle'); }
+                    action: function(e, selector) { deleteElems('/delete_element/'+elemId+'/delete')}
                 }
 
             ]

@@ -88,19 +88,37 @@ const getIdElem = () => {
     })
 }
 
-const getDecryptElems = (pk) => {
-    if(pk !== ''){
-        $.ajax({
-            url: '/decrypt_elem/'+ pk+'/',
-            type: 'get',
-            success: (result) => {
-                $('#id_login').val(result.data.login)
+const decrypt_result = (result) => {
+     $('#id_login').val(result.data.login)
                 $('#create_elem').attr('action', '/update_elem/'+ result.data.pk + '/')
                 $('#id_password').attr('type','input')
                 $('#id_password').val(result.data.password)
                 $('#id_description').val(result.data.description)
-            }
-        });
+}
+
+const getCSRFToken = () => {
+         const cookieValue = document.cookie.split(';')
+            const re = /csrftoken=\S*/
+            let csrfToken = ''
+                cookieValue.filter(function (item) {
+                if (item.match(re) !== null) {
+                  csrfToken = item.split('=')[1]
+                }
+            })
+    return csrfToken
+}
+
+const getDecryptElems = (pk) => {
+    if(pk !== ''){
+        if (checkSettings()) {
+            const csrfToken = getCSRFToken()
+            const data = {key: sessionStorage.getItem('keyPass'), csrfmiddlewaretoken: csrfToken}
+            ajaxRequest(data, '/decrypt_elem/'+ pk+'/', decrypt_result)
+        } else {
+             $.toast({ heading: 'Внимание!',  text: 'Выполни настройку дружок!',  icon: 'warning',
+                           position: 'mid-center',  stack: false })
+        }
+
     }
 }
 
@@ -194,7 +212,8 @@ class Encryption {
 
     checkKeyPass(msg) {
         if (this.keyPass !== null) {
-            if (msg !== ''){
+            if (msg.key_id !== ''){
+                sessionStorage.setItem('keyId', msg.key_id)
                 this.msgKey.attr('style' , 'color: #337B0CE6')
                 this.msgKey.children().html('Все настройки применены успешно!')
             } else {
@@ -214,4 +233,15 @@ class Encryption {
         }
 
     }
+}
+
+const checkSettings = () => {
+    const keyPass = sessionStorage.getItem('keyPass')
+    const keyId = sessionStorage.getItem('keyId')
+    return keyId!==null && keyPass!==null
+}
+//Функция для удаление эелементов (там где есть модальное окно)
+const deleteElems = (url) => {
+     $('#delete_act').attr('action', url)
+     $('#deleteModal').modal('toggle')
 }

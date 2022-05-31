@@ -44,8 +44,8 @@ class Category(models.Model):
 
 
 class PasswordStore(models.Model):
-    login = models.CharField(max_length=255, verbose_name='Логин')
-    password = models.CharField(max_length=255, verbose_name='Пароль')
+    login = models.TextField(verbose_name='Логин')
+    password = models.TextField(verbose_name='Пароль')
     description = models.TextField(blank=True, verbose_name='Описание')
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     time_update = models.DateTimeField(auto_now=True, verbose_name='Время обновления')

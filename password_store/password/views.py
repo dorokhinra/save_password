@@ -1,11 +1,13 @@
 import os
+import uuid
 
 from django.contrib.auth import logout
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from django.db.models.signals import pre_delete
 from django.dispatch.dispatcher import receiver
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, FileResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 import json, asyncio
 
@@ -13,8 +15,8 @@ from django.utils.decorators import classonlymethod
 from django.views import View
 from django.views.generic import ListView, CreateView
 from django.views.generic.edit import DeleteView, UpdateView
-from password.forms import AddCategoryForm, AddElement, LoginUserForm, AddEncryptKey, AddUserKey
-from password.utils import DataMixim, DecryptMixim, SyncDiscMixin, EncryptMixin
+from password.forms import AddCategoryForm, AddElement, LoginUserForm, AddEncryptKey, AddUserKey, AddUserForm
+from password.utils import DataMixim, DecryptMixim, SyncDiscMixin, EncryptMixin, RegisterUserMailMixin
 # Create your views here.
 from django.views.generic import TemplateView
 from django.views.decorators.csrf import csrf_exempt
@@ -51,6 +53,7 @@ class LoginUser(DataMixim, LoginView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title='Авторизация')
+        del c_def['bar']
         return dict(list(context.items()) + list(list(c_def.items())))
 
     def get_success_url(self):
@@ -115,10 +118,15 @@ class UpdateElem(TemplateView):
         return HttpResponseRedirect(reverse_lazy('pass_reestr', kwargs={'parent_id': 0}))
 
 
-class DecryptElem(DecryptMixim, TemplateView):
+class DecryptElem(DecryptMixim, EncryptMixin,  TemplateView):
+    http_method_names = ['post']
 
-    def get(self, request, *args, **kwargs):
-        decrypt_elem = self.decryption(elem_id=self.kwargs['pk'])
+    def post(self, request, *args, **kwargs):
+        key = self.check_key_an_token(self.request.user.id, self.request.POST['key'])
+        if key['status'] == 'err':
+            return key['msg']
+        print(key)
+        decrypt_elem = self.decryption(elem_id=self.kwargs['pk'], key=key['msg'])
         data = {'pk': decrypt_elem.pk,
                 'login': decrypt_elem.login,
                 'password': decrypt_elem.password,
@@ -194,7 +202,7 @@ class SyncDisc(DataMixim, SyncDiscMixin, TemplateView):
 #             return HttpResponse(json.dumps({'data': msg}), content_type='application/json')
 
 
-class EditReestr(DataMixim, TemplateView):
+class EditReestr(DataMixim, EncryptMixin, TemplateView):
     """
     Класс для создание и удаления категорий и для создания элементов для этих категорий
     """
@@ -224,6 +232,12 @@ class EditReestr(DataMixim, TemplateView):
             return self.create_category(**kwargs)
 
     def create_elem(self):
+        key = self.check_key_an_token(self.request.user.id, self.result['key_pass'])
+        if key['status'] == 'err':
+            return key['msg']
+        for i in self.result:
+            if i not in ['csrfmiddlewaretoken', 'key_pass', 'user_id', 'parent_id']:
+                self.result[i] = self.encrypt_message(key['msg'], self.result[i]).decode()
         category_form = self.elem_form(self.result)
         try:
             category_form.save()
@@ -295,12 +309,37 @@ class DownloadUserKey(CreateView):
     #     p=1
     #     return HttpResponse(1)
 
+
 class DeleteUserKey(DeleteView):
     model = KeyStorage
     success_url = reverse_lazy('encryption')
 
+
+class RegisterUser(DataMixim, RegisterUserMailMixin, CreateView):
+    form_class = AddUserForm
+    template_name = 'password/register.html'
+    success_url = reverse_lazy('login')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Регистрация')
+        del c_def['bar']
+        return dict(list(context.items()) + list(list(c_def.items())))
+
+    def post(self, request, *args, **kwargs):
+        reg_token = uuid.uuid4()
+        self.set_user_data(self.request.POST, str(reg_token))
+        self.send_mail(reg_token)
+        return render(request, 'password/register_timer.html')
+        # form = self.form_class(json.loads(response))
+        # if form.is_valid():
+        #     form.save()
+        #     return redirect('login')
+        # return super().post(request, *args, **kwargs)
+
 # Create your views here.
-@receiver(pre_delete, sender=KeyStorage)
+@receiver(pre_delete, sender=KeyStorage)  # Отслеживает изменение с путм к файлу и если в БД путь удаляется удаляется и сам ФАЙЛ
 def image_model_delete(sender, instance, **kwargs):
     if instance.key.name:
         instance.key.delete(False)
+

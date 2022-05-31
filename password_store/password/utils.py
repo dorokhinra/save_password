@@ -1,5 +1,9 @@
+import json
 import os
 from collections import deque
+
+import redis
+from django.http import HttpResponse
 
 from password.forms import AddUserKey
 from password.models import *
@@ -63,8 +67,13 @@ class DataMixim:
 class DecryptMixim:
 
     def decryption(self, **kwargs):
-        elem_id = kwargs['elem_id']
+        elem_id, key = kwargs['elem_id'], kwargs['key']
         enc_data = PasswordStore.objects.get(pk=elem_id)
+        f = Fernet(key)
+        enc_data.login = f.decrypt(enc_data.login.encode()).decode()
+        enc_data.password = f.decrypt(enc_data.password.encode()).decode()
+        enc_data.description = f.decrypt(enc_data.description.encode()).decode()
+
         return enc_data
 
 
@@ -167,3 +176,43 @@ class EncryptMixin:
                          backend=default_backend())
         key = base64.urlsafe_b64encode(kdf.derive(user_key.encode()))
         return Fernet(key)
+
+    def check_key_an_token(self, user_id, key_pass):
+        path_key = os.path.normpath(
+            os.path.join(self.path, f"{user_id}.key"))
+        key = self.decrypt_key(key_pass, path_key)
+        if not key:
+            return {'msg': HttpResponse(json.dumps({'msg': '<p>Что-то пошло не так!</p>'}),
+                                        content_type="application/json"), 'status': 'err'}
+        return {'msg': key, 'status': 'ok'}
+
+    @staticmethod
+    def encrypt_message(key, message):
+        f = Fernet(key)
+        return f.encrypt(message.encode())
+
+    def decrypt_key(self, key, path_key):
+        f = self.generate_enc_token(key)
+
+        with open(path_key, 'rb') as file:
+            encrypt_key = file.read()
+        try:
+            return f.decrypt(encrypt_key)
+        except:
+            return False
+
+
+class RegisterUserMailMixin:
+    redis_instance = redis.StrictRedis(password=settings.REDIS_PASS, host=settings.REDIS_HOST,
+                                       port=settings.REDIS_PORT, db=0)
+
+    def set_user_data(self, data, reg_token):
+        dict_result = dict(data)
+        result = {}
+        for i in dict_result:
+            result[i] = dict_result[i][0]
+        self.redis_instance.set(reg_token, json.dumps(result), ex=10)
+
+    def send_mail(self, reg_id):
+        print(reg_id)
+

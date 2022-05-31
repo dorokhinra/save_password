@@ -70,6 +70,7 @@
             context.attach('#tree', contextMenu);
         });
 
+
         $('#category_form').submit(function (e){
             e.preventDefault()
             let postData = $('#category_form').serializeArray()
@@ -118,7 +119,9 @@
         $('#submit_btn_for_ell').on('click', function (){
             let data = $('#create_elem_form').serializeArray()
               if ($('#cat_id').text() !== '0'){
-                data.push({'name': 'parent_id', 'value': $('#cat_id').text()})
+                if (checkSettings()){
+                         data.push({'name': 'parent_id', 'value': $('#cat_id').text()})
+                    data.push({'name': 'key_pass', 'value': sessionStorage.getItem('keyPass')})
                   $.post({% url 'edit_reestr' %}, data, function(data){
                        $.toast({
                     heading: 'Сообщение!',
@@ -130,6 +133,18 @@
                 })
                       $('#create_elem_form')[0].reset()
                   })
+                } else {
+                       $.toast({
+                    heading: 'Внимение!',
+                    text: 'Для создание элемента необходимо иметь ключ шифрования и пароль для него!' +
+                        ' Это можно сделать в настройках',
+                    showHideTransition: 'plain',
+                    icon: 'warning',
+                    position: 'mid-center',
+                    stack: false
+                })
+                }
+
             } else {
                     $.toast({
                     heading: 'Внимение!',

@@ -20,10 +20,9 @@
     </form>
      <button type="button" id="key_pass_btn" class="btn btn-sm btn-success" >Применить</button>
         {% if msg.key_id != '' %}
-<form method="post" action="{% url 'delete_user_key' msg.key_id %}">
-    {% csrf_token %}
-    <button id="btn_delete_key" class="btn btn-sm btn-danger" style="margin-top: 10px">Удалить</button>
-</form>
+<input id='url_delete_key' type="hidden" value="{% url 'delete_user_key' msg.key_id %}">
+    <button id="btn_delete_key" type="button" class="btn btn-sm btn-danger" style="margin-top: 10px">Удалить</button>
+
     {% endif %}
     </div>
     <div id="msg_check_key" style="text-align: center; color: #BB5715; margin-top: 15px">
@@ -34,14 +33,21 @@
 
     <script lang="js">
         {% autoescape off %}
-            let msg = {{ msg.key_id }}
+            let msg = {{ msg }}
         {% endautoescape %}
+
     const enc = new Encryption(msg)
 
+    $('#btn_delete_key').on('click', function (){
+        url = $('#url_delete_key').val()
+        deleteElems(url)
+    })
 
     $('#key_pass_btn').on('click', function () {
          if ($("[name='password']").val() !== '') {
-                     ajaxRequest($('#form_key_pass').serialize(), '/setting_pass/encryption/', enc.postKeyPass)
+             if (!checkSettings()){
+                 ajaxRequest($('#form_key_pass').serialize(), '/setting_pass/encryption/', enc.postKeyPass)
+             }
          } else {
               $.toast({ heading: 'Ошибка!', text: 'Напишите фразу-пароль!',  icon: 'error',
                            position: 'mid-center',  stack: false })

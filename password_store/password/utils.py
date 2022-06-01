@@ -4,12 +4,12 @@ from collections import deque
 
 import redis
 from django.http import HttpResponse
-
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 from password.forms import AddUserKey
 from password.models import *
 import yadisk_async
 import datetime
-
+from django.template.loader import render_to_string
 from cryptography.fernet import Fernet
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
@@ -201,18 +201,29 @@ class EncryptMixin:
         except:
             return False
 
-
 class RegisterUserMailMixin:
     redis_instance = redis.StrictRedis(password=settings.REDIS_PASS, host=settings.REDIS_HOST,
                                        port=settings.REDIS_PORT, db=0)
+    # smtpObj = smtplib.SMTP('smtp.yandex.ru', 465)
 
     def set_user_data(self, data, reg_token):
         dict_result = dict(data)
         result = {}
         for i in dict_result:
             result[i] = dict_result[i][0]
-        self.redis_instance.set(reg_token, json.dumps(result), ex=10)
+        self.redis_instance.set(reg_token, json.dumps(result), ex=235)
 
-    def send_mail(self, reg_id):
-        print(reg_id)
+
+    def send_mail(self, reg_id, email):
+        html_content = render_to_string('password/accept_register_smtp.html', {'reg_id': str(reg_id)})
+        email_msg = EmailMultiAlternatives('Подтверждение регистрации', 'Text',  to=[str(email)])
+        email_msg.attach_alternative(html_content, "text/html")
+        email_msg.send()
+
+    def check_reg_id(self, reg_id):
+        value = self.redis_instance.get(str(reg_id))
+        if value:
+            data = json.loads(value)
+            return {'status': True, 'msg': data}
+        return {'status': False}
 

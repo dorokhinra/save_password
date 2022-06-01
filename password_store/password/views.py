@@ -1,6 +1,6 @@
 import os
 import uuid
-
+from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
@@ -101,7 +101,7 @@ class PassReestr(DataMixim, ListView):
         return PasswordStore.objects.filter(parent_id=self.kwargs['parent_id'], user_id=self.request.user.id)
 
 
-class UpdateElem(TemplateView):
+class UpdateElem(EncryptMixin, TemplateView):
     """
     Обновление элемента на странице pass_reestr
     """
@@ -109,13 +109,14 @@ class UpdateElem(TemplateView):
     success_url = reverse_lazy('pass_reestr', kwargs={'parent_id': 0})
 
     def post(self, request, *args, **kwargs):
-        data = self.request.POST
+        data = self.request.POST#
+        key = self.check_key_an_token(self.request.user.id, data['keyPass'])
         elem = self.model.objects.get(pk=kwargs['pk'])
-        elem.login = data['login']
-        elem.password = data['password']
-        elem.description = data['description']
+        elem.login = self.encrypt_message(key['msg'], data['login']).decode()
+        elem.password = self.encrypt_message(key['msg'], data['password']).decode()
+        elem.description = self.encrypt_message(key['msg'], data['description']).decode()
         elem.save()
-        return HttpResponseRedirect(reverse_lazy('pass_reestr', kwargs={'parent_id': 0}))
+        return HttpResponseRedirect(reverse_lazy('pass_reestr', kwargs={'parent_id': elem.parent_id_id}))
 
 
 class DecryptElem(DecryptMixim, EncryptMixin,  TemplateView):
@@ -125,7 +126,6 @@ class DecryptElem(DecryptMixim, EncryptMixin,  TemplateView):
         key = self.check_key_an_token(self.request.user.id, self.request.POST['key'])
         if key['status'] == 'err':
             return key['msg']
-        print(key)
         decrypt_elem = self.decryption(elem_id=self.kwargs['pk'], key=key['msg'])
         data = {'pk': decrypt_elem.pk,
                 'login': decrypt_elem.login,
@@ -328,17 +328,37 @@ class RegisterUser(DataMixim, RegisterUserMailMixin, CreateView):
 
     def post(self, request, *args, **kwargs):
         reg_token = uuid.uuid4()
-        self.set_user_data(self.request.POST, str(reg_token))
-        self.send_mail(reg_token)
-        return render(request, 'password/register_timer.html')
+        form = self.form_class(self.request.POST)
+        if form.is_valid():
+            self.set_user_data(self.request.POST, str(reg_token))
+            self.send_mail(reg_token, self.request.POST['email'])
+            return render(request, 'password/register_timer.html')
         # form = self.form_class(json.loads(response))
         # if form.is_valid():
         #     form.save()
         #     return redirect('login')
-        # return super().post(request, *args, **kwargs)
+        return super().post(request, *args, **kwargs)
+
+
+class AcceptRegister(DataMixim, RegisterUserMailMixin, TemplateView):
+    template_name = 'password/accept_register.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        check_reg = self.check_reg_id(kwargs['reg_id'])
+        if check_reg['status']:
+            form = AddUserForm(check_reg['msg'])
+            form.save()
+            data_items = self.get_user_context(title='Успешная регистрация', status='ok')
+        else:
+            data_items = self.get_user_context(title='Регистрация не пройдена!', status='err')
+        del data_items['bar']
+        return dict(list(context.items()) + list(list(data_items.items())))
+
+
 
 # Create your views here.
-@receiver(pre_delete, sender=KeyStorage)  # Отслеживает изменение с путм к файлу и если в БД путь удаляется удаляется и сам ФАЙЛ
+@receiver(pre_delete, sender=KeyStorage)  #  Отслеживает изменение с путм к файлу и если в БД путь удаляется удаляется и сам ФАЙЛ
 def image_model_delete(sender, instance, **kwargs):
     if instance.key.name:
         instance.key.delete(False)

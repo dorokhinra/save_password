@@ -131,3 +131,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 REDIS_PASS = 'password'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.yandex.ru"
+EMAIL_HOST_USER = "chetkiypoc.ru@yandex.ru"
+DEFAULT_FROM_EMAIL = "chetkiypoc.ru@yandex.ru"
+EMAIL_HOST_PASSWORD = "Win2018!"
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True

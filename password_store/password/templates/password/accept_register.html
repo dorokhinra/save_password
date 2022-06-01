@@ -1,0 +1,27 @@
+{% extends 'password/base.html' %}
+
+{% block content %}
+
+        <div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            {% if status == 'ok' %}
+             <div class="alert alert-success" style="padding: 30px">
+ <h3>Регистрация прошла успешно!</h3>
+   <a class="btn btn-primary btn-sm" href="{% url 'login' %}">Перейти к аутентификации</a>
+    </div>
+             {% else %}
+        <div class="alert alert-warning" style="padding: 30px">
+ <h3>Время регистрации истекло!</h3>
+   <a class="btn btn-primary btn-sm" href="{% url 'register' %}">Попробовать снова</a>
+    </div>
+    {% endif %}
+        </div>
+    </div>
+
+    </div>
+
+
+
+{% endblock %}

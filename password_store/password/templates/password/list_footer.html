@@ -1,21 +1,21 @@
 {% load static %}
 <div class="footer">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top ">
-    <p class="col-md-4 mb-0 text-muted">© 2022 Все права защищены мной Дорохин Руслан Андреевич</p>
+    <p class="col-md-4 mb-0 text-muted">© 2022 Все права защищены мной Дорохин Руслан Андреевич и дядей Жорой</p>
 
     <a href="{% url 'home' %}" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
         <img src="{% static 'password/images/label.png' %}" alt="" width="50" height="40">
     </a>
 
-    <ul class="nav col-md-4 justify-content-end">
-        {% for i in menu %}
-           {% if i.url == 'pass_reestr' %}
-        <li class="nav-item">  <a class="nav-link active" aria-current="page" href="{% url i.url 0 %}">{{ m.name }}</a></li>
-            {% else %}
-      <li class="nav-item"><a href="{% url i.url %}" class="nav-link px-2 text-muted">{{ i.name }}</a></li>
-    {% endif %}
-        {% endfor %}
-    </ul>
+{#    <ul class="nav col-md-4 justify-content-end">#}
+{#        {% for i in menu %}#}
+{#           {% if i.url == 'pass_reestr' %}#}
+{#        <li class="nav-item">  <a class="nav-link active" aria-current="page" href="{% url i.url 0 %}">{{ m.name }}</a></li>#}
+{#            {% else %}#}
+{#      <li class="nav-item"><a href="{% url i.url %}" class="nav-link px-2 text-muted">{{ i.name }}</a></li>#}
+{#    {% endif %}#}
+{#        {% endfor %}#}
+{#    </ul>#}
   </footer>
 </div>
 

@@ -19,5 +19,6 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('upload_key/', DownloadUserKey.as_view(), name='upload_user_key_file'),
     path('delete_user_key/<str:pk>/', DeleteUserKey.as_view(), name='delete_user_key'),
-    path('register/', RegisterUser.as_view(), name='register')
+    path('register/', RegisterUser.as_view(), name='register'),
+    path('accept_register/<str:reg_id>/', AcceptRegister.as_view(), name='mail_view')
 ]

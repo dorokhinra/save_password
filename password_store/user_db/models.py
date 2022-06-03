@@ -13,7 +13,7 @@ class Categories(models.Model):
         db_table = 'categories'
 
 
-class PasswordStore(models.Model):
+class PasswordStores(models.Model):
     login = models.TextField(verbose_name='Логин')
     password = models.TextField(verbose_name='Пароль')
     description = models.TextField(blank=True, verbose_name='Описание')

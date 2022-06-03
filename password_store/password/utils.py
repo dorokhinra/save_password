@@ -16,7 +16,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import base64
 
-from user_db.models import Categories
+from user_db.models import Categories, PasswordStores
 
 
 class DataMixim:
@@ -82,24 +82,38 @@ class DecryptMixim:
 class SyncDiscMixin:
     app_path = os.path.abspath(os.getcwd())
     path_db = os.path.normpath(os.path.join(app_path, "db.sqlite3"))
+    path_db_2 = os.path.normpath(os.path.join(app_path, "password_store.sqlite"))
     y = yadisk_async.YaDisk("e4b953a1900241a99dad6416dc0c0218", "a74315e22a73436683986016c1ae7c57")
-
 
     def get_user_file(self, **kwargs):
         context = kwargs
         if context.get('file', False):
-            # user_id = context['user_id']
-            # cats = Category.objects.filter(user_id=user_id).values('name_category', 'parent_id')
-            # password_store = PasswordStore.objects.filter(user_id=user_id).values('login', 'password',
-            #                                                                       'description', 'parent_id')
-            #
-            # for name_category, parent_id in cats:
-            #     Categories.objects.create(name_category=name_category, parent_id=parent_id)
-            # for login, password, escription, parent_id in password_store:
-            #     pass
-
-            context['file'] = self.path_db
+            user_id = context['user_id']
+            self.create_user_db(user_id)
+            context['file'] = self.path_db_2
         return context
+
+    @staticmethod
+    def sync_request(request):
+        return request.user.id
+
+    @staticmethod
+    def truncate_model():
+        Categories.objects.using('user_data').all().delete()
+        PasswordStores.objects.using('user_data').all().delete()
+
+    @staticmethod
+    def create_user_db(user_id):
+        cats = Category.objects.filter(user_id=user_id).values('id', 'name_category', 'parent_id')
+        password_store = PasswordStore.objects.filter(user_id=user_id).values('login', 'password',
+                                                                              'description', 'parent_id')
+        for cat in cats:
+            Categories.objects.using('user_data').create(pk=cat['id'], name_category=cat['name_category'], parent_id=cat['parent_id'])
+        for elemm in password_store:
+            PasswordStores.objects.using('user_data').create(login=elemm['login'],
+                                                            password=elemm['password'],
+                                                            description=elemm['description'],
+                                                            parent_id=elemm['parent_id'])
 
     async def check_token(self, token):
         if token == '':

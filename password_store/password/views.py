@@ -1,4 +1,6 @@
 import os
+from io import BytesIO
+
 from asgiref.sync import sync_to_async, async_to_sync
 import uuid
 from django.contrib.auth.models import User
@@ -24,6 +26,7 @@ from django.views.decorators.csrf import csrf_exempt
 from password.models import *
 # Класс отображения всех элементов согласно модели на странице (отвечает ListView)
 from password.utils import DataMixim
+from user_db.models import Categories, PasswordStores
 
 
 class PassHome(DataMixim, ListView):
@@ -170,10 +173,15 @@ class SyncDisc(DataMixim, SyncDiscMixin, TemplateView):
     async def get(self, request, *args, **kwargs):
         if self.kwargs.get('ts', False) and self.kwargs['ts'] == 'file':
 
-            # user = self.request.user.id
-
-            data_items = self.get_user_file(file='ff')
-            return FileResponse(open(data_items['file'], 'rb'))
+            user = await sync_to_async(self.sync_request, thread_sensitive=True)(request=self.request)
+            data_items = await sync_to_async(self.get_user_file, thread_sensitive=True)(file='ff', user_id=user)
+            # f = open(data_items['file'], 'rb')
+            return_data = BytesIO()
+            with open(data_items['file'], 'rb') as fo:
+                return_data.write(fo.read())
+            return_data.seek(0)
+            await sync_to_async(self.truncate_model, thread_sensitive=True)()
+            return FileResponse(return_data)
 
         return self.render_to_response(self.get_context_data(**kwargs))
 

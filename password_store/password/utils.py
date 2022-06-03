@@ -16,6 +16,8 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import base64
 
+from user_db.models import Categories
+
 
 class DataMixim:
     # paginate_by = 2
@@ -82,9 +84,20 @@ class SyncDiscMixin:
     path_db = os.path.normpath(os.path.join(app_path, "db.sqlite3"))
     y = yadisk_async.YaDisk("e4b953a1900241a99dad6416dc0c0218", "a74315e22a73436683986016c1ae7c57")
 
+
     def get_user_file(self, **kwargs):
         context = kwargs
         if context.get('file', False):
+            # user_id = context['user_id']
+            # cats = Category.objects.filter(user_id=user_id).values('name_category', 'parent_id')
+            # password_store = PasswordStore.objects.filter(user_id=user_id).values('login', 'password',
+            #                                                                       'description', 'parent_id')
+            #
+            # for name_category, parent_id in cats:
+            #     Categories.objects.create(name_category=name_category, parent_id=parent_id)
+            # for login, password, escription, parent_id in password_store:
+            #     pass
+
             context['file'] = self.path_db
         return context
 

@@ -1,4 +1,5 @@
 import os
+from asgiref.sync import sync_to_async, async_to_sync
 import uuid
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
@@ -168,6 +169,9 @@ class SyncDisc(DataMixim, SyncDiscMixin, TemplateView):
 
     async def get(self, request, *args, **kwargs):
         if self.kwargs.get('ts', False) and self.kwargs['ts'] == 'file':
+
+            # user = self.request.user.id
+
             data_items = self.get_user_file(file='ff')
             return FileResponse(open(data_items['file'], 'rb'))
 

@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "password.apps.PasswordConfig"
+    "password.apps.PasswordConfig",
+    'user_db.apps.UserDbConfig'
 ]
 
 MIDDLEWARE = [
@@ -78,6 +79,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'user_data': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'password_store.sqlite',
     }
 }
 

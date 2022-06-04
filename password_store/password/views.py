@@ -181,7 +181,7 @@ class SyncDisc(DataMixim, SyncDiscMixin, TemplateView):
                 return_data.write(fo.read())
             return_data.seek(0)
             await sync_to_async(self.truncate_model, thread_sensitive=True)()
-            return FileResponse(return_data)
+            return FileResponse(return_data, filename='password_store.sqlite')
 
         return self.render_to_response(self.get_context_data(**kwargs))
 

@@ -1,3 +1,5 @@
+import uuid
+
 from django.conf import settings
 from django.db import models
 
@@ -26,6 +28,7 @@ class KeyStorage(models.Model):
 
 
 class Category(models.Model):
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4(), editable=True, unique=True)
     parent_id = models.ForeignKey('self', default=None, blank=True, on_delete=models.CASCADE,  verbose_name='Категория',
                                   null=True)
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')

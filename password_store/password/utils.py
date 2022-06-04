@@ -1,5 +1,6 @@
 import json
 import os
+import uuid
 from collections import deque
 
 import redis
@@ -107,12 +108,22 @@ class SyncDiscMixin:
         cats = Category.objects.filter(user_id=user_id).values('id', 'name_category', 'parent_id')
         password_store = PasswordStore.objects.filter(user_id=user_id).values('login', 'password',
                                                                               'description', 'parent_id')
+        cats = list(cats)
+        password_store = list(password_store)
         for cat in cats:
-            Categories.objects.using('user_data').create(pk=cat['id'], name_category=cat['name_category'], parent_id=cat['parent_id'])
+            for ell in password_store:
+                if cat['id'] == ell['parent_id']:
+                    id_el = str(uuid.uuid4())
+                    cat['id'] = ell['parent_id'] = id_el
+
+        for cat in cats:
+            Categories.objects.using('user_data').create(pk=str(cat['id']), name_category=cat['name_category'], parent_id=cat['parent_id'])
         for elemm in password_store:
-            PasswordStores.objects.using('user_data').create(login=elemm['login'],
+            PasswordStores.objects.using('user_data').create(id=str(uuid.uuid4()),
+                                                            login=elemm['login'],
                                                             password=elemm['password'],
                                                             description=elemm['description'],
+                                                             create_utc=datetime.datetime.now(),
                                                             parent_id=elemm['parent_id'])
 
     async def check_token(self, token):

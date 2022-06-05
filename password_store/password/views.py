@@ -189,7 +189,9 @@ class SyncDisc(DataMixim, SyncDiscMixin, TemplateView):
         if self.request.POST:
             if self.kwargs['ts'] == 'ya_disk':
                 token = self.request.POST['token']
-                msg = await self.check_token(token)
+                user_id = await sync_to_async(self.sync_request, thread_sensitive=True)(self.request)
+                msg = await self.check_token(token, user_id)
+                await sync_to_async(self.truncate_model, thread_sensitive=True)()
             else:
                 code = self.request.POST['code']
                 msg = await self.check_code(code)

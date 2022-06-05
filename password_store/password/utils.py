@@ -4,6 +4,7 @@ import uuid
 from collections import deque
 
 import redis
+from asgiref.sync import sync_to_async
 from django.http import HttpResponse
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from password.forms import AddUserKey
@@ -82,8 +83,8 @@ class DecryptMixim:
 
 class SyncDiscMixin:
     app_path = os.path.abspath(os.getcwd())
-    path_db = os.path.normpath(os.path.join(app_path, "db.sqlite3"))
-    path_db_2 = os.path.normpath(os.path.join(app_path, "password_store.sqlite"))
+    # path_db = os.path.normpath(os.path.join(app_path, "db.sqlite3"))
+    path_db = os.path.normpath(os.path.join(app_path, "password_store.sqlite"))
     y = yadisk_async.YaDisk("e4b953a1900241a99dad6416dc0c0218", "a74315e22a73436683986016c1ae7c57")
 
     def get_user_file(self, **kwargs):
@@ -91,7 +92,7 @@ class SyncDiscMixin:
         if context.get('file', False):
             user_id = context['user_id']
             self.create_user_db(user_id)
-            context['file'] = self.path_db_2
+            context['file'] = self.path_db
         return context
 
     @staticmethod
@@ -126,13 +127,13 @@ class SyncDiscMixin:
                                                              create_utc=datetime.datetime.now(),
                                                             parent_id=elemm['parent_id'])
 
-    async def check_token(self, token):
+    async def check_token(self, token, user_id):
         if token == '':
             return {'msg': self.y.get_code_url(), 'status': 'url'}
         else:
             self.y.token = token
             if await self.y.check_token():
-                return await self.save_ya_disk()
+                return await self.save_ya_disk(user_id)
 
     async def check_code(self, code):
         try:
@@ -143,7 +144,8 @@ class SyncDiscMixin:
         except yadisk_async.exceptions.BadRequestError:
             return {'msg': '', 'status': 'error'}
 
-    async def save_ya_disk(self):
+    async def save_ya_disk(self, user_id):
+        await sync_to_async(self.create_user_db, thread_sensitive=True)(user_id)
         try:
             dir_name = await self.check_YaDisk_file_and_dir()
             if dir_name['dirname'] == '':
@@ -238,6 +240,7 @@ class EncryptMixin:
             return f.decrypt(encrypt_key)
         except:
             return False
+
 
 class RegisterUserMailMixin:
     redis_instance = redis.StrictRedis(password=settings.REDIS_PASS, host=settings.REDIS_HOST,

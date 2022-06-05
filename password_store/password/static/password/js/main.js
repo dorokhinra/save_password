@@ -167,6 +167,12 @@ class YaDisk {
 
     syncYaDisk() {
         this.yaToken = sessionStorage.getItem('yaToken')
+        $.toast({
+            text: 'Идет сохранение! Пожалуйста, подождите!',
+            position: 'mid-center',
+            hideAfter: 5000,  // in milli seconds
+             stack: false
+                })
         $.ajax({
             url: $('#urlYa').val(),
             type: 'post',
